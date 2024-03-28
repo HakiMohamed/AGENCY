@@ -11,18 +11,19 @@ class CreateCaracteristiquesTable extends Migration
         Schema::create('caracteristiques', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('property_id');
-            $table->foreign('property_id')->references('id')->on('properties');
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
             $table->integer('etage')->nullable();
-            $table->integer('surface');
+            $table->integer('surface')->nullable();
             $table->boolean('ascenseur')->default(false);
+            $table->boolean('RezDeChaussé')->default(false);
             $table->boolean('balcon')->default(false);
             $table->boolean('terrasse')->default(false);
             $table->boolean('piscine')->default(false);
             $table->boolean('jardin')->default(false);
             $table->boolean('parking')->default(false);
-            $table->integer('number_rooms');
-            $table->integer('number_sallon');
-            $table->integer('number_salleBain');
+            $table->integer('number_rooms')->nullable();
+            $table->integer('number_sallon')->nullable();
+            $table->integer('number_salleBain')->nullable();
             $table->timestamps();
         });
     }

@@ -2,144 +2,211 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="primarySection overflow-x-hidden" style="background-image: linear-gradient(to bottom, rgba(247, 237, 246, 0.82), rgba(215, 186, 240, 0.783));">
-    <div class="row flex-wrap-reverse">
-        <div class="col-md-6   mb-4" style="background-color: rgba(255, 255, 255, 0);">
-            <h1 class="fw-bold px-4">Cherchez plus simplement votre nouvel bien immobilier</h1>
-            <form class="px-4">
-                <div class="mb-3">
-                    <label for="propertyType" class="form-label fw-semibold">Type de bien</label>
-                    <select id="propertyType" class="form-select  fw-bold" style="background-color: #b07cdd44;">
-                        <option  value="buy">À vendre</option>
-                        <option  value="rent">À louer</option>
-                        <option  value="mortgage">Hypothèque</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="location" class="form-label fw-semibold" >Localisation</label>
-                    <input type="text" class="form-control " style="background-color: #b07cdd44;" id="location" placeholder="Entrez la localisation">
-                </div>
-                <div class="mb-3">
-                    <label for="propertyCategory" class="form-label fw-semibold">Catégorie de bien immobilier</label>
-                    <select id="propertyCategory" class="form-select  fw-bold" style="background-color: #b07cdd44;">
-                        <option value="house">Maison</option>
-                        <option value="villa">Villa</option>
-                        <option value="apartment">Appartement</option>
-                        <option value="commerce">Commerce</option>
-                        <option value="room">Chambre</option>
-                    </select>
-                </div>
-                <div class="row g-3">
-                    <div class="col">
-                        <label for="minBeds" class="form-label fw-semibold">chambres</label>
-                        <input type="number" style="background-color: #b07cdd44;" class="form-control" id="minBeds" placeholder="Nombre de chambres minimum">
-                    </div>
-                    <div class="col">
-                        <label for="minBaths" class="form-label fw-semibold">salles bain</label>
-                        <input type="number" style="background-color: #b07cdd44;" class="form-control" id="minBaths" placeholder="Nombre de salles de bain minimum">
-                    </div>
-                    <div class="col">
-                        <label for="minPrice" class="form-label fw-semibold">Prix min</label>
-                        <input type="number" style="background-color: #b07cdd44;" class="form-control" id="minPrice" placeholder="Prix minimum">
-                    </div>
-                </div>
-                <div class="row g-3">
-                    <div class="col">
-                        <label for="maxPrice" class="form-label fw-semibold">Prix max</label>
-                        <input type="number" style="background-color: #b07cdd44;" class="form-control" id="maxPrice" placeholder="Prix maximum">
-                    </div>
-                    <div class="col">
-                        <label for="minArea" class="form-label fw-semibold">Surface min</label>
-                        <input type="number" style="background-color: #b07cdd44;" class="form-control" id="minArea" placeholder="Surface minimum">
-                    </div>
-                    <div class="col">
-                        <label for="maxArea" class="form-label fw-semibold">Surface max</label>
-                        <input type="number" style="background-color: #b07cdd44;" class="form-control" id="maxArea" placeholder="Surface maximum">
-                    </div>
-                    <button type="submit" class="btn text-white mt-3" style="background-color: rgb(92, 57, 197);">Rechercher</button>
-
-                </div>
-            </form>
+<div class="container-fluid"   >
+    <div class="row flex flex-wrap-reverse"    >
+        <div class="col-md-6   mt-md-5 "   >
+            <h1 class="display-5 mb-4 fw-bold">Trouvez <span  style="color: #00B98E;">le bien parfaite</span> pour Vous</h1>
+            <p class="mb-4 pb-2">Utilisez notre plateforme de recherche avancée pour trouver la maison, la villa, l'appartement ou le commerce parfaitement adapté à vos besoins. </p>
+            <a href="{{route('properties')}}" class="btn text-white btncard py-3 " style="background-color: #00B98E;">Liste des properties <i class="fa-solid fa-arrow-right"></i>  </a>
         </div>
-        <div class="col-md-6 d-flex justify-content-center">
-            <img src="{{ asset('images/logo/img.webp') }}" class="img-fluid" alt="Thumbnail">
-        </div>
-    </div>
-</section>
-
-<section class="secondSection overflow-x-hidden" style="background-image: linear-gradient(to bottom, rgba(215, 186, 240, 0.804), rgba(255,255,255,0.9));">
-    <div class="row">
-        <div class="col-md-4 mb-5 ">
-            <div class="card h-100 border-0 card-left" style="background-color: rgba(240, 248, 255, 0);">
-                <img src="{{ asset('images/logo/For sale-amico.svg') }}" class="card-img-top" alt="Image 1">
-                <div class="card-body h-100 mx-4 d-flex flex-column align-items-center">
-                    <h4 class="card-title fw-bold mb-4">Vendez votre bien plus simplement</h4>
-                    <p class="card-text">Confiez-nous la vente de votre bien immobilier et profitez d'une expérience sans souci. Notre équipe experte s'occupe de tout, de la mise en valeur de votre propriété à la conclusion de la vente, pour des résultats rapides et probants.</p>
-                    <div class="mt-auto">
-                    <a href="#" class="btn btn-outline btncard " style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);" >Découvrir nos services</a>
+        
+        <div class="col-md-6 "  >
+            <div id="headerCarousel" class="carousel slide " data-bs-ride="carousel"  >
+                <div class="carousel-inner "  >
+                    <div class="carousel-item active"  >
+                        <img class="img-fluid" src="{{ asset('images/logo/carousel-1.jpg') }}" alt="">
+                    </div>
+                    <div class="carousel-item" >
+                        <img class="img-fluid" src="{{ asset('images/logo/carousel-2.jpg') }}" alt="">
+                    </div>
+                    <div class="carousel-item" >
+                        <img class="img-fluid mt-2" src="{{ asset('images/logo/img.webp') }}" alt="">
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-5">
-            <div class="card border-0 h-100 card-center" style="background-color: rgba(240, 248, 255, 0);">
-                <img src="{{ asset('images/logo/House searching-pana.svg') }}" class="card-img-top" alt="Image 2">
-                <div class="card-body h-100 mx-4 d-flex flex-column align-items-center">
-                    <h4 class="card-title fw-bold mb-4" style="margin-right: 30px;">Trouvez votre bien idéal</h4>
-                    <p class="card-text">Utilisez notre plateforme de recherche avancée pour trouver la maison, la villa, l'appartement ou le commerce parfaitement adapté à vos besoins. Avec notre outil intuitif, vous pouvez filtrer les résultats selon vos critères spécifiques, tels que le nombre de chambres, les commodités incluses, la localisation et bien plus encore</p>
-                    <div class="mt-auto">
-                    <a href="#" class="btn btn-outline btncard " style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);" >Parcourir nos annonces</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-5 ">
-            <div class="card border-0 h-100 card-right" style="background-color: rgba(240, 248, 255, 0);">
-                <img src="{{ asset('images/logo/Realtor-amico.svg') }}" class="card-img-top" alt="Image 3">
-                <div class="card-body h-100 mx-4 d-flex flex-column align-items-center">
-                    <h4 class="card-title fw-bold mb-4" style="margin-right: 30px;">Estimation du prix</h4>
-                    <p class="card-text">Utilisez notre service d'estimation en ligne pour obtenir une évaluation rapide et précise de votre bien immobilier. Notre outil vous fournira gratuitement le prix de votre maison ou de votre appartement, ainsi que le loyer de marché, le tout mis à jour régulièrement pour refléter les tendances du marché immobilier</p>
-                    <div class="mt-auto">
-                    <a href="{{route('estimer')}}" class="btn btn-outline btncard " style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);" >Estimation du prix</a>
-                    </div>
-                </div>
+                <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#headerCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#headerCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section class="thirdSection overflow-x-hidden" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.9)  , rgba(206, 172, 236, 0.804));">
+
+<div class="container-fluid py-3 mt-5 wow fadeIn"  style="background-color: #00B98E;" data-wow-delay="0.1s" >
+    <div class="container">
+        <div class="row g-2">
+            <div class="col-md-10">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select border-0 py-3">
+                            <option selected>Property Type</option>
+                            <option value="1">Property Type 1</option>
+                            <option value="2">Property Type 2</option>
+                            <option value="3">Property Type 3</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select border-0 py-3">
+                            <option selected>Location</option>
+                            <option value="1">Location 1</option>
+                            <option value="2">Location 2</option>
+                            <option value="3">Location 3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-dark border-0 w-100 py-3">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Property Types</h1>
+            <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+        </div>
+        <div class="row g-4">
+            <div data-aos="fade-right" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark"  href="">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" src="{{ asset('images/icon-apartment.png') }}" alt="Icon">
+                        </div>
+                        <h6 class="fw-bold">Apartment</h6>
+                        <span>123 Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div data-aos="fade-left" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" src="{{ asset('images/icon-villa.png') }}" alt="Icon">
+                        </div>
+                        <h6 class="fw-bold">Villa</h6>
+                        <span>123 Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div data-aos="fade-up-right" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" src="{{ asset('images/icon-house.png') }}" alt="Icon">
+                        </div>
+                        <h6 class="fw-bold">Home</h6>
+                        <span>123 Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div data-aos="fade-up-left" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" src="{{ asset('images/icon-housing.png') }}" alt="Icon">
+                        </div>
+                        <h6 class="fw-bold">Office</h6>
+                        <span>123 Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div data-aos="fade-up" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" src="{{ asset('images/icon-building.png ') }}" alt="Icon">
+                        </div>
+                        <h6 class="fw-bold">Building</h6>
+                        <span>123 Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div data-aos="fade-down-right" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" src="{{ asset('images/icon-neighborhood.png') }}" alt="Icon">
+                        </div>
+                        <h6 class="fw-bold">Townhouse</h6>
+                        <span>123 Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div data-aos="fade-down-left" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" src="{{ asset('images/icon-condominium.png') }}" alt="Icon">
+                        </div>
+                        <h6 class="fw-bold">Shop</h6>
+                        <span>123 Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div data-aos="flip-left" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none  text-dark " href="">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" src="{{ asset('images/icon-luxury.png') }}" alt="Icon">
+                        </div>
+                        <h6 class="fw-bold">Garage</h6>
+                        <span>123 Properties</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="thirdSection overflow-x-hidden" >
+    <div class="container">
     <div class="row">
         <div class="col-md-6 d-flex align-items-center">
             <div class="text-center">
                 <h2 class="fw-bold">Prix de l'immobilier au Maroc</h2>
                 <p class="mx-4">Découvrez le prix du m² autour de vous. Le prix du m2 dans les grandes villes du Maroc.</p>
-                <a href="#" class="btn  btn-outline btncard" style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);">Découvrir</a>
+                <a href="#" class="btn  btn-outline-primary btncard" >Découvrir</a>
             </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-center">
+        <div data-aos="flip-right" class="col-md-6 d-flex justify-content-center">
             <img src="{{ asset('images/logo/PrixMaroc.webp') }}" class="img-fluid" alt="Thumbnail">
         </div>
     </div>
+    </div>
 </section>
 
-<section class="FourSection overflow-x-hidden" style="background-image: linear-gradient(to bottom , rgba(206, 172, 236, 0.804), rgba(224, 190, 219, 0.9));">
+<section class="FourSection overflow-x-hidden" >
+    <div class="container">
     <div class="row">
-        <div class="col-md-6 d-flex justify-content-center">
-            <img src="{{ asset('images/logo/Realtor (1).gif') }}" class="img-fluid" alt="Thumbnail">
+        <div data-aos="flip-left" class="col-md-6 d-flex justify-content-center">
+            <img src="{{ asset('images/Realtor-bro.svg') }}" class="img-fluid" alt="Thumbnail">
         </div>
         <div class="col-md-6 d-flex align-items-center">
             <div class="text-center">
                 <h2 class="fw-bold">Vous êtes agent immobilier ?</h2>
                 <p class="mx-4">Découvrez nos solutions pro d’estimations, d’étude de marché et de conseil qui couvrent l’ensemble de la chaîne de valeurs de l’immobilier. Accélerez votre activité et offrez une expérience digitale unique pour vos clients avec Agency</p>
-                <a href="#" class="btn  btn-outline btncard" style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);">Découvrir</a>
+                <a href="#" class="btn  btn-outline-primary btncard" >Découvrir</a>
             </div>
         </div>
         
     </div>
+    </div>
 </section>
 
-<section class="faqSection overflow-x-hidden" style="background-image: linear-gradient(to bottom, rgba(224, 190, 219, 0.9), rgba(206, 172, 236, 0.804));">
+<section class="faqSection overflow-x-hidden" >
+    <div class="container">
     <div class="container py-5 " >
         <h2 class="text-center fw-bold mb-5">FAQ</h2>
 
@@ -197,7 +264,9 @@
             </div>
         </div>
     </div>
+    </div>
 </section>
+
 
 
 

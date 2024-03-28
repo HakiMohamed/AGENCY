@@ -1,3 +1,4 @@
+{{-- app.blade.php --}}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,15 +8,21 @@
     <title>Mon site Laravel</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg   navbar-light bg-light  fixed-top shadow-sm h-lg-25" style="top: -5;" >
+    <nav  class="navbar navbar-expand-lg    navbar-light bg-light  fixed-top shadow-sm h-lg-25" style="top: -5;" >
         <div class="container">
-            <a class="navbar-brand h-70 w-70" href="{{route('welcome')}}">
-                <img src="{{ asset('images/logo/logopic.png') }}" class="d-inline-block   align-top" alt="Logo" style="width: 120px; hieght:70px;">
+            <a href="/" class="navbar-brand d-flex align-items-center text-center">
+                <div class="icon p-2 me-2">
+                    <img class="img-fluid" src="{{asset('images/logo/icon-deal.png')}}" alt="Icon" style="width: 30px; height: 30px;">
+                </div>
+                <h5 class="m-0 " style="color: #00B98E;">Agency</h5>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -60,7 +67,7 @@
                                 <div class="col-md-6">
                                     <p class="mx-3 text-muted">Mes options</p>
                                     <ul class="list-unstyled mx-3">
-                                        <li><a class="dropdown-item fw-bold" href="#">Vendre rapidement avec agency <i class="fa-solid fa-arrow-right"></i></a></li>
+                                        <li><a class="dropdown-item fw-bold" href="#">Vendre rapidement avec agency <i class="fa-solid fa-arrow-right"></i> </a></li>
                                         <li><a class="dropdown-item fw-bold" href="#">Vendre tout seul <i class="fa-solid fa-arrow-right"></i></a></li>
                                         <li><a class="dropdown-item fw-bold" href="#">Trouver un agent <i class="fa-solid fa-arrow-right"></i></a></li>
                                     </ul>
@@ -91,10 +98,22 @@
                 </ul>
                 <div class="navbar-nav d-flex ">
                     <li class="nav-item me-3 mb-3 mb-md-0">
-                        <button class="btn text-white" style="background-color:#8b44ca;">Publier une annonce</button>
+                        <div class="btn-group">
+                            <button type="button" class="btn  dropdown-toggle dropdown-toggle-split text-white"  style="background-color: #00B98E;"  data-bs-toggle="dropdown" aria-expanded="false">
+                                Publier une annonce
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item btncard" href="{{route('create.maison-riad-villa')}}">Maison, Riad ou Villa <i class="fa-solid fa-arrow-right"></i></a></li>
+                              <li><a class="dropdown-item btncard" href="{{route('create.appartement-studio-bureau')}}">Appartement, Studio, ou bureau<i class="fa-solid fa-arrow-right"></i></a></li>
+                              <li><a class="dropdown-item btncard" href="{{route('create.local-commerce')}}">local commerce <i class="fa-solid fa-arrow-right"></i></a></li>
+                              <li><a class="dropdown-item btncard" href="{{route('create.Chambres')}}">Chambres <i class="fa-solid fa-arrow-right"></i></a></li>
+                              <li><a class="dropdown-item btncard" href="{{route('create.terrain-immobilier')}}">Terain <i class="fa-solid fa-arrow-right"></i></a></li>
+                            </ul>
+                          </div>
+                                              
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-outline-dark btncard"  style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);">Connexion</button>
+                        <button class="btn btn-outline-dark btncard"  style=" color: rgb(9, 135, 238); border-color: rgb(9, 177, 244);">Connexion <i class="fa-regular fa-user"></i></button>
                     </li>
                 </div>
                 
@@ -102,32 +121,35 @@
         </div>
     </nav>
 
-    <div class=" " style="margin-top: 78px;  "> 
+    <div class="container" style="margin-top: 78px;   overflow: hidden;  "> 
         @yield('content')
     </div>
 
-    <footer class="text-center p-3 px-4  text-sm-start" style="background-color: rgba(206, 172, 236, 0.804);">
-        <hr class="mt-0 " style="border-color: rgba(184, 15, 184, 0.982);">
+    <footer class="text-center p-3 px-4  text-sm-start" >
+        <hr class="mt-0 " style="border-color:  rgba(230, 212, 245, 0.783);">
 
         <div class="row">
                 <div class="col-lg-4 col-md-12 mb-md-0 " style="background-color: rgba(206, 172, 236, 0);">
                     <h5 class="text-uppercase fw-bold">À propos</h5>
-                    <p class="small">Agency a pour mission de rendre le marché immobilier au Maroc plus transparent et d'offrir des solutions d’analyse pour ceux qui cherchent à acheter, vendre ou obtenir une estimation du prix immobilier. Notre équipe unique au Maroc, composée d'experts immobiliers et de data-scientists, conçoit des outils innovants pour permettre à nos clients de prendre des décisions immobilières éclairées, d’accélérer leur activité, et d'obtenir les meilleures estimations de prix immobilier.</p>
+                    <p class="small" style="font-size:10px;">Agency a pour mission de rendre le marché immobilier au Maroc plus transparent et d'offrir des solutions d’analyse pour ceux qui cherchent à acheter, vendre ou obtenir une estimation du prix immobilier. Notre équipe unique au Maroc, composée d'experts immobiliers et de data-scientists, conçoit des outils innovants pour permettre à nos clients de prendre des décisions immobilières éclairées, d’accélérer leur activité, et d'obtenir les meilleures estimations de prix immobilier.</p>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-md-0 " >
                     <h5 class="text-uppercase fw-bold">Nos données</h5>
-                    <p class="small">Nous collectons, analysons et structurons en continu des données liées au marché de l’immobilier au Maroc, notamment les offres, les transactions, les données cadastrales, socio-démographiques, et bien plus encore, afin de fournir une estimation précise à ceux qui souhaitent acheter ou vendre des propriétés.</p>
+                    <p class="small " style="font-size:10px;" >Nous collectons, analysons et structurons en continu des données liées au marché de l’immobilier au Maroc, notamment les offres, les transactions, les données cadastrales, socio-démographiques, et bien plus encore, afin de fournir une estimation précise à ceux qui souhaitent acheter ou vendre des propriétés.</p>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-md-0 " >
                     <h5 class="text-uppercase fw-bold">Notre technologie</h5>
-                    <p class="small">Nos data-scientists utilisent des algorithmes de Machine Learning pour développer les solutions d’estimations de prix immobilier les plus précises au Maroc, garantissant ainsi une excellente base de décision pour acheter ou vendre.</p>
+                    <p class="small" style="font-size :10px;">Nos data-scientists utilisent des algorithmes de Machine Learning pour développer les solutions d’estimations de prix immobilier les plus précises au Maroc, garantissant ainsi une excellente base de décision pour acheter ou vendre.</p>
                 </div>
             </div>
-            <div class="row ">
+            <div class="row "  >
                 <div class="col-md-12">
                     <hr class="mt-0 mb-4" style="border-color: rgba(39, 4, 39, 0.982);">
-                    <a class="navbar-brand h-70 w-70" href="#">
-                        <img src="{{ asset('images/logo/logopic.png') }}" class="d-inline-block   align-top" alt="Logo" style="width: 180px; hieght:150px;">
+                    <a href="/" class="navbar-brand d-flex align-items-center text-center">
+                        <div class="icon p-2 me-2">
+                            <img class="img-fluid" src="{{asset('images/logo/icon-deal.png')}}" alt="Icon" style="width: 30px; height: 30px;">
+                        </div>
+                        <h5 class="m-0 text-primary">Agency</h5>
                     </a>
                    
                     <div class="social-icons d-flex justify-content-center gap-5">
@@ -168,6 +190,12 @@
     
 
     <!-- Bootstrap JS -->
+    <script src={{ asset('js/app.js') }}></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        AOS.init();
+      </script>
 </body>
 </html>

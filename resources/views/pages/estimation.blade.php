@@ -3,9 +3,12 @@
 
 @section('content')
 <section class="primarySection overflow-x-hidden" style="background-image: linear-gradient(to bottom, rgba(247, 237, 246, 0.82), rgba(215, 186, 240, 0.783));">
+    <div class="container">
+        <h1 class="fw-bold mt-5 mx-md-4 ">Estimation de votre bien immobilier</h1>
+
     <div class="row flex-wrap-reverse">
+        
         <div class="col-md-6 mb-4" style="background-color: rgba(255, 255, 255, 0);">
-            <h1 class="fw-bold px-4">Estimation de votre bien immobilier</h1>
             <form class="px-4" id="estimationForm">
                 <div class="mb-3">
                     <label for="propertyType" class="form-label fw-semibold">Type de bien</label>
@@ -107,7 +110,7 @@
                     <input type="text" class="form-control" style="background-color: #b07cdd44;" id="floor" placeholder="Entrez l'étage">
                 </div>
                 
-                <button type="submit" class="btn mx-5 px-5 btncard" style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);" data-bs-toggle="modal" data-bs-target="#resultModal">
+                <button type="submit" class="btn  px-5 btncard" style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);" data-bs-toggle="modal" data-bs-target="#resultModal">
                     Estimer
                 </button>            
             </form>
@@ -115,7 +118,10 @@
             
         </div>
         <div class="col-md-6">
-            <img class="w-100 mt-3" src="{{ asset('images/logo/Price.gif') }}" alt="">
+            <p class="fw-bold">Estimez votre maison ou estimez votre appartement pour découvrir gratuitement et en 2 min son prix et son loyer de marché. Votre estimation est mise à jour tous les mois dans votre espace</p>
+            <img class="w-100 mt-3 mb-1" src="{{ asset('images/logo/vecteezy_house-selection-and-search-house-project-real-estate_5611291.jpg') }}" alt="">
+            <p class="fw-bold mt-5">L'estimation immobilière en ligne permet de se faire une première idée du prix de vente d'un bien. L'estimation est calculée automatiquement en fonction de la moyen de vente de m2. Pour obtenir votre estimation en ligne, il faut localiser le bien à estimer puis renseigner des informations sur les caractéristiques du bien ( étage, nombre des chambres, surface...)</p>
+            <img class="w-100 " src="{{ asset('images/logo/28480709_Married couple investing savings into new home.svg') }}" alt="">
         </div>
 
         <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
@@ -136,6 +142,7 @@
         </div>
         
     </div>
+</div>
     <script>document.getElementById('estimationForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const typeBien = document.getElementById('propertyType').value;
@@ -250,6 +257,7 @@
     $('#resultModal').modal('show'); // Afficher le modal   
     });
     </script>
+
 </section>
 
 @endsection
