@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,14 @@ Route::get('/properties/create/terrain-immobilier', [PropertyController::class, 
 Route::get('/properties/create/Chambres', [PropertyController::class, 'createChambres'])->name('create.Chambres');
 Route::post('/properties/store/appartement-studio-bureau', [PropertyController::class, 'storeAppartement'])->name('store_appartement-studio-bureau');
 Route::get('/properties', [PropertyController::class, 'showProperties'])->name('properties');
+Route::post('/properties/filter', [PropertyController::class, 'filterProperties'])->name('properties.filter');
+// Route::get('/properties/filter', [PropertyController::class, 'filterProperties'])->name('properties.filter');
+
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/register',  'showRegister')->name('register');
+    Route::post('/register',  'register');
+    Route::get('/login',  'showLogin')->name('login');
+    Route::post('/login',  'login');
+    Route::post('/logout',  'logout')->middleware('auth')->name('logout');
+});

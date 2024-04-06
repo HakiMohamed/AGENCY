@@ -5,109 +5,207 @@
 <div class="container-xxl py-5 " style="overflow-x: hidden;">
     <div class="container">
         <div class="row g-0 gx-5 align-items-end">
-            <div class="col-lg-6">
-                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                    <h1 class="mb-3">Liste des Propriétés</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.</p>
-                </div>
-            </div>
-            <div class="col-lg-6 d-flex justify-content-end align-items-center text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
-                <p class="me-2"><i class="fas fa-filter" style="color: #00B98E;"></i> Filtrage</p>
-                <form>
-                    <select class="form-select" id="categorie_id" name="categorie_id" aria-label="Filtrer les affichages">
-                        <option id="categorie_id" value="">Toutes</option>
-                        <option id="categorie_id" value="3">Hypothécaire</option>
-                        <option id="categorie_id" value="2">A Louer</option>
-                        <option id="categorie_id" value="1">A Vendre</option>
+            <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" style="width: 160px; margin-left:35px;" class="btn d-flex mx-md-4 my-md-0  btn-outline-success btncard">
+                <span class="align-items-center">Filter Avancé</span>
+                <i class="fa-solid fa-sliders ms-2"></i>
+            </button>
+            <div class="col-lg-12  my-3 d-flex justify-content-end align-items-end text-lg-end wow slideInRight" data-wow-delay="0.1s">
+                
+                <form id="filter-form" class="d-flex flex-wrap flex-md-nowrap">
+                    <input type="text" name="title" class="form-control px-5 mx-2  mx-md-1  my-md-0 my-1 mx-2 " placeholder="Rechercher un mot clé">
+                    <select class="form-select mx-md-3  my-md-0 my-1 mx-2" id="categorie_id" name="categorie_id" aria-label="Filtrer les affichages">
+                        <option value="">Toutes categories</option>
+                        <option value="3">Hypothécaire</option>
+                        <option value="2">A Louer</option>
+                        <option value="1">A Vendre</option>
                     </select>
+            
+                    <select class="form-select mx-md-3  my-md-0 my-1 mx-2" id="city_id" name="city_id" aria-label="Filtrer par ville">
+                        <option value="">Toutes les villes</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <select class="form-select mx-md-3  my-md-0 my-1 mx-2" id="type_id" name="type_id" aria-label="Filtrer par ville">
+                        <option value="">Toutes Les Types</option>
+                        @foreach($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <button class="btn btn-outline-success  justify-content-center btncard mx-md-1 my-md-0 my-2 mx-2 d-flex flex-grow-1" type="submit">Filtrer   <i class="fa-brands fa-searchengin " style="margin-left: 4px;"></i></button>
                 </form>
             </div>
+
+            
+
+ 
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex justify-content-center  text-white " style="background-color: #00B98E;">
+                            <h5 class="modal-title fw-bold  ml-5 border-2" id="exampleModalLabel">Filtre avancé</h5>
+                            <button type="button" class="btn-close "  data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="background-color: #d0f1ea;">
+                            <form id="advanced-filter-form">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="categorie_id" class="form-label">Catégorie</label>
+                                        <select class="form-select" id="categorie_id" name="categorie_id" aria-label="Filtrer les affichages">
+                                            <option value="">Toutes categories</option>
+                                            <option value="3">Hypothécaire</option>
+                                            <option value="2">A Louer</option>
+                                            <option value="1">A Vendre</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="city_id" class="form-label">Ville</label>
+                                        <select class="form-select" id="city_id" name="city_id" aria-label="Filtrer par ville">
+                                            <option value="">Toutes les villes</option>
+                                            @foreach($cities as $city)
+                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="type_id" class="form-label">Type</label>
+                                        <select class="form-select" id="type_id" name="type_id" aria-label="Filtrer par type">
+                                            <option value="">Toutes Les Types</option>
+                                            @foreach($types as $type)
+                                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="RezDeChaussé" name="RezDeChaussé" value="1">
+                                            <label class="form-check-label" for="RezDeChaussé">Rez-de-chaussée</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="balcon" name="balcon" value="1">
+                                            <label class="form-check-label" for="balcon">Balcon</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="terrasse" name="terrasse" value="1">
+                                            <label class="form-check-label" for="terrasse">Terrasse</label>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="piscine" name="piscine" value="1">
+                                            <label class="form-check-label" for="piscine">Piscine</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-check">
+                                            <label for="ascenseur" class="form-label">Ascenseur</label>
+                                            <input class="form-check-input" type="checkbox" id="ascenseur" name="ascenseur" value="1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="jardin" name="jardin" value="1">
+                                            <label class="form-check-label" for="jardin">Jardin</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="parking" name="parking" value="1">
+                                            <label class="form-check-label" for="parking">Parking</label>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="number_rooms" class="form-label">Nombre de chambres</label>
+                                        <input type="text" id="number_rooms" name="number_rooms" class="form-control">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="number_sallon" class="form-label">Nombre de salons</label>
+                                        <input type="text" id="number_sallon" name="number_sallon" class="form-control">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="number_salleBain" class="form-label">Nombre de salles de bain</label>
+                                        <input type="text" id="number_salleBain" name="number_salleBain" class="form-control">
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                   
+                                    <div class="col-md-4 mb-3">
+                                        <label for="etage" class="form-label">Étage</label>
+                                        <input type="text" id="etage" name="etage" class="form-control">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="surface" class="form-label">Surface</label>
+                                        <input type="text" id="surface" name="surface" class="form-control">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer text-white" style="background-color:  #00B98E;">
+                            <button type="button" class="btn text-white" style="background-color: rgb(255, 196, 0);"  data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn text-white"  style="background-color: rgb(9, 138, 22);"  id="apply-filters">Appliquer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+
+
+
+
+            
         </div>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4" id="property-list">
-                    @foreach ($properties as $property)
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="link-underline-opacity-0 text-decoration-none" href="#">
-                                <div class="property-item rounded overflow-hidden">
-                                    <div class="position-relative overflow-hidden"> 
-                                        <div id="carouselProperty{{ $property->id }}" class="carousel slide" data-bs-ride="carousel">
-                                            <div class="carousel-inner">
-                                                @foreach ($property->images as $key => $image)
-                                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                                        <img src="{{ asset($image->url) }}" class="d-block w-100" alt="Property Image">
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProperty{{ $property->id }}" data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselProperty{{ $property->id }}" data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
-                                        </div> 
-                                        <div style="background-color: rgba(135, 135, 135, 0.432);" class="rounded btn  btn-secodary  text-white position-absolute start-0 top-0 m-4 ">{{ $property->created_at->locale('fr')->diffForHumans() }}</div>
-                                        <div style="color: #00B98E; border-color: #00B98E;" class="rounded btn  btn-outline fw-bold btncard  text-white position-absolute end-0 top-0 m-4 py-1 px-3">{{ $property->categorie->name }}</div>
-                                        <div class="bg-white rounded-top  position-absolute start-0 fw-bold bottom-0 mx-4 pt-1 px-3" style="color: #4b13f3;">{{ $property->type->name }}</div>
-                                    </div>
-
-                                    <div class="p-4 pb-0">
-                                        <h5 class="fw-bold mb-3" style="color: #000000;"><span class="text-dark">{{ $property->prix }}</span>  MAD</h5>
-                                        <p class="d-block text-dark h5 mb-2">{{ $property->title }}</p>
-                                        <p class="text-dark"><i class="fa fa-map-marker-alt me-2" style="color: #4b13f3;"></i>{{ $property->city->name }}</p>
-                                        <a class="btn d-flex justify-content-end align-items-end mb-3" data-tracking="click" data-value="listing-whatsapp" data-slug="495978" aria-label="Whatsapp" target="_blank" rel="noreferrer nofollow noopener" href="https://api.whatsapp.com/send?phone=+212619969568&amp;text=Bonjour, j'ai vu le bien mis en vente sur agency ( {{$property->title}} ), Ref: 12_75MA{{$property->id}}, et je souhaite prendre rendez-vous pour une visite. Merci. %0ahttp://127.0.0.1:8000/properties"> <i class="fa-brands fa-whatsapp fa-2xl" style="color: #2f7c0e;"></i></a>
-                                    </div>
-
-                                    <div class="d-flex border-top">
-                                        <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-ruler-combined me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->surface }} m²</small>
-                                        <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-bed me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_rooms }} Chambres</small>
-                                        <small class="flex-fill text-center text-dark py-2"><i class="fa fa-bath me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_salleBain }} Bain</small>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
+                    @include('properties.property_list')
                 </div>
+                
+                
+                <div class="row g-4 mt-2" id="new-properties">
+                    
+                </div>
+                <div id="loading-indicator" class="text-center" style="display: none;">
+                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading...</p>
+                </div>
+                
+                {{-- <div id="pagination-links" class="text-center">
+                    <p>{{ $properties->links() }}</p>  
+                  </div> --}}
             </div>
-            
+
         </div>
     </div>
 </div>
 
+
+
+
+
+
 @endsection
 
-@section('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var categorieSelect = document.getElementById('categorie_id');
 
-        categorieSelect.addEventListener('change', function () {
-            var categorieId = categorieSelect.value;
-            console.log(categorieId);
-            var url = "{{ route('properties') }}";
-            if (categorieId !== '') {
-                url += '?categorie_id=' + categorieId;
-                console.log(url);
-            }
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', url, true);
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
-                        document.getElementById('property-list').innerHTML = response.view;
-                    } else {
-                        console.error('Une erreur s\'est produite.');
-                    }
-                }
-            };
 
-            xhr.send();
-        });
-    });
-</script>
-@endsection

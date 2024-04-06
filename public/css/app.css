@@ -609,11 +609,17 @@
   padding-right: 1.5rem;
 }
 
+
+
+
+
+
 @media (min-width: 576px) {
   .testimonial-carousel {
       padding-left: 4rem;
       padding-right: 4rem;
   }
+  
 }
 
 .testimonial-carousel .testimonial-item .border {
@@ -713,6 +719,16 @@
   margin-right: 15px;
   padding-right: 15px;
   border-right: 1px solid rgba(255, 255, 255, .1);
+}
+
+.voirplusbutton{
+  background-color: #11daae;
+
+}
+
+.voirplusbutton:hover{
+  background-color: #409d19;
+  
 }
 
 .footer .footer-menu a:last-child {

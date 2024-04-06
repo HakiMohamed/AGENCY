@@ -37,45 +37,14 @@
 </div>
 
 
-<div class="container-fluid py-3 mt-5 wow fadeIn"  style="background-color: #00B98E;" data-wow-delay="0.1s" >
-    <div class="container">
-        <div class="row g-2">
-            <div class="col-md-10">
-                <div class="row g-2">
-                    <div class="col-md-4">
-                        <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                    </div>
-                    <div class="col-md-4">
-                        <select class="form-select border-0 py-3">
-                            <option selected>Property Type</option>
-                            <option value="1">Property Type 1</option>
-                            <option value="2">Property Type 2</option>
-                            <option value="3">Property Type 3</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <select class="form-select border-0 py-3">
-                            <option selected>Location</option>
-                            <option value="1">Location 1</option>
-                            <option value="2">Location 2</option>
-                            <option value="3">Location 3</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-dark border-0 w-100 py-3">Search</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+        <div class="text-center mx-auto mb-5 wow w-100 fadeInUp" data-wow-delay="0.1s" style=" background-color:rgba(5, 245, 149, 0.133); ">
             <h1 class="mb-3">Property Types</h1>
-            <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+            <p></p>
         </div>
         <div class="row g-4">
             <div data-aos="fade-right" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">

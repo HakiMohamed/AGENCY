@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAppartementRequest;
 use App\Models\Caracteristique;
+use App\Models\Category;
+use App\Models\City;
 use App\Models\Property;
 use App\Models\Image;
+use App\Models\PropertyType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,12 +17,17 @@ class PropertyController extends Controller
 {
     public function createMaisonRiadVilla()
 {
-    return view('properties.Create_MaisonRiadVilla');
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Create_MaisonRiadVilla',compact('cities','types'));
 }
 
 public function createAppartementStudioBureau()
 {
-    return view('properties.Create_AppartementStudioBureau');
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Create_AppartementStudioBureau',compact('cities','types'));
+    
 }
 
 public function storeAppartement(StoreAppartementRequest $request)
@@ -28,18 +36,7 @@ public function storeAppartement(StoreAppartementRequest $request)
     $validatedData['user'] = 1; 
     $property = Property::create($validatedData);
     $caracteristique = new Caracteristique();
-    $caracteristique->etage = $validatedData['etage'];
-    $caracteristique->surface = $validatedData['surface'];
-    $caracteristique->number_rooms = $validatedData['number_rooms'];
-    $caracteristique->number_sallon = $validatedData['number_sallon'];
-    $caracteristique->number_salleBain = $validatedData['number_salleBain'];
-    $caracteristique->ascenseur = $validatedData['ascenseur'] ?? false;
-    $caracteristique->balcon = $validatedData['balcon'] ?? false;
-    $caracteristique->terrasse = $validatedData['terrasse'] ?? false;
-    $caracteristique->piscine = $validatedData['piscine'] ?? false;
-    $caracteristique->jardin = $validatedData['jardin'] ?? false;
-    $caracteristique->parking = $validatedData['parking'] ?? false;
-    $caracteristique->RezDeChaussé = $validatedData['RezDeChaussé'] ?? false;
+    $caracteristique->fill($validatedData);
     $caracteristique->property()->associate($property);
     $caracteristique->save();
     $images = $request->file('images');
@@ -47,7 +44,7 @@ public function storeAppartement(StoreAppartementRequest $request)
         foreach ($images as $image) {
             $path = $image->store('/appartements');
             $property->images()->create(['url' => $path]);
-        }
+        }    
     }
     return redirect()->route('create.appartement-studio-bureau');
 }
@@ -55,41 +52,83 @@ public function storeAppartement(StoreAppartementRequest $request)
 
 public function showProperties(Request $request)
 {
+    $properties = Property::with('caracteristiques')->paginate(3);
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.show_properties', compact('properties','cities','types'));
+}
+
+public function filterProperties(Request $request)
+{
     $properties = Property::with('caracteristiques');
 
     if ($request->filled('categorie_id')) {
-      $properties =  Property::with('caracteristiques')->where('categorie_id', $request->categorie_id);
-      return view('properties.show_properties', compact('properties'));
+        $properties->where('categorie_id', $request->categorie_id);
+    }
+    if ($request->filled('title')) {
+        $properties->where('title', 'like', '%' . $request->title . '%');
+    }
+    
+    if ($request->filled('city_id')) {
+        $properties->where('city_id', $request->city_id);
+    }
+    if ($request->filled('type_id')) {
+        $properties->where('type_id', $request->type_id);
     }
 
-    $properties = $properties->paginate(10);
 
-    if ($request->ajax()) {
-        return response()->json([
-            'view' => view('properties.show_properties', compact('properties'))->render(),
-            'next_page_url' => $properties->nextPageUrl()
-        ]);
+    $caracteristiques = [
+        'RezDeChaussé', 'balcon', 'terrasse', 'piscine', 'jardin', 'parking', 'number_rooms', 'number_sallon', 'number_salleBain'
+    ];
+    foreach ($caracteristiques as $caracteristique) {
+        if ($request->filled($caracteristique)) {
+            $properties->whereHas('caracteristiques', function ($query) use ($request, $caracteristique) {
+                $query->where($caracteristique, true)
+                      ->orWhere($caracteristique, $request->{$caracteristique}); 
+            });
+        }
     }
+    
+    $properties = $properties->paginate(3);
+    $cities = City::all(); 
 
-    return view('properties.show_properties', compact('properties'));
+    $view = view('properties.property_list', compact('properties', 'cities'))->render();
+
+    return response()->json(['html' => $view]);
 }
+
+   
+
+
+
+
+
+
+
 
 
 
 
 public function createLocalCommerce()
 {
-    return view('properties.Create_LocalCommerce');
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Create_LocalCommerce',compact('cities','types'));
+
 }
 
 public function createTerrainImmobilier()
 {
-    return view('properties.Create_TerrainImmobilier');
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Create_TerrainImmobilier',compact('cities','types'));
 }
 
 public function createChambres()
 {
-    return view('properties.Create_Chambres');
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Create_Chambres',compact('cities','types'));
 }
 
 }
