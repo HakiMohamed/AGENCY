@@ -24,8 +24,8 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div> 
-                    <div style="background-color: rgba(135, 135, 135, 0.432);" class="rounded btn  btn-secodary  text-white position-absolute start-0 top-0 m-4 ">{{ $property->created_at->locale('fr')->diffForHumans() }}</div>
-                    <div style="color: #00B98E; border-color: #00B98E;" class="rounded btn  btn-outline fw-bold btncard  text-white position-absolute end-0 top-0 m-4 py-1 px-3">{{ $property->categorie->name }}</div>
+                    <div style="background-color: rgba(135, 135, 135, 0.432);" class="rounded btn  btn-secodary  text-white position-absolute start-0 top-0 mx-2 mb-1 m-4 ">{{ $property->created_at->locale('fr')->diffForHumans() }}</div>
+                    <div style="color: #4b13f3; border-color: #4b13f3;" class="rounded btn  btn-outline fw-bold btncard   position-absolute end-0 top-0 m-4 py-1 px-3">{{ $property->categorie->name }}</div>
                     <div class="bg-white rounded-top  position-absolute start-0 fw-bold bottom-0 mx-4 pt-1 px-3" style="color: #4b13f3;">{{ $property->type->name }}</div>
                 </div>
 
@@ -49,10 +49,15 @@
                    
                 </div>
 
-                <div class="d-flex border-top">
+                <div class="d-flex border-top" style="height: 50px;">
                     <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-ruler-combined me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->surface }} m²</small>
+                    @if($property->type->id !== 8 && $property->type->id !== 9 && $property->type->id !== 13)
                     <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-bed me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_rooms }} Chambres</small>
                     <small class="flex-fill text-center text-dark py-2"><i class="fa fa-bath me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_salleBain }} Bain</small>
+                    <small class="flex-fill text-center text-dark py-2"><i class="fa-solid fa-person-booth me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_sallon }} Salon</small>
+                @endif
+                 
+                
                 </div>
                 <a class="btn d-flex text-small text-white justify-content-center align-items-center text-center voirplusbutton    " style="z-index: -9999" >Voir plus <i class="fa-solid fa-eye" style="margin-top: 5px; margin-left:5px;"></i>    </a>
             </div>

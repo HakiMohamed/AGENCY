@@ -19,7 +19,7 @@ class Property extends Model
         'Publication',
         'city_id',
         'adresse',
-        'user',
+        'user_id',
         'date_construction',
     ];
 

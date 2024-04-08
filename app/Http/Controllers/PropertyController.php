@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAppartementRequest;
+use App\Http\Requests\StoreChambreRequest;
+use App\Http\Requests\StoreLocalcommereRequest;
+use App\Http\Requests\StoreMaisonRequest;
 use App\Models\Caracteristique;
 use App\Models\Category;
 use App\Models\City;
@@ -33,7 +36,7 @@ public function createAppartementStudioBureau()
 public function storeAppartement(StoreAppartementRequest $request)
 {
     $validatedData = $request->validated();
-    $validatedData['user'] = 1; 
+    $validatedData['user_id'] = auth()->user()->id; 
     $property = Property::create($validatedData);
     $caracteristique = new Caracteristique();
     $caracteristique->fill($validatedData);
@@ -46,13 +49,75 @@ public function storeAppartement(StoreAppartementRequest $request)
             $property->images()->create(['url' => $path]);
         }    
     }
-    return redirect()->route('create.appartement-studio-bureau');
+ 
+    $NameDisplayAlert = $property->type->name;
+    return redirect()->route('create.appartement-studio-bureau')->withSuccess("Votre $NameDisplayAlert a été ajouté avec succès !");
+
+}
+
+
+public function storeMaison(StoreMaisonRequest $request)
+{
+    $validatedData = $request->validated();
+    $validatedData['user_id'] = auth()->user()->id; 
+    $property = Property::create($validatedData);
+    $caracteristique = new Caracteristique();
+    $caracteristique->fill($validatedData);
+    $caracteristique->property()->associate($property);
+    $caracteristique->save();
+    $images = $request->file('images');
+    if ($images) {
+        foreach ($images as $image) {
+            $path = $image->store('/appartements');
+            $property->images()->create(['url' => $path]);
+        }    
+    }
+    $NameDisplayAlert = $property->type->name;
+    return redirect()->route('create.maison-riad-villa')->withSuccess("Votre $NameDisplayAlert a été ajouté avec succès !");;
+}
+public function storeChambre(StoreChambreRequest $request)
+{
+    $validatedData = $request->validated();
+    $validatedData['user_id'] = auth()->user()->id; 
+    $property = Property::create($validatedData);
+    $caracteristique = new Caracteristique();
+    $caracteristique->fill($validatedData);
+    $caracteristique->property()->associate($property);
+    $caracteristique->save();
+    $images = $request->file('images');
+    if ($images) {
+        foreach ($images as $image) {
+            $path = $image->store('/appartements');
+            $property->images()->create(['url' => $path]);
+        }    
+    }
+    $NameDisplayAlert = $property->type->name;
+    return redirect()->route('create.maison-riad-villa')->withSuccess("Votre $NameDisplayAlert a été ajouté avec succès !");;
+}
+public function storeLocalCommerce(StoreLocalcommereRequest $request)
+{
+    $validatedData = $request->validated();
+    $validatedData['user_id'] = auth()->user()->id; 
+    $property = Property::create($validatedData);
+    $caracteristique = new Caracteristique();
+    $caracteristique->fill($validatedData);
+    $caracteristique->property()->associate($property);
+    $caracteristique->save();
+    $images = $request->file('images');
+    if ($images) {
+        foreach ($images as $image) {
+            $path = $image->store('/appartements');
+            $property->images()->create(['url' => $path]);
+        }    
+    }
+    $NameDisplayAlert = $property->type->name;
+    return redirect()->route('create.maison-riad-villa')->withSuccess("Votre $NameDisplayAlert a été ajouté avec succès !");;
 }
 
 
 public function showProperties(Request $request)
 {
-    $properties = Property::with('caracteristiques')->paginate(3);
+    $properties = Property::with('caracteristiques')->orderBy('created_at', 'desc')->paginate(3);
     $cities = City::all();
     $types = PropertyType::all();
     return view('properties.show_properties', compact('properties','cities','types'));

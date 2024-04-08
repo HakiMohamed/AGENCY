@@ -15,6 +15,9 @@ Route::get('/properties/create/local-commerce', [PropertyController::class, 'cre
 Route::get('/properties/create/terrain-immobilier', [PropertyController::class, 'createTerrainImmobilier'])->name('create.terrain-immobilier');
 Route::get('/properties/create/Chambres', [PropertyController::class, 'createChambres'])->name('create.Chambres');
 Route::post('/properties/store/appartement-studio-bureau', [PropertyController::class, 'storeAppartement'])->name('store_appartement-studio-bureau');
+Route::post('/properties/store/Maison-Villa-Riad', [PropertyController::class, 'storeMaison'])->name('store_Maison-Villa-Riad');
+Route::post('/properties/store/Chambre', [PropertyController::class, 'storeChambre'])->name('store_Chambre');
+Route::post('/properties/store/Local-Commerce', [PropertyController::class, 'storeLocalCommerce'])->name('store_Local-Commerce');
 Route::get('/properties', [PropertyController::class, 'showProperties'])->name('properties');
 Route::post('/properties/filter', [PropertyController::class, 'filterProperties'])->name('properties.filter');
 // Route::get('/properties/filter', [PropertyController::class, 'filterProperties'])->name('properties.filter');

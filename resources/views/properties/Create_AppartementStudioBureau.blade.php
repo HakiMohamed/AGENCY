@@ -24,6 +24,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>
                  @enderror
+                 <span id="titleError" class="text-danger"></span>
+
                 </div>
 
                 <div class="mb-3 ">
@@ -34,6 +36,7 @@
                         <strong>Attention!</strong> {{$message}} 
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>
+                      <span id="descriptionError" class="text-danger"></span>
                  @enderror
                 </div>
 
@@ -45,18 +48,22 @@
                         <strong>Attention!</strong> {{$message}} 
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    <span id="prixError" class="text-danger"></span>
+
                     @enderror
                 </div>
                 
 
                 <div class="mb-3 ">
                     <label for="imageInput" class="form-label fw-bold">Sélectionner 9 Images Max<span class="text-danger">*</span> </label>
-                    <input  style="background-color: rgba(255, 255, 255, 0.386);" type="file" class="form-control" id="imageInput" name="images[]"  accept="image/*" multiple>
+                    <input  style="background-color: rgba(255, 255, 255, 0.386);" type="file" class="form-control" id="imageInput" name="images[]"  accept="image/*" multiple required>
                     @error('images[]')
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>Attention!</strong> {{$message}} 
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    <span id="imageInputError" class="text-danger"></span>
+
                     @enderror
                 </div>
                 <div id="imagePreview" class="mb-3  " ></div>
@@ -71,18 +78,21 @@
                     @error('categorie')
                     {{$message}} 
                  @enderror
+                 <span id="categorieError" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3 ">
                     <label for="type" class="form-label fw-bold">Type<span class="text-danger">*</span></label>
                     <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="type" name="type_id" required>
-                        @foreach($types as $type)
-                        <option value="{{$type->id}}"> {{$type->name}} </option>    
-                        @endforeach
+                    
+                        <option value="2">Appartement</option>
+                        <option value="7">Bureau</option>
+                        <option value="6">Studio</option> 
                     </select>
                     @error('type')
                     {{$message}} 
                  @enderror
+                 <span id="typeError" class="text-danger"></span>
                 </div>
         
                 
@@ -97,6 +107,8 @@
                     @error('city')
                     {{$message}} 
                  @enderror
+                 <span id="cityError" class="text-danger"></span>
+
                 </div>
 
             
@@ -109,6 +121,7 @@
                     @error('adresse')
                     {{$message}} 
                  @enderror
+                 <span id="adresseError" class="text-danger"></span>
                 </div>
         
             </div>
@@ -117,6 +130,8 @@
                 <div class="mb-3 ">
                     <label for="date_construction" class="form-label fw-bold">Date de construction<span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" type="date" class="form-control" id="date_construction" name="date_construction" required>
+                    <span id="dateConstructionError" class="text-danger"></span>
+                   
                 </div>
             
                 <label for="etage" class="form-label fw-bold">Étage<span class="text-danger">*</span></label>
@@ -132,6 +147,10 @@
                 <div class="mb-3 ">
                     <label for="surface" class="form-label fw-bold">Surface<span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple : 120m²" type="text" class="form-control" id="surface" name="surface" required>
+                    <span id="surfaceError" class="text-danger"></span> 
+                    @error('surface')
+                    {{$message}} 
+                 @enderror
                 </div>
         
                 <div class="mb-3 ">
@@ -165,16 +184,19 @@
                 <div class="mb-3 ">
                     <label for="number_rooms" class="form-label fw-bold">Nombre de chambres <span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" placeholder="Exemple: 4" class="form-control" id="number_rooms" name="number_rooms" required>
+                    <span id="numberRoomsError" class="text-danger"></span>
                 </div>
         
                 <div class="mb-3 ">
                     <label for="number_sallon" class="form-label fw-bold">Nombre de salons <span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" placeholder="Exemple: 1" class="form-control" id="number_sallon" name="number_sallon" required>
+                    <span id="numberSallonError" class="text-danger"></span>
                 </div>
         
                 <div class="mb-3 ">
                     <label for="number_salleBain" class="form-label fw-bold">Nombre de salles de bain <span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple: 2"  type="text" class="form-control" id="number_salleBain" name="number_salleBain" required>
+                    <span id="numberSalleBainError" class="text-danger"></span>
                 </div>
         
             
@@ -225,5 +247,77 @@
             reader.readAsDataURL(file);
         }
     }
+
+
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const uploadForm = document.getElementById('uploadForm');
+    
+    // Ajouter des écouteurs d'événements keyup à chaque champ
+    const formInputs = uploadForm.querySelectorAll('input, textarea, select');
+    formInputs.forEach(input => {
+        input.addEventListener('keyup', function () {
+            validateField(input);
+        });
+    });
+
+    uploadForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+        // Validation de tous les champs du formulaire
+        let isValid = true;
+        formInputs.forEach(input => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+
+        // Si tous les champs sont valides, soumettre le formulaire
+        if (isValid) {
+            this.submit();
+        }
+    });
+});
+
+function validateField(input) {
+    const errorElementId = input.id + 'Error';
+    const errorElement = document.getElementById(errorElementId);
+
+    // Supprimer les anciennes classes d'erreur et réinitialiser les messages
+    removeErrorClass(input, errorElementId);
+
+    // Validation du champ
+    let isValid = true;
+    const value = input.type === 'checkbox' ? input.checked : input.value.trim();
+
+    if (input.required && (input.type !== 'checkbox' && value === '')) {
+        isValid = false;
+        addErrorClass(input, errorElementId);
+        errorElement.textContent = 'Ce champ est requis';
+    }
+
+    // Vous pouvez ajouter d'autres validations ici en fonction du type de champ
+
+    return isValid;
+}
+
+function addErrorClass(input, errorElementId) {
+    input.classList.add('border', 'border-danger');
+    const errorElement = document.getElementById(errorElementId);
+    if (errorElement) {
+        errorElement.textContent = '';
+    }
+}
+
+function removeErrorClass(input, errorElementId) {
+    input.classList.remove('border', 'border-danger');
+    const errorElement = document.getElementById(errorElementId);
+    if (errorElement) {
+        errorElement.textContent = '';
+    }
+}
+
 </script>
 @endsection

@@ -613,6 +613,32 @@
 
 
 
+/* Styles pour activer le bouton sélectionné */
+.btn-group input[type="radio"].btn-check:checked + label.btn-outline-primary {
+  background-color: #00B98E;
+  color: #fff;
+}
+
+.btn-group input[type="radio"].btn-check:checked + label.btn-outline-primary:hover {
+  background-color: #00B98E;
+  color: #fff;
+}
+
+.btn-group input[type="radio"].btn-check:checked + label.btn-outline-primary:focus {
+  box-shadow: 0 0 0 0.25rem #00B98E;
+}
+
+
+/* Ajoutez ces styles pour la bordure rouge */
+.border-danger {
+  border-color: red !important;
+}
+
+
+
+
+
+
 
 @media (min-width: 576px) {
   .testimonial-carousel {

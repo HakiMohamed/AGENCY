@@ -2,10 +2,10 @@
 @extends('layouts.app')
 
 @section('content')
-<section style="background-image: linear-gradient(to bottom, rgba(247, 237, 246, 0.82), rgba(215, 186, 240, 0.783));" >
+<section  >
 <div class=" container  mt-4 py-5" >
-    <h1 class="fw-bold px-4">Publier votre Terrain immobilier </h1>
-    <div class="row mx-3 flex-wrap-reverse">
+    <h1 class="fw-bold px-4" style="color: #00B98E;">Publier votre Terrain immobilier </h1>
+    <div class="row mx-3 ">
         
         <div class="col-md-6">
             
@@ -13,57 +13,64 @@
 
 
             <form enctype="multipart/form-data" id="uploadForm">
-                <div class="mb-3 py-3">
+                <div class="mb-3">
                     <label for="title" class="form-label fw-bold">Titre</label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);"type="text" class="form-control" id="title" placeholder="Exemple: Terrain à vendre Casablanca - Sidi Moumen" name="title" required>
                 </div>
 
-                <div class="mb-3 py-3">
+                <div class="mb-3">
                     <label for="description" class="form-label fw-bold">Description</label>
                     <textarea style="background-color: rgba(248, 247, 249, 0.719);"class="form-control" placeholder="Exemple: Terrain avec 2 façades en zone villa superficie 366 mètre carré avec un bon emplacement dans un quartier calme et sécurisé à sidi moumen route anassi. --N'hésitez pas à nous contacter pour plus d'informations ou pour organise" id="description" name="description" required></textarea>
                 </div>
 
-                <div class="mb-3 py-3">
+                <div class="mb-3">
                     <label for="title" class="form-label fw-bold">Prix</label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);"type="text" class="form-control" id="title" placeholder="Exemple: 890 000 DH" name="title" required>
                 </div>
 
-                <div class="mb-3 py-3">
+                <div class="mb-3">
                     <label for="imageInput" class="form-label fw-bold">Sélectionner 9 Images Max </label>
-                    <input  style="background-color: rgba(255, 255, 255, 0.386);" type="file" class="form-control" id="imageInput" name="images[]"  accept="image/*" multiple>
+                    <input  style="background-color: rgba(255, 255, 255, 0.386);" type="file" class="form-control" id="imageInput" name="images[]"  accept="image/*" multiple required>
                 </div>
-                <div id="imagePreview" class="mb-3 py-3 " ></div>
+                <div id="imagePreview" class="mb-3 " ></div>
 
-                <div class="mb-3 py-3">
+                <div class="mb-3">
                     <label for="categorie" class="form-label fw-bold">Catégorie</label>
-                    <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="categorie" name="categorie" required>
+                    <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="categorie" name="categorie_id" required>
                         <option value="1">Catégorie 1</option>
                         <option value="2">Catégorie 2</option>
                         <option value="3">Catégorie 3</option>
                     </select>
                 </div>
+            </div>
+            <div class="col-md-6 ">
 
-                <div class="mb-3 py-3">
+                <div class="mb-3">
                     <label for="type" class="form-label fw-bold">Type</label>
-                    <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="type" name="type" required>
-                        <option value="1">Type 1</option>
-                        <option value="2">Type 2</option>
-                        <option value="3">Type 3</option>
+                    <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="type" name="type_id" required>
+                        <option selected value="13">Terrain immobilier</option>
                     </select>
+                    <input type="hidden" value="13" name="type_id">
+
                 </div>
         
                 
         
-                <div class="mb-3 py-3">
-                    <label for="city" class="form-label fw-bold">Ville</label>
-                    <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="city" name="city" required>
-                        <option value="1">Ville 1</option>
-                        <option value="2">Ville 2</option>
-                        <option value="3">Ville 3</option>
+                <div class="mb-3 ">
+                    <label for="city" class="form-label fw-bold">Ville<span class="text-danger">*</span></label>
+                    <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="city" name="city_id" required>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
                     </select>
+                    @error('city_id')
+                    {{$message}} 
+                 @enderror
+                 <span id="cityError" class="text-danger"></span>
+
                 </div>
         
-                <div class="mb-3 py-3">
+                <div class="mb-3">
                     <label for="adresse" class="form-label fw-bold">Adresse</label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple: Rue Mohamed Jazouli B.P. 35, Rabat " type="text" class="form-control" id="adresse" name="adresse" required>
                 </div>
@@ -73,24 +80,22 @@
                 
                 
         
-                <div class="mb-3 py-3">
-                    <label for="surface" class="form-label fw-bold">Surface</label>
-                    <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple : 5 Hectare" type="text" class="form-control" id="surface" name="surface" required>
+                <div class="mb-3 ">
+                    <label for="surface" class="form-label fw-bold">Surface<span class="text-danger">*</span></label>
+                    <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple : 120m²" type="text" class="form-control" id="surface" name="surface" required>
+                    <span id="surfaceError" class="text-danger"></span> 
+                    @error('surface')
+                    {{$message}} 
+                 @enderror
                 </div>
         
-                
+             </div>   
 
                 <button type="submit" class="btn text-white mt-3 px-5" style="background-color: rgb(92, 57, 197);">Publier</button>
             </form>
-        </div>
-        <div class="col-md-6 mt-5">
-            <p class="fw-bold">Publiez vos biens immobiliers facilement sur notre plateforme conviviale ! Remplissez notre formulaire moderne en ajoutant des images, une description détaillée, et des informations clés a votre bien.</p>
-            <img class="w-100" src="{{ asset('images/logo/For sale-bro.svg') }}" alt="">
-            <p class="fw-bold">Prévisualisez vos images instantanément et attirez les acheteurs ou les locataires potentiels en ajoutant des équipements tels qu'un ascenseur, un balcon, une piscine, et plus encore</p>
-            <img class="w-100 " src="{{ asset('images/logo/Design team-amico.svg') }}" alt="">
-            <p class="fw-bold">Une fois soumise, votre publication sera examinée par notre équipe avant d'être publiée. publier et  trouver des acheteurs ou des locataires intéressés !</p>
-            <img class="w-100 " src="{{ asset('images/logo/Modern life-amico.svg') }}" alt="">
-        </div>
+        
+        
+        
     </div>
 </div>
 </section>
