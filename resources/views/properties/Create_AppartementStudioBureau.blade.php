@@ -6,8 +6,19 @@
 <div class=" container  mt-4 py-5" >
     <h1 class="fw-bold mb-5 px-4"  style="color: #00B98E;">Publier votre Appartement, Bureau, Studio </h1>
     <div class="row mx-3 ">
+           @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         
         <div class="col-md-6 " >
+
+         
             
             
 
@@ -17,67 +28,45 @@
                 @csrf
                 <div class="mb-3 ">
                     <label for="title" class="form-label fw-bold">Titre<span class="text-danger">*</span></label>
-                    <input style="background-color: rgba(248, 247, 249, 0.719);"type="text" class="form-control" id="title" placeholder="Exemple: Appartement à vendre Casablanca - Burger" name="title" required>
-                    @error('title')
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Attention!</strong> {{$message}} 
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
-                 @enderror
-                 <span id="titleError" class="text-danger"></span>
-
+                    <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" class="form-control" id="title" placeholder="Exemple: Appartement à vendre Casablanca - Burger" name="title" required>
+                    <span id="titleError" class="text-danger">{{ $errors->first('title') }}</span>
                 </div>
-
+                
                 <div class="mb-3 ">
                     <label for="description" class="form-label fw-bold">Description<span class="text-danger">*</span></label>
-                    <textarea style="background-color: rgba(248, 247, 249, 0.719);" name="description" class="form-control" placeholder="Exemple: Appartement à vendre au sein de quartier les princesses à Casablanca.... place de parking attribuée-- Un box titré.." id="description"  required></textarea>
-                    @error('description')
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Attention!</strong> {{$message}} 
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
-                      <span id="descriptionError" class="text-danger"></span>
-                 @enderror
-                </div>
-
-                <div class="mb-3 ">
-                    <label for="prix" class="form-label fw-bold">Prix<span class="text-danger">*</span></label>
-                    <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" class="form-control" id="prix" placeholder="Exemple: 890 000 DH" name="prix" required>
-                    @error('prix')
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Attention!</strong> {{$message}} 
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    <span id="prixError" class="text-danger"></span>
-
-                    @enderror
+                    <textarea style="background-color: rgba(248, 247, 249, 0.719);" name="description" class="form-control" placeholder="Exemple: Appartement à vendre au sein de quartier les princesses à Casablanca.... place de parking attribuée-- Un box titré.." id="description" required></textarea>
+                    <span id="descriptionError" class="text-danger">{{ $errors->first('description') }}</span>
                 </div>
                 
 
                 <div class="mb-3 ">
+                    <label for="prix" class="form-label fw-bold">Prix<span class="text-danger">*</span></label>
+                    <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" class="form-control" id="prix" placeholder="Exemple: 890 000 DH" name="prix" required>
+                    <span id="prixError" class="text-danger">{{ $errors->first('prix') }}</span>
+                </div>
+                
+                <div class="mb-3 ">
                     <label for="imageInput" class="form-label fw-bold">Sélectionner 9 Images Max<span class="text-danger">*</span> </label>
                     <input  style="background-color: rgba(255, 255, 255, 0.386);" type="file" class="form-control" id="imageInput" name="images[]"  accept="image/*" multiple required>
-                    @error('images[]')
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Attention!</strong> {{$message}} 
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    <span id="imageInputError" class="text-danger"></span>
-
-                    @enderror
+                    <span id="imageInputError" class="text-danger">{{ $errors->first('images.*') }}</span>
                 </div>
-                <div id="imagePreview" class="mb-3  " ></div>
+                
+                <div id="imagePreview" class="mb-3" ></div>
 
                 <div class="mb-3 ">
                     <label for="categorie" class="form-label fw-bold">Catégorie<span class="text-danger">*</span></label>
                     <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="categorie" name="categorie_id" required>
-                        <option value="3">Hypothécaire</option>
-                        <option value="2">A Louer</option>
-                        <option value="1">A Vendre</option>    
+                        <option value="1">Hypothécaire</option>
+                        <option value="2">A VENDRE</option>
+                        <option value="3">A LOUER</option>    
                     </select>
-                    @error('categorie')
-                    {{$message}} 
-                 @enderror
+                    @error('categorie_id')
+                    <div class="alert alert-sm alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Attention!</strong> {{$message}} 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    @enderror
                  <span id="categorieError" class="text-danger"></span>
                 </div>
 
@@ -85,13 +74,17 @@
                     <label for="type" class="form-label fw-bold">Type<span class="text-danger">*</span></label>
                     <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="type" name="type_id" required>
                     
-                        <option value="2">Appartement</option>
-                        <option value="7">Bureau</option>
-                        <option value="6">Studio</option> 
+                        <option value="1">Appartement</option>
+                        <option value="3">Bureau</option>
+                        <option value="2">Studio</option> 
                     </select>
-                    @error('type')
-                    {{$message}} 
-                 @enderror
+                    @error('type_id')
+                    <div class="alert alert-sm alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Attention!</strong> {{$message}} 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    @enderror
                  <span id="typeError" class="text-danger"></span>
                 </div>
         
@@ -104,9 +97,13 @@
                             <option value="{{ $city->id }}">{{ $city->name }}</option>
                         @endforeach
                     </select>
-                    @error('city')
-                    {{$message}} 
-                 @enderror
+                    @error('city_id')
+                    <div class="alert alert-sm alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Attention!</strong> {{$message}} 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    @enderror
                  <span id="cityError" class="text-danger"></span>
 
                 </div>
@@ -118,11 +115,9 @@
                 <div class="mb-3 ">
                     <label for="adresse" class="form-label fw-bold">Adresse<span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple: Rue Mohamed Jazouli B.P. 35, Rabat " type="text" class="form-control" id="adresse" name="adresse" required>
-                    @error('adresse')
-                    {{$message}} 
-                 @enderror
-                 <span id="adresseError" class="text-danger"></span>
+                    <span id="adresseError" class="text-danger">{{ $errors->first('adresse') }}</span>
                 </div>
+                
         
             </div>
             <div class="col-md-6">
@@ -130,8 +125,7 @@
                 <div class="mb-3 ">
                     <label for="date_construction" class="form-label fw-bold">Date de construction<span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" type="date" class="form-control" id="date_construction" name="date_construction" required>
-                    <span id="dateConstructionError" class="text-danger"></span>
-                   
+                    <span id="dateConstructionError" class="text-danger">{{ $errors->first('date_construction') }}</span>
                 </div>
             
                 <label for="etage" class="form-label fw-bold">Étage<span class="text-danger">*</span></label>
@@ -142,15 +136,13 @@
                     </div>
                     
                     <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" placeholder="Exemple: 3" class="form-control" id="etage" name="etage" >
+                    <span id="etageError" class="text-danger">{{ $errors->first('etage') }}</span>
                 </div>
         
                 <div class="mb-3 ">
                     <label for="surface" class="form-label fw-bold">Surface<span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple : 120m²" type="text" class="form-control" id="surface" name="surface" required>
-                    <span id="surfaceError" class="text-danger"></span> 
-                    @error('surface')
-                    {{$message}} 
-                 @enderror
+                    <span id="surfaceError" class="text-danger">{{ $errors->first('surface') }}</span>
                 </div>
         
                 <div class="mb-3 ">
@@ -184,20 +176,21 @@
                 <div class="mb-3 ">
                     <label for="number_rooms" class="form-label fw-bold">Nombre de chambres <span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" placeholder="Exemple: 4" class="form-control" id="number_rooms" name="number_rooms" required>
-                    <span id="numberRoomsError" class="text-danger"></span>
+                    <span id="numberRoomsError" class="text-danger">{{ $errors->first('number_rooms') }}</span>
                 </div>
         
                 <div class="mb-3 ">
                     <label for="number_sallon" class="form-label fw-bold">Nombre de salons <span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" placeholder="Exemple: 1" class="form-control" id="number_sallon" name="number_sallon" required>
-                    <span id="numberSallonError" class="text-danger"></span>
+                    <span id="numberSallonError" class="text-danger">{{ $errors->first('number_sallon') }}</span>
                 </div>
         
                 <div class="mb-3 ">
                     <label for="number_salleBain" class="form-label fw-bold">Nombre de salles de bain <span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple: 2"  type="text" class="form-control" id="number_salleBain" name="number_salleBain" required>
-                    <span id="numberSalleBainError" class="text-danger"></span>
+                    <span id="numberSalleBainError" class="text-danger">{{ $errors->first('number_salleBain') }}</span>
                 </div>
+                
         
             
             </div>

@@ -25,7 +25,7 @@
                         </button>
                     </div> 
                     <div style="background-color: rgba(135, 135, 135, 0.432);" class="rounded btn  btn-secodary  text-white position-absolute start-0 top-0 mx-2 mb-1 m-4 ">{{ $property->created_at->locale('fr')->diffForHumans() }}</div>
-                    <div style="color: #4b13f3; border-color: #4b13f3;" class="rounded btn  btn-outline fw-bold btncard   position-absolute end-0 top-0 m-4 py-1 px-3">{{ $property->categorie->name }}</div>
+                    <div style="color: #00b98ec8; border-color: #00b98ec8;" class="rounded btn  btn-outline fw-bold btncard   position-absolute end-0 top-0 m-4 py-1 px-3">{{ $property->categorie->name }}</div>
                     <div class="bg-white rounded-top  position-absolute start-0 fw-bold bottom-0 mx-4 pt-1 px-3" style="color: #4b13f3;">{{ $property->type->name }}</div>
                 </div>
 

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\PropertyRepository;
+use App\Repositories\PropertyRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
 use App\Services\AuthInterface;
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(AuthInterface::class, AuthService::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(PropertyRepositoryInterface::class, PropertyRepository::class);
         
         $this->app->bind(
             'App\Services\AuthInterface',

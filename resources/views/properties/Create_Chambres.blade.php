@@ -6,6 +6,16 @@
 <div class=" container  mt-4 py-5" >
     <h1 class="fw-bold px-4" style="color: #00B98E;">Publier vos Chambres plus simplement </h1>
     <div class="row mx-3 ">
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         
         <div class="col-md-6 mt-5">
             
@@ -26,7 +36,7 @@
 
                 <div class="mb-3 ">
                     <label for="title" class="form-label fw-bold">Prix<span class="text-danger">*</span></label>
-                    <input style="background-color: rgba(248, 247, 249, 0.719);"type="text" class="form-control" id="title" placeholder="Exemple: 1 000 DH" name="title" required>
+                    <input style="background-color: rgba(248, 247, 249, 0.719);"type="text" class="form-control" id="title" placeholder="Exemple: 1 000 DH" name="prix" required>
                 </div>
 
                 <div class="mb-3 ">
@@ -38,9 +48,9 @@
                 <div class="mb-3 ">
                     <label for="categorie" class="form-label fw-bold">Catégorie<span class="text-danger">*</span></label>
                     <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="categorie" name="categorie_id" required>
-                        <option value="3">Hypothécaire</option>
-                        <option value="2">A Louer</option>
-                        <option value="1">A Vendre</option>    
+                        <option value="1">Hypothécaire</option>
+                        <option value="2">A VENDRE</option>
+                        <option value="3">A LOUER</option>    
                     </select>
                     @error('categorie')
                     {{$message}} 
@@ -50,10 +60,10 @@
                 <div class="mb-3 ">
                     <label for="type" class="form-label fw-bold">Type<span class="text-danger">*</span></label>
                     <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="type" name="type_id" required>
-                        <option  selected value="8">Chambre</option>
+                        <option  selected value="4">Chambre</option>
                         
                     </select>
-                    <input type="hidden" value="8" name="type_id">
+                    <input type="hidden" value="4" name="type_id">
                     @error('type')
                     {{$message}} 
                  @enderror
@@ -70,7 +80,7 @@
             
                     <div class="mb-3 ">
                         <label for="city" class="form-label fw-bold">Ville<span class="text-danger">*</span></label>
-                        <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="city" name="city" required>
+                        <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="city" name="city_id" required>
                             @foreach($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach

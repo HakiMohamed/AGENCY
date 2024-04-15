@@ -87,11 +87,9 @@
                         </ul>
                     </li>
                     
+                   
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Crédit immobilier</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Prix immobilier</a>
+                        <a class="nav-link" href="{{route("estimer")}}">Estimation</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Louer</a>
@@ -101,7 +99,7 @@
                 <div class="navbar-nav  ">
                     <li class="nav-item me-3  mb-3 mb-md-0">
                         <div class="btn-group " style="display: block;">
-                            <button type="button" class="btn   dropdown-toggle dropdown-toggle-split text-white"  style="background-color: #00B98E;"  data-bs-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn   dropdown-toggle dropdown-toggle text-white"  style="background-color: #00B98E;"  data-bs-toggle="dropdown" aria-expanded="false">
                                 Publier une annonce
                             </button>
                             <ul class="dropdown-menu">
@@ -125,8 +123,8 @@
 
                     @auth
                     <div class="btn-group " style="display: block;">
-                        <button type="button"  style=" color: rgb(9, 135, 238); border-color: rgb(9, 177, 244); " class="btn  btn-outline-dark btncard  dropdown-toggle dropdown-toggle-split "  data-bs-toggle="dropdown" aria-expanded="false">
-                             <i class="fa-regular fa-user"></i>
+                        <button type="button"  style=" color: rgb(9, 135, 238); border-color: rgb(9, 177, 244); " class="btn   btn-outline-dark btncard  dropdown-toggle dropdown-toggle-split "  data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-regular fa-user"></i>  {{ auth()->user()->firstname . " ". auth()->user()->lastname  }}    
                         </button>
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="#">Dashboard</a></li>

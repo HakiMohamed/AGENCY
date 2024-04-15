@@ -15,9 +15,9 @@
                     <input type="text" name="title" class="form-control px-5 mx-2  mx-md-1  my-md-0 my-1 mx-2 " placeholder="Rechercher un mot clé">
                     <select class="form-select mx-md-3  my-md-0 my-1 mx-2" id="categorie_id" name="categorie_id" aria-label="Filtrer les affichages">
                         <option value="">Toutes categories</option>
-                        <option value="3">Hypothécaire</option>
-                        <option value="2">A Louer</option>
-                        <option value="1">A Vendre</option>
+                        <option value="1">Hypothécaire</option>
+                        <option value="2">A VENDRE</option>
+                        <option value="3">A LOUER</option>  
                     </select>
             
                     <select class="form-select mx-md-3  my-md-0 my-1 mx-2" id="city_id" name="city_id" aria-label="Filtrer par ville">
@@ -55,9 +55,9 @@
                                         <label for="categorie_id" class="form-label">Catégorie</label>
                                         <select class="form-select" id="categorie_id" name="categorie_id" aria-label="Filtrer les affichages">
                                             <option value="">Toutes categories</option>
-                                            <option value="3">Hypothécaire</option>
-                                            <option value="2">A Louer</option>
-                                            <option value="1">A Vendre</option>
+                                            <option value="1">Hypothécaire</option>
+                                            <option value="2">A VENDRE</option>
+                                             <option value="3">A LOUER</option>  
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3">

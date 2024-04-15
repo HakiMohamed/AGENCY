@@ -2,17 +2,17 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="primarySection overflow-x-hidden" style="background-image: linear-gradient(to bottom, rgba(247, 237, 246, 0.82), rgba(215, 186, 240, 0.783));">
+<section class="primarySection overflow-x-hidden" >
     <div class="container">
-        <h1 class="fw-bold mt-5 mx-md-4 ">Estimation de votre bien immobilier</h1>
+        <h1 class="fw-bold mt-5 mx-md-4 mb-4 " style="color: #00B98E;" >Estimation de votre bien immobilier</h1>
 
-    <div class="row flex-wrap-reverse">
+    <div class="row ">
         
-        <div class="col-md-6 mb-4" style="background-color: rgba(255, 255, 255, 0);">
+        <div class="col-md-6 mt-5" style="background-color: rgba(255, 255, 255, 0);">
             <form class="px-4" id="estimationForm">
                 <div class="mb-3">
                     <label for="propertyType" class="form-label fw-semibold">Type de bien</label>
-                    <select id="propertyType" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="propertyType" class="form-select fw-bold" >
                         <option value="appartement">Appartement</option>
                         <option value="villa">Villa</option>
                         <option value="maison">Maison</option>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="city" class="form-label fw-semibold">Ville</label>
-                    <select id="city" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="city" class="form-select fw-bold" >
                         <option value="Casablanca">Casablanca</option>
                         <option value="Marrakech">Marrakech</option>
                         <option value="Kénitra">Kénitra</option>
@@ -42,87 +42,85 @@
                 </div>
                 <div class="mb-3">
                     <label for="surface" class="form-label fw-semibold">Surface (m²)</label>
-                    <input type="text" class="form-control" style="background-color: #b07cdd44;" id="surface" placeholder="Entrez la surface">
+                    <input type="text" class="form-control"  required  id="surface" placeholder="Entrez la surface">
                 </div>
                 <div class="mb-3">
                     <label for="rooms" class="form-label fw-semibold">Nombre de chambres</label>
-                    <input type="text" class="form-control" style="background-color: #b07cdd44;" id="rooms" placeholder="Entrez le nombre de chambres">
+                    <input type="text" class="form-control"  required  id="rooms" placeholder="Entrez le nombre de chambres">
                 </div>
                 <div class="mb-3">
                     <label for="living_rooms" class="form-label fw-semibold">Nombre de salons</label>
-                    <input type="text" class="form-control" style="background-color: #b07cdd44;" id="living_rooms" placeholder="Entrez le nombre de salons">
+                    <input type="text" class="form-control"  required  id="living_rooms" placeholder="Entrez le nombre de salons">
                 </div>
                 <div class="mb-3">
                     <label for="bathrooms" class="form-label fw-semibold">Nombre de salles de bain</label>
-                    <input type="text" class="form-control" style="background-color: #b07cdd44;" id="bathrooms" placeholder="Entrez le nombre de salles de bain">
+                    <input type="text" class="form-control"  required  id="bathrooms" placeholder="Entrez le nombre de salles de bain">
                 </div>
                 <div class="mb-3">
                     <label for="has_elevator" class="form-label fw-semibold">Ascenseur</label>
-                    <select id="has_elevator" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="has_elevator" class="form-select fw-bold" >
                         <option value="oui">Oui</option>
                         <option value="non">Non</option>
                     </select>
                 </div>
+            </div>
+            <div class="col-md-6 mt-5">
                 <div class="mb-3">
                     <label for="has_balcony" class="form-label fw-semibold">Balcon</label>
-                    <select id="has_balcony" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="has_balcony" class="form-select fw-bold" >
                         <option value="oui">Oui</option>
                         <option value="non">Non</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="has_terrace" class="form-label fw-semibold">Terrasse</label>
-                    <select id="has_terrace" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="has_terrace" class="form-select fw-bold" >
                         <option value="oui">Oui</option>
                         <option value="non">Non</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="has_pool" class="form-label fw-semibold">Piscine</label>
-                    <select id="has_pool" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="has_pool" class="form-select fw-bold" >
                         <option value="oui">Oui</option>
                         <option value="non">Non</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="has_garden" class="form-label fw-semibold">Jardin</label>
-                    <select id="has_garden" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="has_garden" class="form-select fw-bold" >
                         <option value="oui">Oui</option>
                         <option value="non">Non</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="has_parking" class="form-label fw-semibold">Parking</label>
-                    <select id="has_parking" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="has_parking" class="form-select fw-bold" >
                         <option value="oui">Oui</option>
                         <option value="non">Non</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="has_box" class="form-label fw-semibold">Box</label>
-                    <select id="has_box" class="form-select fw-bold" style="background-color: #b07cdd44;">
+                    <select id="has_box" class="form-select fw-bold" >
                         <option value="oui">Oui</option>
                         <option value="non">Non</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="floor" class="form-label fw-semibold">Étage</label>
-                    <input type="text" class="form-control" style="background-color: #b07cdd44;" id="floor" placeholder="Entrez l'étage">
+                    <input type="text" class="form-control"  required  id="floor" placeholder="Entrez l'étage">
                 </div>
                 
-                <button type="submit" class="btn  px-5 btncard" style=" color: rgb(73, 33, 194); border-color: rgb(73, 33, 194);" data-bs-toggle="modal" data-bs-target="#resultModal">
+            </div>
+                <button type="submit" class="btn text-white mt-3 px-5" style="background-color: rgb(92, 57, 197);" data-bs-toggle="modal" data-bs-target="#resultModal">
                     Estimer
                 </button>            
             </form>
             
             
-        </div>
-        <div class="col-md-6">
-            <p class="fw-bold">Estimez votre maison ou estimez votre appartement pour découvrir gratuitement et en 2 min son prix et son loyer de marché. Votre estimation est mise à jour tous les mois dans votre espace</p>
-            <img class="w-100 mt-3 mb-1" src="{{ asset('images/logo/vecteezy_house-selection-and-search-house-project-real-estate_5611291.jpg') }}" alt="">
-            <p class="fw-bold mt-5">L'estimation immobilière en ligne permet de se faire une première idée du prix de vente d'un bien. L'estimation est calculée automatiquement en fonction de la moyen de vente de m2. Pour obtenir votre estimation en ligne, il faut localiser le bien à estimer puis renseigner des informations sur les caractéristiques du bien ( étage, nombre des chambres, surface...)</p>
-            <img class="w-100 " src="{{ asset('images/logo/28480709_Married couple investing savings into new home.svg') }}" alt="">
-        </div>
+        
+       
 
         <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
             <div class="modal-dialog">

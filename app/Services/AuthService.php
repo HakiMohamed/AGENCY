@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\Hash;
 
 class AuthService implements AuthInterface
 {
@@ -18,6 +19,7 @@ class AuthService implements AuthInterface
     public function register(array $userData)
     {
         $validatedData = $this->validateRegistrationData($userData);
+        $validatedData['password'] = Hash::make($validatedData['password']);
         $validatedData['role_id'] = 2;
         $user = $this->userRepository->create($validatedData);
         return $user;

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreAppartementRequest;
 use App\Http\Requests\StoreChambreRequest;
 use App\Http\Requests\StoreLocalcommereRequest;
 use App\Http\Requests\StoreMaisonRequest;
+use App\Http\Requests\StoreTerrainRequest;
 use App\Models\Caracteristique;
 use App\Models\Category;
 use App\Models\City;
@@ -15,6 +16,8 @@ use App\Models\Image;
 use App\Models\PropertyType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\PropertyRepositoryInterface;
+
 
 class PropertyController extends Controller
 {
@@ -33,92 +36,80 @@ public function createAppartementStudioBureau()
     
 }
 
+protected function storeProperty($request, $storagePath, $redirectRoute)
+    {
+        $validatedData = $request->validated();
+
+        try {
+
+            $validatedData['user_id'] = auth()->user()->id;
+            $property = Property::create($validatedData);
+            $caracteristique = new Caracteristique();
+            $caracteristique->fill($validatedData);
+            $caracteristique->property()->associate($property);
+            $caracteristique->save();
+
+
+            $images = $request->file('images');
+            if ($images) {
+                foreach ($images as $image) {
+                    $path = $image->store("/$storagePath");
+                    $property->images()->create(['url' => $path]);
+                }
+            }
+
+
+
+            $nameDisplayAlert = $property->type->name;
+            return redirect()->route('welcome')->withSuccess("Votre $nameDisplayAlert a été ajouté avec succès !");
+
+        } catch (\Exception $e) {
+             logger()->error("Une erreur s'est produite lors de la création de la propriété veuillez reéssayer plus tard: " . $e->getMessage());
+            return redirect()->back()->withError("Une erreur s'est produite lors de la création de la propriété reéssayer plus tard.");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 public function storeAppartement(StoreAppartementRequest $request)
 {
-    $validatedData = $request->validated();
-    $validatedData['user_id'] = auth()->user()->id; 
-    $property = Property::create($validatedData);
-    $caracteristique = new Caracteristique();
-    $caracteristique->fill($validatedData);
-    $caracteristique->property()->associate($property);
-    $caracteristique->save();
-    $images = $request->file('images');
-    if ($images) {
-        foreach ($images as $image) {
-            $path = $image->store('/appartements');
-            $property->images()->create(['url' => $path]);
-        }    
-    }
- 
-    $NameDisplayAlert = $property->type->name;
-    return redirect()->route('create.appartement-studio-bureau')->withSuccess("Votre $NameDisplayAlert a été ajouté avec succès !");
 
+    return $this->storeProperty($request, 'appartement_Studio_Bureau', 'create.appartement-studio-bureau');
 }
 
 
 public function storeMaison(StoreMaisonRequest $request)
 {
-    $validatedData = $request->validated();
-    $validatedData['user_id'] = auth()->user()->id; 
-    $property = Property::create($validatedData);
-    $caracteristique = new Caracteristique();
-    $caracteristique->fill($validatedData);
-    $caracteristique->property()->associate($property);
-    $caracteristique->save();
-    $images = $request->file('images');
-    if ($images) {
-        foreach ($images as $image) {
-            $path = $image->store('/appartements');
-            $property->images()->create(['url' => $path]);
-        }    
-    }
-    $NameDisplayAlert = $property->type->name;
-    return redirect()->route('create.maison-riad-villa')->withSuccess("Votre $NameDisplayAlert a été ajouté avec succès !");;
+    return $this->storeProperty($request, 'Maison_Riad_Villa', 'create.maison-riad-villa');
+
 }
 public function storeChambre(StoreChambreRequest $request)
 {
-    $validatedData = $request->validated();
-    $validatedData['user_id'] = auth()->user()->id; 
-    $property = Property::create($validatedData);
-    $caracteristique = new Caracteristique();
-    $caracteristique->fill($validatedData);
-    $caracteristique->property()->associate($property);
-    $caracteristique->save();
-    $images = $request->file('images');
-    if ($images) {
-        foreach ($images as $image) {
-            $path = $image->store('/appartements');
-            $property->images()->create(['url' => $path]);
-        }    
-    }
-    $NameDisplayAlert = $property->type->name;
-    return redirect()->route('create.maison-riad-villa')->withSuccess("Votre $NameDisplayAlert a été ajouté avec succès !");;
+    return $this->storeProperty($request, 'Chambres', 'create.Chambres');
+    
 }
 public function storeLocalCommerce(StoreLocalcommereRequest $request)
 {
-    $validatedData = $request->validated();
-    $validatedData['user_id'] = auth()->user()->id; 
-    $property = Property::create($validatedData);
-    $caracteristique = new Caracteristique();
-    $caracteristique->fill($validatedData);
-    $caracteristique->property()->associate($property);
-    $caracteristique->save();
-    $images = $request->file('images');
-    if ($images) {
-        foreach ($images as $image) {
-            $path = $image->store('/appartements');
-            $property->images()->create(['url' => $path]);
-        }    
-    }
-    $NameDisplayAlert = $property->type->name;
-    return redirect()->route('create.maison-riad-villa')->withSuccess("Votre $NameDisplayAlert a été ajouté avec succès !");;
+    return $this->storeProperty($request, 'Local_Commerce', 'create.local-commerce');
+}
+public function TerrainImmobilier(StoreTerrainRequest $request)
+{
+    return $this->storeProperty($request, 'Terrain_Immobilier', 'create.terrain-immobilier');
+
 }
 
 
 public function showProperties(Request $request)
 {
     $properties = Property::with('caracteristiques')->orderBy('created_at', 'desc')->paginate(3);
-    $cities = City::all();
+    $cities = City::orderBy('name', 'asc')->get();
     $types = PropertyType::all();
     return view('properties.show_properties', compact('properties','cities','types'));
 }
@@ -139,7 +130,10 @@ public function filterProperties(Request $request)
     }
     if ($request->filled('type_id')) {
         $properties->where('type_id', $request->type_id);
+        
     }
+
+
 
 
     $caracteristiques = [
@@ -155,10 +149,9 @@ public function filterProperties(Request $request)
     }
     
     $properties = $properties->paginate(3);
-    $cities = City::all(); 
+    $cities = City::orderBy('name', 'asc')->get();
 
     $view = view('properties.property_list', compact('properties', 'cities'))->render();
-
     return response()->json(['html' => $view]);
 }
 
@@ -176,7 +169,7 @@ public function filterProperties(Request $request)
 
 public function createLocalCommerce()
 {
-    $cities = City::all();
+    $cities = City::orderBy('name', 'asc')->get();
     $types = PropertyType::all();
     return view('properties.Create_LocalCommerce',compact('cities','types'));
 
@@ -184,14 +177,14 @@ public function createLocalCommerce()
 
 public function createTerrainImmobilier()
 {
-    $cities = City::all();
+    $cities = City::orderBy('name', 'asc')->get();
     $types = PropertyType::all();
     return view('properties.Create_TerrainImmobilier',compact('cities','types'));
 }
 
 public function createChambres()
 {
-    $cities = City::all();
+    $cities = City::orderBy('name', 'asc')->get();
     $types = PropertyType::all();
     return view('properties.Create_Chambres',compact('cities','types'));
 }

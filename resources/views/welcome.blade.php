@@ -4,7 +4,7 @@
 @section('content')
 <div class="container-fluid"   >
     <div class="row flex flex-wrap-reverse"    >
-        <div class="col-md-6   mt-md-5 "   >
+        <div class="col-md-6   mt-md-5 mt-3 "   >
             <h1 class="display-5 mb-4 fw-bold">Trouvez <span  style="color: #00B98E;">le bien parfaite</span> pour Vous</h1>
             <p class="mb-4 pb-2">Utilisez notre plateforme de recherche avancée pour trouver la maison, la villa, l'appartement ou le commerce parfaitement adapté à vos besoins. </p>
             <a href="{{route('properties')}}" class="btn text-white btncard py-3 " style="background-color: #00B98E;">Liste des properties <i class="fa-solid fa-arrow-right"></i>  </a>
@@ -42,7 +42,7 @@
 
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center mx-auto mb-5 wow w-100 fadeInUp" data-wow-delay="0.1s" style=" background-color:rgba(5, 245, 149, 0.133); ">
+        <div class="text-center mx-auto mb-5 wow w-100 fadeInUp" data-wow-delay="0.1s"  >
             <h1 class="mb-3">Property Types</h1>
             <p></p>
         </div>
@@ -53,7 +53,7 @@
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-apartment.png') }}" alt="Icon">
                         </div>
-                        <h6 class="fw-bold">Apartment</h6>
+                        <h6 class="fw-bold">Appartement</h6>
                         <span>123 Properties</span>
                     </div>
                 </a>
@@ -64,7 +64,7 @@
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-villa.png') }}" alt="Icon">
                         </div>
-                        <h6 class="fw-bold">Villa</h6>
+                        <h6 class="fw-bold">Studio</h6>
                         <span>123 Properties</span>
                     </div>
                 </a>
@@ -75,7 +75,7 @@
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-house.png') }}" alt="Icon">
                         </div>
-                        <h6 class="fw-bold">Home</h6>
+                        <h6 class="fw-bold">Bureau</h6>
                         <span>123 Properties</span>
                     </div>
                 </a>
@@ -86,7 +86,7 @@
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-housing.png') }}" alt="Icon">
                         </div>
-                        <h6 class="fw-bold">Office</h6>
+                        <h6 class="fw-bold">Chambre</h6>
                         <span>123 Properties</span>
                     </div>
                 </a>
@@ -97,7 +97,7 @@
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-building.png ') }}" alt="Icon">
                         </div>
-                        <h6 class="fw-bold">Building</h6>
+                        <h6 class="fw-bold">Local Ecommerce</h6>
                         <span>123 Properties</span>
                     </div>
                 </a>
@@ -108,7 +108,7 @@
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-neighborhood.png') }}" alt="Icon">
                         </div>
-                        <h6 class="fw-bold">Townhouse</h6>
+                        <h6 class="fw-bold">Maison</h6>
                         <span>123 Properties</span>
                     </div>
                 </a>
@@ -119,7 +119,7 @@
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-condominium.png') }}" alt="Icon">
                         </div>
-                        <h6 class="fw-bold">Shop</h6>
+                        <h6 class="fw-bold">Riad</h6>
                         <span>123 Properties</span>
                     </div>
                 </a>
@@ -130,7 +130,7 @@
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-luxury.png') }}" alt="Icon">
                         </div>
-                        <h6 class="fw-bold">Garage</h6>
+                        <h6 class="fw-bold">Villa</h6>
                         <span>123 Properties</span>
                     </div>
                 </a>

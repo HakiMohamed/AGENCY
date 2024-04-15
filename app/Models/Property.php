@@ -23,6 +23,9 @@ class Property extends Model
         'date_construction',
     ];
 
+
+
+    
     public function caracteristiques()
     {
         return $this->hasOne(Caracteristique::class);
