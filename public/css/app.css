@@ -748,12 +748,12 @@
 }
 
 .voirplusbutton{
-  background-color: #11daae;
+  background-color: #00b98ed7;
 
 }
 
 .voirplusbutton:hover{
-  background-color: #409d19;
+  background-color: #00B98E;
   
 }
 
@@ -761,6 +761,16 @@
   margin-right: 0;
   padding-right: 0;
   border-right: none;
+}
+
+
+.property-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.property-item .position-relative {
+  flex-grow: 1;
 }
 
     

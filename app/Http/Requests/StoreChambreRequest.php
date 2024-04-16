@@ -35,7 +35,7 @@ class StoreChambreRequest extends FormRequest
             'ascenseur' => 'nullable|string',
             'balcon' => 'nullable|string',
             'RezDeChaussé' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ];
 
     }

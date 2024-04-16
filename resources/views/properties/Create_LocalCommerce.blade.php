@@ -158,7 +158,7 @@
                 
         
 
-                <button type="submit" class="btn text-white mt-3 px-5" style="background-color: rgb(92, 57, 197);">Publier</button>
+                <button type="submit" class="btn text-white mt-3 px-5 voirplusbutton" >Publier</button>
             </form>
         
         

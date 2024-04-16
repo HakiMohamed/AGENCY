@@ -3,7 +3,7 @@
 
 
 @foreach ($properties as $property)
-    <div class="col-lg-4 col-md-6 property-item  wow fadeInUp" data-wow-delay="0.1s">
+    <div class="col-lg-4 col-md-6 property-item   wow fadeInUp"   data-wow-delay="0.1s">
         <a class="link-underline-opacity-0 text-decoration-none" href="#">
             <div class="property-item rounded overflow-hidden">
                 <div class="position-relative overflow-hidden"> 
@@ -36,7 +36,9 @@
                     <p class="d-block text-dark h5 mb-2">{{ $property->title }}</p>
                     <p class="text-dark"><i class="fa fa-map-marker-alt me-2" style="color: #4b13f3;"></i>{{ $property->city->name }}</p>
                     <p class="text-dark text-truncate"><i class="fa-solid fa-file-lines" style="color: #4b13f3;"></i> {{ $property->description }}</p>
-                    
+                    @if($property->caracteristiques->etage)
+                    <p class="text-dark"><i class="fa-solid fa-up-down me-2" style="color: #4b13f3;">  </i>Etage : {{$property->caracteristiques->etage}} </p>
+                    @endif
                     <div class="d-flex ">
                         <a class="btn mb-3 d-flex justify-content-start" data-tracking="click" data-value="listing-whatsapp" data-slug="495978" aria-label="Whatsapp" target="_blank" rel="noreferrer nofollow noopener" href="https://api.whatsapp.com/send?phone=+212619969568&amp;text=Bonjour, j'ai vu le bien mis en vente sur agency ( {{$property->title}} ), Ref: 12_75MA{{$property->id}}, et je souhaite prendre rendez-vous pour une visite. Merci. %0ahttp://127.0.0.1:8000/properties"> <i class="fa-brands fa-whatsapp fa-xl" style="color: #2f7c0e;"></i></a>
                         <form method="POST" action="" class="">
@@ -51,19 +53,21 @@
 
                 <div class="d-flex border-top" style="height: 50px;">
                     <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-ruler-combined me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->surface }} m²</small>
-                    @if($property->type->id !== 8 && $property->type->id !== 9 && $property->type->id !== 13)
                     <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-bed me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_rooms }} Chambres</small>
                     <small class="flex-fill text-center text-dark py-2"><i class="fa fa-bath me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_salleBain }} Bain</small>
                     <small class="flex-fill text-center text-dark py-2"><i class="fa-solid fa-person-booth me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_sallon }} Salon</small>
-                @endif
                  
-                
                 </div>
-                <a class="btn d-flex text-small text-white justify-content-center align-items-center text-center voirplusbutton    " style="z-index: -9999" >Voir plus <i class="fa-solid fa-eye" style="margin-top: 5px; margin-left:5px;"></i>    </a>
+                <div class="btn d-flex text-small text-white justify-content-center align-items-center text-center voirplusbutton    ">
+                    <a  >Voir plus <i class="fa-solid fa-eye" style="margin-top: 5px; margin-left:5px;"></i>    </a>
+                </div>
+              
             </div>
+            
             
         </a>
     </div>
+    
     
 @endforeach
 

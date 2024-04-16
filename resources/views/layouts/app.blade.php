@@ -1,6 +1,6 @@
 {{-- app.blade.php --}}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -122,23 +122,23 @@
                     
 
                     @auth
-                    <div class="btn-group " style="display: block;">
-                        <button type="button"  style=" color: rgb(9, 135, 238); border-color: rgb(9, 177, 244); " class="btn   btn-outline-dark btncard  dropdown-toggle dropdown-toggle-split "  data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-regular fa-user"></i>  {{ auth()->user()->firstname . " ". auth()->user()->lastname  }}    
+                    <div class="btn-group" style="display: block;">
+                        <button type="button" style="color: rgb(9, 135, 238); border-color: rgb(9, 177, 244);" class="btn btn-outline-dark btncard dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-regular fa-user"></i> {{ auth()->user()->firstname . " " . auth()->user()->lastname }}
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                          <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-                          <li><a class="dropdown-item" href="{{route('logout') }}">Log Out</a></li>
-                          <li> <form action="{{route('logout') }}" method="post" class="dropdown-item">
-                            @csrf
-                            @method('post')
-                            <button type="submit"
-                                class="  btn">Logout</button>
-                        </form></li>
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="post" class="dropdown-item">
+                                    @csrf
+                                    <button type="submit" class="btn ">Logout</button>
+                                </form>
+                            </li>
                         </ul>
-                      </div>
-            @endauth
+                    </div>
+                @endauth
+                
                 </div>
                 
             </div>
@@ -146,7 +146,7 @@
     </nav>
 </div>
 
-    <div class="container" style="margin-top: 78px;   overflow: hidden;  "> 
+    <div class="container element" style="margin-top: 78px;   overflow: hidden;  "> 
         @yield('content')
     </div>
 
@@ -217,6 +217,8 @@
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src=""></script>
+
     <script>
         AOS.init();
       </script>
@@ -315,7 +317,7 @@ $('#apply-filters').click(function() {
                         $('#loading-indicator').hide();
                     }
                 });
-            }, 500); 
+            }, 10); 
         }
     }
 

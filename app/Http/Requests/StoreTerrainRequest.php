@@ -30,7 +30,7 @@ class StoreTerrainRequest extends FormRequest
             'city_id' => 'required|exists:cities,id',
             'adresse' => 'required',
             'surface' => 'nullable|integer',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ];
 
     }

@@ -41,7 +41,7 @@ class StoreMaisonRequest extends FormRequest
             'parking' => 'nullable|string',
             'RezDeChaussé' => 'nullable|string',
             'images' => 'required|array|min:1',
-'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
 
         ];
 

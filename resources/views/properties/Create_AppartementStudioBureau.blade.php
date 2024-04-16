@@ -196,7 +196,7 @@
             </div>
 
            
-            <button type="submit" class="btn btn-outline w-100 text-white mt-3 px-5" style="background-color: rgb(92, 57, 197);">Publier</button>
+            <button type="submit" class="btn voirplusbutton btn-outline w-100 text-white mt-3 px-5" >Publier</button>
 
             </form>
         

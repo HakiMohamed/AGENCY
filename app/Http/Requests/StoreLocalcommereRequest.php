@@ -31,7 +31,7 @@ class StoreLocalcommereRequest extends FormRequest
             'adresse' => 'required',
             'date_construction' => 'nullable|date',
             'surface' => 'nullable|integer',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ];
 
     }

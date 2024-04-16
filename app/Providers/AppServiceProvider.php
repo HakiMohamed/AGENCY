@@ -10,6 +10,8 @@ use App\Services\AuthInterface;
 use App\Services\AuthService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\CaracteristiqueRepository;
+use App\Repositories\CaracteristiqueRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AuthInterface::class, AuthService::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(PropertyRepositoryInterface::class, PropertyRepository::class);
+        $this->app->bind(CaracteristiqueRepositoryInterface::class, CaracteristiqueRepository::class);
+
         
         $this->app->bind(
             'App\Services\AuthInterface',

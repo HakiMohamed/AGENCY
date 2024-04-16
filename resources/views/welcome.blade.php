@@ -2,32 +2,32 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid"   >
-    <div class="row flex flex-wrap-reverse"    >
-        <div class="col-md-6   mt-md-5 mt-3 "   >
-            <h1 class="display-5 mb-4 fw-bold">Trouvez <span  style="color: #00B98E;">le bien parfaite</span> pour Vous</h1>
-            <p class="mb-4 pb-2">Utilisez notre plateforme de recherche avancée pour trouver la maison, la villa, l'appartement ou le commerce parfaitement adapté à vos besoins. </p>
-            <a href="{{route('properties')}}" class="btn text-white btncard py-3 " style="background-color: #00B98E;">Liste des properties <i class="fa-solid fa-arrow-right"></i>  </a>
+<div class="container-fluid">
+    <div class="row flex flex-wrap-reverse align-items-center">
+        <div class="col-md-6 mt-md-5 mt-3">
+            <h1 class="display-4 mb-4 fw-bold">Trouvez <span style="color: #00B98E;">le bien parfait</span> pour vous</h1>
+            <p class="lead mb-4 pb-2">Utilisez notre plateforme de recherche avancée pour trouver la maison, la villa, l'appartement ou le commerce parfaitement adapté à vos besoins.</p>
+            <a href="{{route('properties')}}" style="Background-color: #00B98E;" data-aos="flip-left" data-aos-duration="1000" class="btn d-flex justify-content-center   btncard text-white btn-lg  py-3">Voir les propriétés <i class="fas fa-arrow-right"></i></a>
         </div>
-        
-        <div class="col-md-6 "  >
-            <div id="headerCarousel" class="carousel slide " data-bs-ride="carousel"  >
-                <div class="carousel-inner "  >
-                    <div class="carousel-item active"  >
-                        <img class="img-fluid" src="{{ asset('images/logo/carousel-1.jpg') }}" alt="">
+
+        <div class="col-md-6">
+            <div id="headerCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="{{ asset('images/logo/carousel-1.jpg') }}" alt="">
                     </div>
-                    <div class="carousel-item" >
-                        <img class="img-fluid" src="{{ asset('images/logo/carousel-2.jpg') }}" alt="">
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="{{ asset('images/logo/carousel-2.jpg') }}" alt="">
                     </div>
-                    <div class="carousel-item" >
-                        <img class="img-fluid mt-2" src="{{ asset('images/logo/img.webp') }}" alt="">
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="{{ asset('images/logo/img.webp') }}" alt="">
                     </div>
                 </div>
-                <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#headerCarousel" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#headerCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#headerCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#headerCarousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -35,6 +35,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -146,7 +147,7 @@
             <div class="text-center">
                 <h2 class="fw-bold">Prix de l'immobilier au Maroc</h2>
                 <p class="mx-4">Découvrez le prix du m² autour de vous. Le prix du m2 dans les grandes villes du Maroc.</p>
-                <a href="#" class="btn  btn-outline-primary btncard" >Découvrir</a>
+                <a href="{{route('properties')}}"  data-aos="flip-left" data-aos-duration="1000" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center my-5   btncard text-success btn-lg  py-3">Découvrir <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
         <div data-aos="flip-right" class="col-md-6 d-flex justify-content-center">
@@ -166,7 +167,7 @@
             <div class="text-center">
                 <h2 class="fw-bold">Vous êtes agent immobilier ?</h2>
                 <p class="mx-4">Découvrez nos solutions pro d’estimations, d’étude de marché et de conseil qui couvrent l’ensemble de la chaîne de valeurs de l’immobilier. Accélerez votre activité et offrez une expérience digitale unique pour vos clients avec Agency</p>
-                <a href="#" class="btn  btn-outline-primary btncard" >Découvrir</a>
+                <a href="{{route('properties')}}"  data-aos="flip-left" data-aos-duration="1000" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center my-5   btncard text-success btn-lg  py-3">Découvrir <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
         
@@ -240,3 +241,6 @@
 
 
 @endsection
+
+
+

@@ -174,7 +174,7 @@
         </div>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
-                <div class="row g-4" id="property-list">
+                <div class="row g-4 shadow-0 align-items-stretch"  id="property-list">
                     @include('properties.property_list')
                 </div>
                 

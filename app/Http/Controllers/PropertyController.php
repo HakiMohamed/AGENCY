@@ -14,13 +14,61 @@ use App\Models\City;
 use App\Models\Property;
 use App\Models\Image;
 use App\Models\PropertyType;
+use App\Repositories\CaracteristiqueRepositoryInterface;
+use App\Repositories\PropertyRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\PropertyRepositoryInterface;
 
 
 class PropertyController extends Controller
 {
+
+    protected $propertyRepository;
+    protected $caracteristiqueRepository;
+
+    public function __construct(PropertyRepositoryInterface $propertyRepository,CaracteristiqueRepositoryInterface $caracteristiqueRepository ) {
+       
+            $this->propertyRepository = $propertyRepository;
+            $this->caracteristiqueRepository = $caracteristiqueRepository;
+
+    }
+
+
+
+    protected function storeProperty($request, $storagePath)
+    {
+        
+       
+
+    
+        try {
+            $validatedData = $request->validated();
+            $validatedData['user_id'] = auth()->user()->id;
+            $property = $this->propertyRepository->createProperty($validatedData);
+            $validatedData['property_id'] = $property->id;
+            $caracteristique = $this->caracteristiqueRepository->createCaracteristique($validatedData);
+            $caracteristique->save();
+    
+            $images = $request->file('images');
+            if ($images) {
+                foreach ($images as $image) {
+                    $path = $image->store("/$storagePath");
+                    $property->images()->create(['url' => $path]);
+                }
+            }
+    
+            $nameDisplayAlert = $property->type->name;
+            return redirect()->route('properties')->withSuccess("Votre $nameDisplayAlert a été ajouté avec succès !");
+        } catch (\Exception $e) {
+            logger()->error("Une erreur s'est produite lors de la création de la propriété veuillez réessayer plus tard: " . $e->getMessage());
+            return redirect()->back()->withError("Une erreur s'est produite lors de la création de la propriété, veuillez réessayer plus tard.");
+        }
+    }
+    
+
+
+
+
     public function createMaisonRiadVilla()
 {
     $cities = City::all();
@@ -36,38 +84,7 @@ public function createAppartementStudioBureau()
     
 }
 
-protected function storeProperty($request, $storagePath, $redirectRoute)
-    {
-        $validatedData = $request->validated();
 
-        try {
-
-            $validatedData['user_id'] = auth()->user()->id;
-            $property = Property::create($validatedData);
-            $caracteristique = new Caracteristique();
-            $caracteristique->fill($validatedData);
-            $caracteristique->property()->associate($property);
-            $caracteristique->save();
-
-
-            $images = $request->file('images');
-            if ($images) {
-                foreach ($images as $image) {
-                    $path = $image->store("/$storagePath");
-                    $property->images()->create(['url' => $path]);
-                }
-            }
-
-
-
-            $nameDisplayAlert = $property->type->name;
-            return redirect()->route('welcome')->withSuccess("Votre $nameDisplayAlert a été ajouté avec succès !");
-
-        } catch (\Exception $e) {
-             logger()->error("Une erreur s'est produite lors de la création de la propriété veuillez reéssayer plus tard: " . $e->getMessage());
-            return redirect()->back()->withError("Une erreur s'est produite lors de la création de la propriété reéssayer plus tard.");
-        }
-    }
 
 
 
@@ -81,27 +98,27 @@ protected function storeProperty($request, $storagePath, $redirectRoute)
 public function storeAppartement(StoreAppartementRequest $request)
 {
 
-    return $this->storeProperty($request, 'appartement_Studio_Bureau', 'create.appartement-studio-bureau');
+    return $this->storeProperty($request, 'appartement_Studio_Bureau');
 }
 
 
 public function storeMaison(StoreMaisonRequest $request)
 {
-    return $this->storeProperty($request, 'Maison_Riad_Villa', 'create.maison-riad-villa');
+    return $this->storeProperty($request, 'Maison_Riad_Villa');
 
 }
 public function storeChambre(StoreChambreRequest $request)
 {
-    return $this->storeProperty($request, 'Chambres', 'create.Chambres');
+    return $this->storeProperty($request, 'Chambres');
     
 }
 public function storeLocalCommerce(StoreLocalcommereRequest $request)
 {
-    return $this->storeProperty($request, 'Local_Commerce', 'create.local-commerce');
+    return $this->storeProperty($request, 'Local_Commerce');
 }
 public function TerrainImmobilier(StoreTerrainRequest $request)
 {
-    return $this->storeProperty($request, 'Terrain_Immobilier', 'create.terrain-immobilier');
+    return $this->storeProperty($request, 'Terrain_Immobilier');
 
 }
 
