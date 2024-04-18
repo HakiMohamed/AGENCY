@@ -20,7 +20,7 @@
     <div class="container">
     <nav  class="navbar navbar-expand-lg w-100    navbar-light bg-light  fixed-top shadow-sm h-lg-25" style="top: -5;" >
         <div class="container">
-            <a href="/" class="navbar-brand d-flex align-items-center text-center">
+            <a href="/Acceuil" class="navbar-brand d-flex align-items-center text-center">
                 <div class="icon p-2 me-2">
                     <img class="img-fluid" src="{{asset('images/logo/icon-deal.png')}}" alt="Icon" style="width: 30px; height: 30px;">
                 </div>
@@ -32,11 +32,11 @@
             <div class=" mx-5 collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto ">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route("welcome")}}">Home</a>
+                        <a class="nav-link" href="{{route("welcome")}}">Acceuil</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route("properties")}}">properties</a>
+                        <a class="nav-link" href="{{route("properties")}}">Proprietées</a>
                     </li>
                     
                    
@@ -44,7 +44,7 @@
                         <a class="nav-link" href="{{route("estimer")}}">Estimation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Louer</a>
+                        <a class="nav-link "  href="#">agences</a>
                     </li>
                     
                 </ul>
@@ -102,71 +102,85 @@
         @yield('content')
     </div>
 
-    <footer class="text-center p-3 px-4  text-sm-start" >
-        <hr class="mt-0 " style="border-color:  rgba(230, 212, 245, 0.783);">
-
-        <div class="row">
-                <div class="col-lg-4 col-md-12 mb-md-0 " style="background-color: rgba(206, 172, 236, 0);">
+    <footer class="text-center p-4 shadow-sm" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase fw-bold">À propos</h5>
-                    <p class="small" style="font-size:10px;">Agency a pour mission de rendre le marché immobilier au Maroc plus transparent et d'offrir des solutions d’analyse pour ceux qui cherchent à acheter, vendre ou obtenir une estimation du prix immobilier. Notre équipe unique au Maroc, composée d'experts immobiliers et de data-scientists, conçoit des outils innovants pour permettre à nos clients de prendre des décisions immobilières éclairées, d’accélérer leur activité, et d'obtenir les meilleures estimations de prix immobilier.</p>
+                    <p class="small">Agency a pour mission de rendre le marché immobilier au Maroc plus transparent et d'offrir des solutions d’analyse pour ceux qui cherchent à acheter, vendre ou obtenir une estimation du prix immobilier.</p>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-md-0 " >
+                <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase fw-bold">Nos données</h5>
-                    <p class="small " style="font-size:10px;" >Nous collectons, analysons et structurons en continu des données liées au marché de l’immobilier au Maroc, notamment les offres, les transactions, les données cadastrales, socio-démographiques, et bien plus encore, afin de fournir une estimation précise à ceux qui souhaitent acheter ou vendre des propriétés.</p>
+                    <p class="small">Nous collectons, analysons et structurons en continu des données liées au marché de l’immobilier au Maroc, notamment les offres, les transactions, les données cadastrales, socio-démographiques, et bien plus encore.</p>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-md-0 " >
+                <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase fw-bold">Notre technologie</h5>
-                    <p class="small" style="font-size :10px;">Nos data-scientists utilisent des algorithmes de Machine Learning pour développer les solutions d’estimations de prix immobilier les plus précises au Maroc, garantissant ainsi une excellente base de décision pour acheter ou vendre.</p>
+                    <p class="small">Nos data-scientists utilisent des algorithmes de Machine Learning pour développer les solutions d’estimations de prix immobilier les plus précises au Maroc.</p>
                 </div>
             </div>
-            <div class="row "  >
-                <div class="col-md-12">
-                    <hr class="mt-0 mb-4" style="border-color: rgba(39, 4, 39, 0.982);">
-                    <a href="/" class="navbar-brand d-flex align-items-center text-center">
+            <hr class="my-4" style="border-color: rgba(0, 0, 0, 0.429);">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <a href="/Acceuil" class="navbar-brand d-flex align-items-center justify-content-center">
                         <div class="icon p-2 me-2">
-                            <img class="img-fluid" src="{{asset('images/logo/icon-deal.png')}}" alt="Icon" style="width: 30px; height: 30px;">
+                            <img class="img-fluid" src="{{ asset('images/logo/icon-deal.png') }}" alt="Icon" style="width: 30px; height: 30px;">
                         </div>
                         <h5 class="m-0 text-primary">Agency</h5>
                     </a>
-                   
-                    <div class="social-icons d-flex justify-content-center gap-5">
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-facebook-f fa-lg"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-instagram fa-lg"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-linkedin fa-lg"></i>
-                        </a>
-                       
-                       
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="social-icon">
-                            <img src="{{asset('images/logo/Verified by Visa.svg')}}" style="height: 90px; width:90px;" alt="">
-                        </a>
-                        <a href="#" class="social-icon">
-                            <img src="{{asset('images/logo/MasterCard SecureCode Grey.svg')}}" style="height: 90px; width:90px;" alt="">
-                        </a>
-                    </div>
-                    <p class="small my-4 d-flex justify-content-end" style="color: rgb(0, 0, 0);">© 2024 Agency</p>
-                   
                 </div>
                 
-            </div>
-            <hr class="mt-0 " style="border-color: rgba(184, 15, 184, 0.982);">
+                <div class="col-md-3 mb-4">
+                    <div class="social-icons d-flex justify-content-center gap-3 ">
+                        <a href="https://www.facebook.com/had.Lien.KHATIIIIR.Matdirch.lih.copie.hhhhhhhhhhhh/" class="social-icon">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                        <a href="https://twitter.com/ElExperto19" class="social-icon">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mohamed_haki70/" class="social-icon">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mohamed-haki-64534a204/" class="social-icon">
+                            <i class="fab fa-linkedin fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                  <div class="col-md-3 mb-4">
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="social-icon">
+                            <img src="{{ asset('images/logo/Verified by Visa.svg') }}" style="height: 40px; width: 40px;" alt="">
+                        </a>
+                        <a href="#" class="social-icon">
+                            <img src="{{ asset('images/logo/MasterCard SecureCode Grey.svg') }}" style="height: 40px; width: 40px;" alt="">
+                        </a>
+                    </div>
 
+                </div>
+                  <div class="col-md-3 mb-4">
+                    <div class="d-flex justify-content-center">
+                        <p class="small my-3" style="color: rgba(0, 0, 0, 0.7);">© 2024 Agency</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+           
+            
+            
+        </div>
     </footer>
+    
+    
     
     
     
     
 
     <!-- Bootstrap JS -->
+    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src=""></script>
@@ -174,6 +188,7 @@
     <script>
         AOS.init();
       </script>
+      
 
       <script>
         $.ajaxSetup({

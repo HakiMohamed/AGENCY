@@ -102,8 +102,6 @@
 
                 </div>
         
-                
-        
                 <div class="mb-3 ">
                     <label for="city" class="form-label fw-bold">Ville<span class="text-danger">*</span></label>
                     <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="city" name="city_id" required>

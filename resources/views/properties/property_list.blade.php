@@ -4,7 +4,7 @@
 
 @foreach ($properties as $property)
     <div class="col-lg-4 col-md-6 property-item   wow fadeInUp" style="height: 650px;"   data-wow-delay="0.1s">
-        <a class="link-underline-opacity-0 text-decoration-none" href="#" >
+        <a class="link-underline-opacity-0 text-decoration-none" href="{{ route('property.showDetail', $property->id) }}" >
             <div class="property-item rounded overflow-hidden">
                 <div class="position-relative overflow-hidden"> 
                     <div id="carouselProperty{{ $property->id }}" class="carousel slide" data-bs-ride="carousel">
@@ -33,7 +33,7 @@
 
                 <div class="p-4 pb-0" style="height: 280px;">
                     <h5 class="fw-bold mb-3" style="color: #000000;"><span class="text-dark">{{ $property->prix }}</span>  MAD   @if($property->categorie->name =='A LOUER') /Mois @endif</h5>
-                    <p class="d-block text-dark h5 mb-2">{{ $property->title }}</p>
+                    <p class="d-block text-dark h5 mb-2">{{ $property->type->name }} {{$property->categorie->name}} à {{ $property->city->name }}</p>
                     <p class="text-dark"><i class="fa fa-map-marker-alt me-2" style="color: #4b13f3;"></i>{{ $property->city->name }}</p>
                     <p class="text-dark text-truncate"><i class="fa-solid fa-file-lines" style="color: #4b13f3;"></i> {{ $property->description }}</p>
                     @if($property->caracteristiques->etage)
@@ -72,7 +72,7 @@
                  
                 </div>
                 <div class="btn d-flex  voirplus text-small text-white justify-content-center align-items-center text-center voirplusbutton    " style="padding:0px;">
-                    <a  >Voir plus <i class="fa-solid fa-eye" style=" margin-left:5px;"></i>    </a>
+                    <a href="{{ route('property.showDetail', $property->id) }}" class="text-decoration-none text-white"  >Voir plus <i class="fa-solid fa-eye" style=" margin-left:5px;"></i>    </a>
                 </div>
               
             </div>

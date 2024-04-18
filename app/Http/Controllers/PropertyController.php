@@ -26,6 +26,7 @@ class PropertyController extends Controller
     protected $propertyRepository;
     protected $caracteristiqueRepository;
 
+
     public function __construct(PropertyRepositoryInterface $propertyRepository,CaracteristiqueRepositoryInterface $caracteristiqueRepository ) {
        
             $this->propertyRepository = $propertyRepository;
@@ -34,13 +35,9 @@ class PropertyController extends Controller
     }
 
 
-
     protected function storeProperty($request, $storagePath)
     {
         
-       
-
-    
         try {
             $validatedData = $request->validated();
             $validatedData['user_id'] = auth()->user()->id;
@@ -103,20 +100,6 @@ class PropertyController extends Controller
 
 
 
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
 public function storeAppartement(StoreAppartementRequest $request)
 {
 
@@ -172,6 +155,10 @@ public function StoreUpdateTerrainImmobilier(StoreTerrainRequest $request, $id)
 
 
 
+
+
+
+
 public function showProperties()
 {
     $properties = Property::with('caracteristiques')->orderBy('created_at', 'desc')->paginate(3);
@@ -206,8 +193,6 @@ public function filterProperties(Request $request)
     }
 
 
-
-
     $caracteristiques = [
         'RezDeChaussé', 'balcon', 'terrasse', 'piscine', 'jardin', 'parking', 'number_rooms', 'number_sallon', 'number_salleBain'
     ];
@@ -226,6 +211,13 @@ public function filterProperties(Request $request)
     $view = view('properties.property_list', compact('properties', 'cities'))->render();
     return response()->json(['html' => $view]);
 }
+
+public function show($id)
+{
+    $property = Property::findOrFail($id);
+    return view('properties.show_details', compact('property'));
+}
+
 
    
 

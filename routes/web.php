@@ -9,6 +9,8 @@ Route::get('/Acceuil', function () {
 })->name('welcome');
 Route::get('/estimation', function () {return view('pages.estimation');})->name('estimer');
 Route::get('/propertiess', [PropertyController::class, 'showProperties'])->name('properties');
+Route::get('/property/{id}', [PropertyController::class,'show'])->name('property.showDetail');
+
 
 Route::post('/properties/store/appartement-studio-bureau', [PropertyController::class, 'storeAppartement'])->name('store_appartement-studio-bureau');
 Route::post('/properties/store/Maison-Villa-Riad', [PropertyController::class, 'storeMaison'])->name('store_Maison-Villa-Riad');
