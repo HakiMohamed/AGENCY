@@ -188,20 +188,20 @@
                 <div class="row g-4 shadow-0 align-items-stretch"  id="property-list">
                     @include('properties.property_list')
                 </div>
-                
-                <div class="row g-4 mt-2" id="new-properties">
-
-                    
+                <div class="row g-4 mt-2" id="new-properties"> 
                 </div>
-
-
-                {{-- <div id="loading-indicator" class="text-center" style="display: none;">
+                 {{-- <div id="loading-indicator" class="text-center" style="display: none;">
                     <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                     <p class="mt-2">Loading...</p>
                 </div> --}}
+
+
                 
+                
+
+
                 <div id="pagination-links" class="text-center">
                     <p>{{ $properties->links() }}</p>  
                   </div>

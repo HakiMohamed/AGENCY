@@ -74,7 +74,6 @@ class PropertyController extends Controller
     try {
         $validatedData = $request->validated();
         $property = Property::findOrFail($id);
-      
         $property->update($validatedData);
         // if ($property->user_id !== auth()->user()->id) {
         //     return redirect()->back()->withError("Vous n'êtes pas autorisé à modifier cette propriété.");
