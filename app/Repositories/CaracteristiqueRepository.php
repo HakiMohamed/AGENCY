@@ -12,4 +12,11 @@ class CaracteristiqueRepository implements CaracteristiqueRepositoryInterface
     {
         return Caracteristique::create($data);
     }
+
+    public function updateCaracteristique(array $data, $id)
+    {
+        $caracteristique = Caracteristique::findOrFail($id);
+        $caracteristique->update($data);
+        return $caracteristique;
+    }
 }

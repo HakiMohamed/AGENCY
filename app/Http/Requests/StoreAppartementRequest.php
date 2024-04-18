@@ -42,7 +42,7 @@ class StoreAppartementRequest extends FormRequest
             'jardin' => 'nullable|string',
             'parking' => 'nullable|string',
             'RezDeChaussé' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ];
 
     }

@@ -3,15 +3,15 @@
 
 
 @foreach ($properties as $property)
-    <div class="col-lg-4 col-md-6 property-item   wow fadeInUp"   data-wow-delay="0.1s">
-        <a class="link-underline-opacity-0 text-decoration-none" href="#">
+    <div class="col-lg-4 col-md-6 property-item   wow fadeInUp" style="height: 650px;"   data-wow-delay="0.1s">
+        <a class="link-underline-opacity-0 text-decoration-none" href="#" >
             <div class="property-item rounded overflow-hidden">
                 <div class="position-relative overflow-hidden"> 
                     <div id="carouselProperty{{ $property->id }}" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             @foreach ($property->images as $key => $image)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset($image->url) }}" class="d-block w-100 " style=" height:300px;" alt="Property Image">
+                                    <img src="{{ asset($image->url) }}" class="d-block w-100 " style=" height:300px; object-fit: cover;" alt="Property Image">
                                 </div>
                             @endforeach
                         </div>
@@ -25,13 +25,13 @@
                         </button>
                     </div> 
                     <div style="background-color: rgba(135, 135, 135, 0.432);" class="rounded btn  btn-secodary  text-white position-absolute start-0 top-0 mx-2 mb-1 m-4 ">{{ $property->created_at->locale('fr')->diffForHumans() }}</div>
-                    <div style="color: #00b98ec8; border-color: #00b98ec8;" class="rounded btn  btn-outline fw-bold btncard   position-absolute end-0 top-0 m-4 py-1 px-3">{{ $property->categorie->name }}</div>
+                    <div style="color: #00b98ec8; border-color: #00b98ec8; background-color:rgb(255, 255, 255);" class="rounded btn  btn-outline fw-bold    position-absolute end-0 top-0 m-4 py-1 px-3">{{ $property->categorie->name }}</div>
                     <div class="bg-white rounded-top  position-absolute start-0 fw-bold bottom-0 mx-4 pt-1 px-3" style="color: #4b13f3;">{{ $property->type->name }}</div>
                 </div>
 
                 
 
-                <div class="p-4 pb-0">
+                <div class="p-4 pb-0" style="height: 280px;">
                     <h5 class="fw-bold mb-3" style="color: #000000;"><span class="text-dark">{{ $property->prix }}</span>  MAD   @if($property->categorie->name =='A LOUER') /Mois @endif</h5>
                     <p class="d-block text-dark h5 mb-2">{{ $property->title }}</p>
                     <p class="text-dark"><i class="fa fa-map-marker-alt me-2" style="color: #4b13f3;"></i>{{ $property->city->name }}</p>
@@ -46,6 +46,19 @@
                             <input type="hidden" name="property_id" value="">
                             <button type="submit" class="btn d-flex justify-content-end"><i class="fa-regular fa-bookmark fa-lg"></i></button>
                         </form>
+                        @if($property->type->name == 'Appartement' || $property->type->name == 'Studio'||$property->type->name == 'Bureau')
+                        <a href="{{ route('Edit_appartement-studio-bureau', $property->id) }}">Modifier</a>
+                        @elseif($property->type->name == 'Maison' || $property->type->name == 'Riad'||$property->type->name == 'Villa')
+                        <a href="{{ route('Edit_maison-villa-riad', $property->id) }}">Modifier</a>
+                        @elseif($property->type->name == 'Local Ecommerce')
+                        <a href="{{ route('Edit_local-commerce', $property->id) }}">Modifier</a>
+                        @elseif($property->type->name == 'Terrain Immobilier')
+                        <a href="{{ route('Edit_terrain-immobilier', $property->id) }}">Modifier</a>
+                        @elseif($property->type->name == 'Chambre')
+                        <a href="{{ route('Edit_chambre', $property->id) }}">Modifier</a>
+                        @endif
+
+
                     </div>
                     
                    
@@ -58,15 +71,16 @@
                     <small class="flex-fill text-center text-dark py-2"><i class="fa-solid fa-person-booth me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_sallon }} Salon</small>
                  
                 </div>
-                <div class="btn d-flex text-small text-white justify-content-center align-items-center text-center voirplusbutton    ">
-                    <a  >Voir plus <i class="fa-solid fa-eye" style="margin-top: 5px; margin-left:5px;"></i>    </a>
+                <div class="btn d-flex  voirplus text-small text-white justify-content-center align-items-center text-center voirplusbutton    " style="padding:0px;">
+                    <a  >Voir plus <i class="fa-solid fa-eye" style=" margin-left:5px;"></i>    </a>
                 </div>
               
             </div>
-            
+
             
         </a>
     </div>
+
     
     
 @endforeach

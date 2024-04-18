@@ -4,7 +4,7 @@
 @section('content')
 <section  >
 <div class=" container  mt-4 py-5" >
-    <h1 class="fw-bold px-4" style="color: #00B98E;">Publier vos locla Commerce  </h1>
+    <h1 class="fw-bold px-4" style="color: #00B98E;">Publier votre local Commerce  </h1>
     <div class="row mx-3 ">
 
         @if ($errors->any())
@@ -53,14 +53,9 @@
                 <div class="mb-3 ">
                     <label for="prix" class="form-label fw-bold">Prix<span class="text-danger">*</span></label>
                     <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" class="form-control" id="prix" placeholder="Exemple: 890 000 DH" name="prix" required>
-                    @error('prix')
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Attention!</strong> {{$message}} 
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    <span id="prixError" class="text-danger"></span>
+                    <span id="prixError" class="text-danger">{{ $errors->first('prix') }}</span>
 
-                    @enderror
+
                 </div>
                 
 
@@ -201,5 +196,78 @@
             reader.readAsDataURL(file);
         }
     }
+
+
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const uploadForm = document.getElementById('uploadForm');
+    
+    // Ajouter des écouteurs d'événements keyup à chaque champ
+    const formInputs = uploadForm.querySelectorAll('input, textarea, select');
+    formInputs.forEach(input => {
+        input.addEventListener('keyup', function () {
+            validateField(input);
+        });
+    });
+
+    uploadForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+        // Validation de tous les champs du formulaire
+        let isValid = true;
+        formInputs.forEach(input => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+
+        // Si tous les champs sont valides, soumettre le formulaire
+        if (isValid) {
+            this.submit();
+        }
+    });
+});
+
+function validateField(input) {
+    const errorElementId = input.id + 'Error';
+    const errorElement = document.getElementById(errorElementId);
+
+    // Supprimer les anciennes classes d'erreur et réinitialiser les messages
+    removeErrorClass(input, errorElementId);
+
+    // Validation du champ
+    let isValid = true;
+    const value = input.type === 'checkbox' ? input.checked : input.value.trim();
+
+    if (input.required && (input.type !== 'checkbox' && value === '')) {
+        isValid = false;
+        addErrorClass(input, errorElementId);
+        errorElement.textContent = 'Ce champ est requis';
+    }
+
+    // Vous pouvez ajouter d'autres validations ici en fonction du type de champ
+
+    return isValid;
+}
+
+function addErrorClass(input, errorElementId) {
+    input.classList.add('border', 'border-danger');
+    const errorElement = document.getElementById(errorElementId);
+    if (errorElement) {
+        errorElement.textContent = '';
+    }
+}
+
+function removeErrorClass(input, errorElementId) {
+    input.classList.remove('border', 'border-danger');
+    const errorElement = document.getElementById(errorElementId);
+    if (errorElement) {
+        errorElement.textContent = '';
+    }
+}
+
 </script>
+
 @endsection

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row g-0 gx-5 align-items-end">
             <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" style="width: 160px; margin-left:35px;" class="btn d-flex mx-md-4 my-md-0  btn-outline-success btncard">
-                <span class="align-items-center">Filter Avancé</span>
+                <span class="align-items-center">Filtre Avancé</span>
                 <i class="fa-solid fa-sliders ms-2"></i>
             </button>
             <div class="col-lg-12  my-3 d-flex justify-content-end align-items-end text-lg-end wow slideInRight" data-wow-delay="0.1s">
@@ -78,6 +78,14 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="min_price" class="form-label">Prix minimum</label>
+                                        <input type="text" id="min_price" name="min_price" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="max_price" class="form-label">Prix maximum</label>
+                                        <input type="text" id="max_price" name="max_price" class="form-control">
+                                    </div>
                                 </div>
             
                                 <div class="row">
@@ -141,7 +149,10 @@
                                         <label for="number_salleBain" class="form-label">Nombre de salles de bain</label>
                                         <input type="text" id="number_salleBain" name="number_salleBain" class="form-control">
                                     </div>
+                                   
                                 </div>
+                                
+                                
             
                                 <div class="row">
                                    
@@ -178,22 +189,25 @@
                     @include('properties.property_list')
                 </div>
                 
-                
                 <div class="row g-4 mt-2" id="new-properties">
+
                     
                 </div>
-                <div id="loading-indicator" class="text-center" style="display: none;">
+
+
+                {{-- <div id="loading-indicator" class="text-center" style="display: none;">
                     <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                     <p class="mt-2">Loading...</p>
-                </div>
+                </div> --}}
                 
-                {{-- <div id="pagination-links" class="text-center">
+                <div id="pagination-links" class="text-center">
                     <p>{{ $properties->links() }}</p>  
-                  </div> --}}
+                  </div>
             </div>
 
+        
         </div>
     </div>
 </div>

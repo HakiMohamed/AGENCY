@@ -64,25 +64,48 @@ class PropertyController extends Controller
             return redirect()->back()->withError("Une erreur s'est produite lors de la création de la propriété, veuillez réessayer plus tard.");
         }
     }
+
+
+
+
+
+    protected function updateProperty($request, $id)
+{
+    try {
+        $validatedData = $request->validated();
+        $property = Property::findOrFail($id);
+      
+        $property->update($validatedData);
+        // if ($property->user_id !== auth()->user()->id) {
+        //     return redirect()->back()->withError("Vous n'êtes pas autorisé à modifier cette propriété.");
+        // }
+        if ($property->caracteristique) {
+            $property->caracteristique->update($validatedData);
+        }
+        $images = $request->file('images');
+        if ($images) {
+            $property->images()->delete();
+            foreach ($images as $image) {
+                $path = $image->store("properties");
+                $property->images()->create(['url' => $path]);
+            }
+        }
+
+        return redirect()->route('properties')->withSuccess("La propriété a été mise à jour avec succès !");
+    } catch (\Exception $e) {
+        logger()->error("Une erreur s'est produite lors de la mise à jour de la propriété : " . $e->getMessage());
+        return redirect()->back()->withError("Une erreur s'est produite lors de la mise à jour de la propriété.");
+    }
+}
+
+
+
     
 
 
 
 
-    public function createMaisonRiadVilla()
-{
-    $cities = City::all();
-    $types = PropertyType::all();
-    return view('properties.Create_MaisonRiadVilla',compact('cities','types'));
-}
-
-public function createAppartementStudioBureau()
-{
-    $cities = City::all();
-    $types = PropertyType::all();
-    return view('properties.Create_AppartementStudioBureau',compact('cities','types'));
-    
-}
+   
 
 
 
@@ -123,7 +146,34 @@ public function TerrainImmobilier(StoreTerrainRequest $request)
 }
 
 
-public function showProperties(Request $request)
+public function StoreUpdateAppartement(StoreAppartementRequest $request, $id)
+{
+    return $this->updateProperty($request, $id);
+}
+
+public function StoreUpdateMaison(StoreMaisonRequest $request, $id)
+{
+    return $this->updateProperty($request, $id);
+}
+
+public function StoreUpdateChambre(StoreChambreRequest $request, $id)
+{
+    return $this->updateProperty($request, $id);
+}
+
+public function StoreUpdateLocalCommerce(StoreLocalcommereRequest $request, $id)
+{
+    return $this->updateProperty($request, $id);
+}
+
+public function StoreUpdateTerrainImmobilier(StoreTerrainRequest $request, $id)
+{
+    return $this->updateProperty($request, $id);
+}
+
+
+
+public function showProperties()
 {
     $properties = Property::with('caracteristiques')->orderBy('created_at', 'desc')->paginate(3);
     $cities = City::orderBy('name', 'asc')->get();
@@ -148,6 +198,12 @@ public function filterProperties(Request $request)
     if ($request->filled('type_id')) {
         $properties->where('type_id', $request->type_id);
         
+    }
+
+    if ($request->filled('min_price') && $request->filled('max_price')) {
+        $minPrice = $request->min_price;
+        $maxPrice = $request->max_price;
+        $properties->whereBetween('prix', [$minPrice, $maxPrice]);
     }
 
 
@@ -205,5 +261,80 @@ public function createChambres()
     $types = PropertyType::all();
     return view('properties.Create_Chambres',compact('cities','types'));
 }
+
+
+
+public function createMaisonRiadVilla()
+{
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Create_MaisonRiadVilla',compact('cities','types'));
+}
+
+public function createAppartementStudioBureau()
+{
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Create_AppartementStudioBureau',compact('cities','types'));
+    
+}
+
+
+
+
+
+
+
+public function updateAppartementStudioBureau($id)
+{
+    $property = Property::findOrFail($id);
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Update_AppartementStudioBureau',compact('cities','types','property'));
+}
+
+public function updateMaisonRiadVilla($id)
+{
+    $property = Property::findOrFail($id);
+    $cities = City::all();
+    $types = PropertyType::all();
+    return view('properties.Update_MaisonRiadVilla',compact('cities','types','property'));
+}
+
+public function updateChambre($id)
+{
+    $property = Property::findOrFail($id);
+    $cities = City::orderBy('name', 'asc')->get();
+    $types = PropertyType::all();
+    return view('properties.Update_Chambres',compact('cities','types','property'));
+}
+
+public function updateLocalCommerce($id)
+
+{
+    $property = Property::findOrFail($id);
+    $cities = City::orderBy('name', 'asc')->get();
+    $types = PropertyType::all();
+    return view('properties.Update_LocalCommerce',compact('cities','types','property'));
+}
+
+public function updateTerrainImmobilier($id)
+{
+    $property = Property::findOrFail($id);
+    $cities = City::orderBy('name', 'asc')->get();
+    $types = PropertyType::all();
+    return view('properties.Update_TerrainImmobilier',compact('cities','types','property'));
+}
+
+
+
+public function updateChambres($id)
+{
+    $property = Property::findOrFail($id);
+    $cities = City::orderBy('name', 'asc')->get();
+    $types = PropertyType::all();
+    return view('properties.Update_Chambres',compact('cities','types','property'));
+}
+
 
 }

@@ -113,7 +113,7 @@
                 </div>
                 
             </div>
-                <button type="submit" class="btn text-white mt-3 px-5" style="background-color: rgb(92, 57, 197);" data-bs-toggle="modal" data-bs-target="#resultModal">
+                <button type="submit" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center my-5   btncard text-success   "data-bs-toggle="modal" data-bs-target="#resultModal">
                     Estimer
                 </button>            
             </form>

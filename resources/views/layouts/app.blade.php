@@ -29,62 +29,14 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class=" mx-5 collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto ">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Acheter
-                        </a>
-                        <ul class="dropdown-menu above position-absolute   " aria-labelledby="navbarDropdown" style="width: 999px;  margin-right:50px;">
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="mx-3 text-muted">Annonces</p>
-                                    <ul class="list-unstyled mx-3" >
-                                        <li><a class="dropdown-item fw-bold" href="#">Toutes les annonces <i class="fa-solid fa-arrow-right"></i></a></li>
-                                        <li><a class="dropdown-item fw-bold" href="#">Immobilier Neuf <i class="fa-solid fa-arrow-right"></i></a></li>
-                                        <li><a class="dropdown-item fw-bold" href="#">Investir dans un studio <i class="fa-solid fa-arrow-right"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="mx-3 text-muted">Ressources</p>
-                                    <ul class="list-unstyled mx-3">
-                                        <li><a class="dropdown-item fw-bold" href="#">Le guide de l'acheteur au Maroc <i class="fa-solid fa-arrow-right"></i></a></li>
-                                        <li><a class="dropdown-item fw-bold" href="#">Demander une expertise agréée <i class="fa-solid fa-arrow-right"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route("welcome")}}">Home</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Vendre
-                        </a>
-                        <ul class="dropdown-menu above position-absolute  " aria-labelledby="navbarDropdown" style="width: 999px;  margin-right:50px;">
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="mx-3 text-muted">Mes options</p>
-                                    <ul class="list-unstyled mx-3">
-                                        <li><a class="dropdown-item fw-bold" href="#">Vendre rapidement avec agency <i class="fa-solid fa-arrow-right"></i> </a></li>
-                                        <li><a class="dropdown-item fw-bold" href="#">Vendre tout seul <i class="fa-solid fa-arrow-right"></i></a></li>
-                                        <li><a class="dropdown-item fw-bold" href="#">Trouver un agent <i class="fa-solid fa-arrow-right"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="mx-3 text-muted">Ressources</p>
-                                    <ul class="list-unstyled mx-3">
-                                        <li><a class="dropdown-item fw-bold" href="#">Combien coûte ma maison ? <i class="fa-solid fa-arrow-right"></i></a></li>
-                                        <li><a class="dropdown-item fw-bold" href="#">Le guide du crédit <i class="fa-solid fa-arrow-right"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route("properties")}}">properties</a>
                     </li>
                     
                    
@@ -279,54 +231,51 @@ $('#apply-filters').click(function() {
 
 
 
-<script>
+{{-- <script>
     var page = 1;
-    var loading = false;
-    var lastProperty = false;
+var loading = false;
+var lastProperty = false;
 
-    function loadMoreProperties() {
-        if (loading || lastProperty) return;
 
-        var scrollTop = $(window).scrollTop();
-        var windowHeight = $(window).height();
-        var documentHeight = $(document).height();
+function loadMoreProperties() {
+    if (loading || lastProperty) return;
 
-        if (scrollTop + windowHeight >= $('#new-properties').last().offset().top) {
-            loading = true;
-            page++;
+    var scrollTop = $(window).scrollTop();
+    var windowHeight = $(window).height();
+    var documentHeight = $(document).height();
 
-            $('#loading-indicator').show();
+    if (scrollTop + windowHeight >= documentHeight - 500) {
+        loading = true;
+        page++;
 
-            setTimeout(function() {
-                $.ajax({
-                    url: "{{ route('properties.filter') }}",
-                    type: "POST",
-                    data: $('#filter-form').serialize() + '&page=' + page,
-                    success: function(response) {
-                        if (response.html.trim() != '') {
-                            $('#new-properties').append(response.html);
-                            loading = false;
-                        } else {
-                            lastProperty = true; 
-                        }
-                        $('#loading-indicator').hide();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                        loading = false;
-                        $('#loading-indicator').hide();
-                    }
-                });
-            }, 10); 
-        }
+        $('#loading-indicator').show();
+
+        $.ajax({
+            url: "{{ route('properties.filter') }}",
+            type: "POST",
+            data: $('#filter-form').serialize() + '&page=' + page,
+            success: function(response) {
+                if (response.html.trim() != '') {
+                    $('#new-properties').append(response.html);
+                    loading = false;
+                } else {
+                    lastProperty = true; 
+                }
+                $('#loading-indicator').hide();
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                loading = false;
+                $('#loading-indicator').hide();
+            }
+        });
     }
-
-    $(window).on('scroll', loadMoreProperties);
-</script>
+}
 
 
+$(window).on('scroll', loadMoreProperties);
 
-
+</script> --}}
 
 
 </body>

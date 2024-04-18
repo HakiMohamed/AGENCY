@@ -14,13 +14,16 @@
             <div id="headerCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ asset('images/logo/carousel-1.jpg') }}" alt="">
+                        <img class="d-block w-100 mt-5" src="{{ asset('images/logo/1381389fa108cd8f6904a8449dbc32f5f1c62f7d-2562x2108.webp') }}" alt="">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('images/logo/carousel-2.jpg') }}" alt="">
+                        <img class="d-block w-100 mt-4" src="{{ asset('images/logo/imghero1.jpg') }}" alt="">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('images/logo/img.webp') }}" alt="">
+                        <img class="d-block w-100 mt-4" src="{{ asset('images/logo/img.webp') }}" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 mt-5" src="{{ asset('images/logo/hero.e42c1d97.svg') }}" alt="">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#headerCarousel" data-bs-slide="prev">
@@ -49,7 +52,7 @@
         </div>
         <div class="row g-4">
             <div data-aos="fade-right" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark"  href="">
+                <a href="{{route('properties')}}" class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark"  href="">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-apartment.png') }}" alt="Icon">
@@ -60,7 +63,7 @@
                 </a>
             </div>
             <div data-aos="fade-left" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                <a href="{{route('properties')}}" class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-villa.png') }}" alt="Icon">
@@ -71,7 +74,7 @@
                 </a>
             </div>
             <div data-aos="fade-up-right" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                <a href="{{route('properties')}}" class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-house.png') }}" alt="Icon">
@@ -82,7 +85,7 @@
                 </a>
             </div>
             <div data-aos="fade-up-left" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                <a href="{{route('properties')}}" class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-housing.png') }}" alt="Icon">
@@ -93,7 +96,7 @@
                 </a>
             </div>
             <div data-aos="fade-up" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                <a href="{{route('properties')}}" class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-building.png ') }}" alt="Icon">
@@ -104,7 +107,7 @@
                 </a>
             </div>
             <div data-aos="fade-down-right" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                <a href="{{route('properties')}}" class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-neighborhood.png') }}" alt="Icon">
@@ -115,7 +118,7 @@
                 </a>
             </div>
             <div data-aos="fade-down-left" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
+                <a href="{{route('properties')}}" class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none text-dark" href="">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-condominium.png') }}" alt="Icon">
@@ -126,7 +129,7 @@
                 </a>
             </div>
             <div data-aos="flip-left" class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none  text-dark " href="">
+                <a href="{{route('properties')}}" class="cat-item d-block bg-light text-center rounded p-3 text-decoration-none  text-dark " href="">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="{{ asset('images/icon-luxury.png') }}" alt="Icon">
@@ -143,14 +146,18 @@
 <section class="thirdSection overflow-x-hidden" >
     <div class="container">
     <div class="row">
-        <div class="col-md-6 d-flex align-items-center">
-            <div class="text-center">
-                <h2 class="fw-bold">Prix de l'immobilier au Maroc</h2>
-                <p class="mx-4">Découvrez le prix du m² autour de vous. Le prix du m2 dans les grandes villes du Maroc.</p>
-                <a href="{{route('properties')}}"  data-aos="flip-left" data-aos-duration="1000" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center my-5   btncard text-success btn-lg  py-3">Découvrir <i class="fas fa-arrow-right"></i></a>
-            </div>
+       
+        <div data-aos="flip-right" class="col-md-4 d-flex justify-content-center">
+            <img src="{{ asset('images/logo/be6931055401de99bc4ccc7e8b466d616bca37b3-2351x2148.webp') }}" class="img-fluid" alt="Thumbnail">
         </div>
-        <div data-aos="flip-right" class="col-md-6 d-flex justify-content-center">
+        <div data-aos="flip-right" class="col-md-4 d-flex justify-content-center">
+            <div class="text-center">
+                <h2 class="fw-bold">Estimer vos biens immobilier?</h2>
+                <p class="">Découvrez nos solutions pro d’estimations, d’étude de marché et de conseil qui couvrent l’ensemble de la chaîne de valeurs de l’immobilier. Accélerez votre activité et offrez une expérience digitale unique pour vos clients avec Agency</p>
+                <a href="{{route('estimer')}}"  data-aos="flip-left" data-aos-duration="1000" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center   btncard text-success   ">Estimation <i class="fas fa-arrow-right"></i></a>
+            </div>      
+          </div>
+        <div data-aos="flip-right" class="col-md-4 d-flex justify-content-center">
             <img src="{{ asset('images/logo/PrixMaroc.webp') }}" class="img-fluid" alt="Thumbnail">
         </div>
     </div>
@@ -167,7 +174,7 @@
             <div class="text-center">
                 <h2 class="fw-bold">Vous êtes agent immobilier ?</h2>
                 <p class="mx-4">Découvrez nos solutions pro d’estimations, d’étude de marché et de conseil qui couvrent l’ensemble de la chaîne de valeurs de l’immobilier. Accélerez votre activité et offrez une expérience digitale unique pour vos clients avec Agency</p>
-                <a href="{{route('properties')}}"  data-aos="flip-left" data-aos-duration="1000" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center my-5   btncard text-success btn-lg  py-3">Découvrir <i class="fas fa-arrow-right"></i></a>
+                <a href="{{route('properties')}}"  data-aos="flip-left" data-aos-duration="1000" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center my-5   btncard text-success   py-3">Découvrir <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
         

@@ -11,4 +11,11 @@ class PropertyRepository implements PropertyRepositoryInterface
     {
         return Property::create($data);
     }
+
+    public function updateProperty(array $data, $id)
+    {
+        $property = Property::findOrFail($id);
+        $property->update($data);
+        return $property;
+    }
 }
