@@ -31,6 +31,11 @@ class Property extends Model
         return $this->hasOne(Caracteristique::class);
     }
 
+    
+    public function favoritedBy() {
+        return $this->belongsToMany(User::class, 'favorite_properties', 'property_id', 'user_id');
+    }
+
     public function images()
     {
         return $this->hasMany(Image::class);

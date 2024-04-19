@@ -32,19 +32,16 @@
             <div class=" mx-5 collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto ">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route("welcome")}}">Acceuil</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route("properties")}}">Proprietées</a>
-                    </li>
-                    
-                   
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route("estimer")}}">Estimation</a>
+                        <a class="nav-link {{ request()->routeIs('welcome') ? 'active' : '' }}" href="{{ route("welcome") }}">Acceuil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link "  href="#">agences</a>
+                        <a class="nav-link {{ request()->routeIs('properties') ? 'active' : '' }}" href="{{ route("properties") }}">Proprietées</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('estimer') ? 'active' : '' }}" href="{{ route("estimer") }}">Estimation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('agences') ? 'active' : '' }}" href="#">agences</a>
                     </li>
                     
                 </ul>
@@ -55,11 +52,11 @@
                                 Publier une annonce
                             </button>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item btncard" href="{{route('create.maison-riad-villa')}}">Maison, Riad ou Villa <i class="fa-solid fa-arrow-right"></i></a></li>
-                              <li><a class="dropdown-item btncard" href="{{route('create.appartement-studio-bureau')}}">Appartement, Studio, ou bureau<i class="fa-solid fa-arrow-right"></i></a></li>
-                              <li><a class="dropdown-item btncard" href="{{route('create.local-commerce')}}">local commerce <i class="fa-solid fa-arrow-right"></i></a></li>
-                              <li><a class="dropdown-item btncard" href="{{route('create.Chambres')}}">Chambres <i class="fa-solid fa-arrow-right"></i></a></li>
-                              <li><a class="dropdown-item btncard" href="{{route('create.terrain-immobilier')}}">Terain <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard {{ request()->routeIs('create.maison-riad-villa') ? 'primaryRoute' : '' }} "  href="{{ route('create.maison-riad-villa') }}">Maison, Riad ou Villa <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard  {{ request()->routeIs('create.appartement-studio-bureau') ? 'primaryRoute' : '' }} " href="{{ route('create.appartement-studio-bureau') }}">Appartement, Studio, ou bureau<i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard {{ request()->routeIs('create.local-commerce') ? 'primaryRoute' : '' }} " href="{{ route('create.local-commerce') }}">local commerce <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard  {{ request()->routeIs('create.Chambres') ? 'primaryRoute' : '' }}  " href="{{ route('create.Chambres') }}">Chambres <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard {{ request()->routeIs('create.terrain-immobilier') ? 'primaryRoute' : '' }}  " href="{{ route('create.terrain-immobilier') }}">Terain <i class="fa-solid fa-arrow-right"></i></a></li>
                             </ul>
                           </div>
                                               

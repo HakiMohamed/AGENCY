@@ -27,6 +27,12 @@ class User extends Authenticatable
         'avatar',
     ];
 
+
+    public function favoriteProperties() {
+        return $this->belongsToMany(Property::class, 'favorite_properties', 'user_id', 'property_id');
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *

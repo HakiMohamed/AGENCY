@@ -134,12 +134,23 @@
 
 
 .active {
-  color: rgb(73, 33, 194) !important;
-  border-color: rgb(73, 33, 194) !important;
+  
+  color: #00B98E!important;
+  border-color: #00B98E !important;
+
 }
+
+
+
 
 .primary{
   color:#00B98E;
+}
+
+.primaryRoute{
+  background-color:#00B98E;
+  color: white !important;
+
 }
 
 
