@@ -22,7 +22,7 @@ class PropertyTypesTableSeeder extends Seeder
         'Local Ecommerce',
         'Maison',
         'Riad',
-        '',
+        'Villa',
         'Terrain Immobilier',
                  ];
 

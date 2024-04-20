@@ -41,21 +41,20 @@
                     @endif
                     <div class="d-flex ">
                         <a class="btn mb-3 d-flex justify-content-start" data-tracking="click" data-value="listing-whatsapp" data-slug="495978" aria-label="Whatsapp" target="_blank" rel="noreferrer nofollow noopener" href="https://api.whatsapp.com/send?phone=+212619969568&amp;text=Bonjour, j'ai vu le bien mis en vente sur agency ( {{$property->title}} ), Ref: 12_75MA{{$property->id}}, et je souhaite prendre rendez-vous pour une visite. Merci. %0ahttp://127.0.0.1:8000/properties"> <i class="fa-brands fa-whatsapp fa-xl" style="color: #2f7c0e;"></i></a>
-                        <form method="POST" action="" class="">
-                            @csrf
-                            <input type="hidden" name="property_id" value="">
-                            <button type="submit" class="btn d-flex justify-content-end"><i class="fa-regular fa-bookmark fa-lg"></i></button>
-                        </form>
+                        <button class="btn btn-primary toggle-favorite" data-property-id="{{ $property->id }}" data-favorited="{{ $property->favoritedBy(Auth::user()) ? 'true' : 'false' }}">
+                            {{ $property->favoritedBy(Auth::user()) ? 'Remove from Favorites' : 'Add to Favorites' }}
+                        </button>
+                        
                         @if($property->type->name == 'Appartement' || $property->type->name == 'Studio'||$property->type->name == 'Bureau')
-                        <a href="{{ route('Edit_appartement-studio-bureau', $property->id) }}">Modifier</a>
+                        <a href="{{ route('appartements.edit', $property->id) }}">Modifier</a>
                         @elseif($property->type->name == 'Maison' || $property->type->name == 'Riad'||$property->type->name == 'Villa')
-                        <a href="{{ route('Edit_maison-villa-riad', $property->id) }}">Modifier</a>
+                        <a href="{{ route('maisons.edit', $property->id) }}">Modifier</a>
                         @elseif($property->type->name == 'Local Ecommerce')
-                        <a href="{{ route('Edit_local-commerce', $property->id) }}">Modifier</a>
+                        <a href="{{ route('localcommerces.update', $property->id) }}">Modifier</a>
                         @elseif($property->type->name == 'Terrain Immobilier')
-                        <a href="{{ route('Edit_terrain-immobilier', $property->id) }}">Modifier</a>
+                        <a href="{{ route('terrains-immobiliers.edit', $property->id) }}">Modifier</a>
                         @elseif($property->type->name == 'Chambre')
-                        <a href="{{ route('Edit_chambre', $property->id) }}">Modifier</a>
+                        <a href="{{ route('chambres.edit', $property->id) }}">Modifier</a>
                         @endif
 
 
@@ -65,7 +64,7 @@
                 </div>
 
                 <div class="d-flex border-top" style="height: 50px;">
-                    <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-ruler-combined me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->surface }} m²</small>
+                    <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-ruler-combined me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->surface }} @if($property->type->name =='Terrain Immobilier') Ha @else m² @endif</small>
                     <small class="flex-fill text-center text-dark border-end py-2"><i class="fa fa-bed me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_rooms }} Chambres</small>
                     <small class="flex-fill text-center text-dark py-2"><i class="fa fa-bath me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_salleBain }} Bain</small>
                     <small class="flex-fill text-center text-dark py-2"><i class="fa-solid fa-person-booth me-2" style="color: #4b13f3;"></i>{{ $property->caracteristiques->number_sallon }} Salon</small>
@@ -84,6 +83,9 @@
     
     
 @endforeach
+
+
+
 
 
 

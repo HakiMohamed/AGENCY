@@ -64,7 +64,7 @@
                 <div class="card-body">
                     <h3 class="card-title " style="color: #000000;">Caractéristiques</h3>
                     <ul class="list-unstyled">
-                        <li><i style="color:#00B98E; " class="fas fa-home me-2"></i> Surface: {{ $property->caracteristiques->surface }} m²</li>
+                        <li><i style="color:#00B98E; " class="fas fa-home me-2"></i> Surface: {{ $property->caracteristiques->surface }} @if($property->type->name =='Terrain Immobilier') Ha @else m² @endif</li>
                         <li><i style="color:#00B98E; " class="fas fa-bed me-2"></i> Chambres: {{ $property->caracteristiques->number_rooms }}</li>
                         <li><i style="color:#00B98E; " class="fas fa-bath me-2"></i> Salles de bain: {{ $property->caracteristiques->number_salleBain }}</li>
                         <li><i style="color:#00B98E; " class="fas fa-building me-2"></i> Étage: {{ $property->caracteristiques->etage }}</li>

@@ -21,7 +21,7 @@
             
             
 
-    <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('update_appartement-studio-bureau',$property->id) }}" method="POST">
+    <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('appartements.update',$property->id) }}" method="POST">
                 
                 
                 @csrf

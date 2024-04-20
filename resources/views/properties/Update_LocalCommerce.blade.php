@@ -21,7 +21,7 @@
             
             
 
-            <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('update_local-commerce',$property->id) }}" method="POST">
+            <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('localcommerces.StoreUpdate',$property->id) }}" method="POST">
                 
                 
                 @csrf

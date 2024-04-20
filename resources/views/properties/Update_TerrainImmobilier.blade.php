@@ -22,27 +22,27 @@
             
             
 
-            <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('update_terrain-immobilier',$property->id) }}" method="POST">
+            <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('terrains-immobiliers.update',$property->id) }}" method="POST">
                 
             
                 @csrf
                 @method('PUT')
                 <div class="mb-3 ">
                     <label for="title" class="form-label fw-bold">Titre<span class="text-danger">*</span></label>
-                    <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" class="form-control" id="title" placeholder="Exemple: Appartement à vendre Casablanca - Burger" name="title" required>
+                    <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" value="{{$property->title}}" class="form-control" id="title" placeholder="Exemple: Appartement à vendre Casablanca - Burger" name="title" required>
                     <span id="titleError" class="text-danger">{{ $errors->first('title') }}</span>
                 </div>
                 
                 <div class="mb-3 ">
                     <label for="description" class="form-label fw-bold">Description<span class="text-danger">*</span></label>
-                    <textarea style="background-color: rgba(248, 247, 249, 0.719);" name="description" class="form-control" placeholder="Exemple: Appartement à vendre au sein de quartier les princesses à Casablanca.... place de parking attribuée-- Un box titré.." id="description" required></textarea>
+                    <textarea style="background-color: rgba(248, 247, 249, 0.719);" name="description" class="form-control" placeholder="Exemple: Appartement à vendre au sein de quartier les princesses à Casablanca.... place de parking attribuée-- Un box titré.." id="description" required>{{$property->description}}</textarea>
                     <span id="descriptionError" class="text-danger">{{ $errors->first('description') }}</span>
                 </div>
                 
 
                 <div class="mb-3 ">
                     <label for="prix" class="form-label fw-bold">Prix<span class="text-danger">*</span></label>
-                    <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" class="form-control" id="prix" placeholder="Exemple: 890 000 DH" name="prix" required>
+                    <input style="background-color: rgba(248, 247, 249, 0.719);" type="text" value="{{$property->prix}}" class="form-control" id="prix" placeholder="Exemple: 890 000 DH" name="prix" required>
                     <span id="prixError" class="text-danger">{{ $errors->first('prix') }}</span>
                 </div>
                 
@@ -53,6 +53,9 @@
                 </div>
                 
                 <div id="imagePreview" class="mb-3" ></div>
+
+            </div>
+            <div class="col-md-6">
 
                 <div class="mb-3 ">
                     <label for="categorie" class="form-label fw-bold">Catégorie<span class="text-danger">*</span></label>
@@ -71,6 +74,8 @@
                  <span id="categorieError" class="text-danger"></span>
                 </div>
 
+            
+
                 <div class="mb-3">
                     <label for="type" class="form-label fw-bold">Type</label>
                     <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="type" name="type_id" required>
@@ -84,9 +89,9 @@
         
                 <div class="mb-3 ">
                     <label for="city" class="form-label fw-bold">Ville<span class="text-danger">*</span></label>
-                    <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" id="city" name="city_id" required>
+                    <select style="background-color: rgba(248, 247, 249, 0.719);"class="form-select" value="{{$property->city_id}}" id="city" name="city_id" required>
                         @foreach($cities as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        <option value="{{ $city->id }}" {{ $city->id == $property->city_id ? 'selected' : '' }}>{{ $city->name }}</option>
                         @endforeach
                     </select>
                     @error('city_id')
@@ -106,21 +111,19 @@
         
                 <div class="mb-3 ">
                     <label for="adresse" class="form-label fw-bold">Adresse<span class="text-danger">*</span></label>
-                    <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple: Rue Mohamed Jazouli B.P. 35, Rabat " type="text" class="form-control" id="adresse" name="adresse" required>
+                    <input style="background-color: rgba(248, 247, 249, 0.719);" value="{{$property->adresse}}" placeholder="Exemple: Rue Mohamed Jazouli B.P. 35, Rabat " type="text" class="form-control" id="adresse" name="adresse" required>
                     <span id="adresseError" class="text-danger">{{ $errors->first('adresse') }}</span>
                 </div>
                 
         
-            </div>
-            <div class="col-md-6">
+            
         
         
                 <div class="mb-3 ">
                     <label for="surface" class="form-label fw-bold">Surface<span class="text-danger">*</span></label>
-                    <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple : 120m²" type="text" class="form-control" id="surface" name="surface" required>
+                    <input style="background-color: rgba(248, 247, 249, 0.719);" placeholder="Exemple : 120m²" type="text" class="form-control" id="surface" value="{{$property->caracteristiques->surface}}" name="surface" required>
                     <span id="surfaceError" class="text-danger">{{ $errors->first('surface') }}</span>
                 </div>
-        
                 
                 
                 

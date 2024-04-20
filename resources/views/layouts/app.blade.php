@@ -52,11 +52,11 @@
                                 Publier une annonce
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item btncard {{ request()->routeIs('create.maison-riad-villa') ? 'primaryRoute' : '' }} "  href="{{ route('create.maison-riad-villa') }}">Maison, Riad ou Villa <i class="fa-solid fa-arrow-right"></i></a></li>
-                                <li><a class="dropdown-item btncard  {{ request()->routeIs('create.appartement-studio-bureau') ? 'primaryRoute' : '' }} " href="{{ route('create.appartement-studio-bureau') }}">Appartement, Studio, ou bureau<i class="fa-solid fa-arrow-right"></i></a></li>
-                                <li><a class="dropdown-item btncard {{ request()->routeIs('create.local-commerce') ? 'primaryRoute' : '' }} " href="{{ route('create.local-commerce') }}">local commerce <i class="fa-solid fa-arrow-right"></i></a></li>
-                                <li><a class="dropdown-item btncard  {{ request()->routeIs('create.Chambres') ? 'primaryRoute' : '' }}  " href="{{ route('create.Chambres') }}">Chambres <i class="fa-solid fa-arrow-right"></i></a></li>
-                                <li><a class="dropdown-item btncard {{ request()->routeIs('create.terrain-immobilier') ? 'primaryRoute' : '' }}  " href="{{ route('create.terrain-immobilier') }}">Terain <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard {{ request()->routeIs('maisons.create') ? 'primaryRoute' : '' }} "  href="{{ route('maisons.create') }}">Maison, Riad ou Villa <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard  {{ request()->routeIs('appartements.create') ? 'primaryRoute' : '' }} " href="{{ route('appartements.create') }}">Appartement, Studio, ou bureau<i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard {{ request()->routeIs('localcommerces.create') ? 'primaryRoute' : '' }} " href="{{ route('localcommerces.create') }}">local commerce <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard  {{ request()->routeIs('chambres.create') ? 'primaryRoute' : '' }}  " href="{{ route('chambres.create') }}">Chambres <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a class="dropdown-item btncard {{ request()->routeIs('terrains-immobiliers.create') ? 'primaryRoute' : '' }}  " href="{{ route('terrains-immobiliers.create') }}">Terain <i class="fa-solid fa-arrow-right"></i></a></li>
                             </ul>
                           </div>
                                               
@@ -243,51 +243,9 @@ $('#apply-filters').click(function() {
 
 
 
-{{-- <script>
-    var page = 1;
-var loading = false;
-var lastProperty = false;
 
 
-function loadMoreProperties() {
-    if (loading || lastProperty) return;
 
-    var scrollTop = $(window).scrollTop();
-    var windowHeight = $(window).height();
-    var documentHeight = $(document).height();
-
-    if (scrollTop + windowHeight >= documentHeight - 500) {
-        loading = true;
-        page++;
-
-        $('#loading-indicator').show();
-
-        $.ajax({
-            url: "{{ route('properties.filter') }}",
-            type: "POST",
-            data: $('#filter-form').serialize() + '&page=' + page,
-            success: function(response) {
-                if (response.html.trim() != '') {
-                    $('#new-properties').append(response.html);
-                    loading = false;
-                } else {
-                    lastProperty = true; 
-                }
-                $('#loading-indicator').hide();
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                loading = false;
-                $('#loading-indicator').hide();
-            }
-        });
-    }
-}
-
-
-$(window).on('scroll', loadMoreProperties);
-
-</script> --}}
 
 
 </body>

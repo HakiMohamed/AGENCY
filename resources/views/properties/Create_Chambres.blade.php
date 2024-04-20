@@ -21,7 +21,7 @@
             
             
 
-            <form enctype="multipart/form-data" id="uploadForm" action="{{ route('store_Chambre') }}" method="POST">
+            <form enctype="multipart/form-data" id="uploadForm" action="{{ route('chambres.store') }}" method="POST">
                 
                 @csrf
                 <div class="mb-3 ">

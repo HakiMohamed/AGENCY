@@ -22,7 +22,7 @@
             
 
 
-            <form enctype="multipart/form-data" id="uploadForm" action="{{route('store_Local-Commerce')}}" method="POST">
+            <form enctype="multipart/form-data" id="uploadForm" action="{{route('localcommerces.store')}}" method="POST">
                 
                 @csrf
                 <div class="mb-3 ">

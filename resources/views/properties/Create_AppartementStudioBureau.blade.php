@@ -22,7 +22,7 @@
             
             
 
-            <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('store_appartement-studio-bureau') }}" method="POST">
+            <form   enctype="multipart/form-data" id="uploadForm" action="{{ route('appartements.store') }}" method="POST">
                 
             
                 @csrf
@@ -304,6 +304,12 @@ function removeErrorClass(input, errorElementId) {
         errorElement.textContent = '';
     }
 }
+
+// document<getElementById("uploadForm").addEventListener("submit", function(e){
+//     e.preventDefault();
+
+//     this.disbled =true
+// })
 
 </script>
 @endsection

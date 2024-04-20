@@ -23,7 +23,7 @@
             
 
 
-            <form enctype="multipart/form-data" id="uploadForm" action="{{route('store_terrain-immobilier')}}" method="POST" >
+            <form enctype="multipart/form-data" id="uploadForm" action="{{route('terrains-immobiliers.store')}}" method="POST" >
                 @csrf
 
                 <div class="mb-3 ">

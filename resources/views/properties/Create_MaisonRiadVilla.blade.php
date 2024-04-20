@@ -23,7 +23,7 @@
             
 
 
-            <form enctype="multipart/form-data" method="POST"  action="{{ route('store_Maison-Villa-Riad') }}" id="uploadForm">
+            <form enctype="multipart/form-data" method="POST"  action="{{ route('maisons.store') }}" id="uploadForm">
                 @csrf
                 <div class="mb-3 ">
                     <label for="title" class="form-label fw-bold">Titre<span class="text-danger">*</span></label>

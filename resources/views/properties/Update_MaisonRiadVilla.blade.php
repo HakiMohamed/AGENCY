@@ -21,7 +21,7 @@
             
             
 
-            <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('update_maison-villa-riad',$property->id) }}" method="POST">
+            <form  enctype="multipart/form-data" id="uploadForm" action="{{ route('maisons.update',$property->id) }}" method="POST">
                 
             
                 @csrf
