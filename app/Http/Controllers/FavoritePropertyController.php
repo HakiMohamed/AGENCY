@@ -10,24 +10,29 @@ use Illuminate\Support\Facades\Auth;
 class FavoritePropertyController extends Controller
 {
     public function toggleFavoriteProperty($propertyId)
-    {
-        $user = Auth::user();
-        $property = Property::findOrFail($propertyId);
+{
+    $user = Auth::user();
+    $property = Property::findOrFail($propertyId);
 
-        if ($property->favoritedBy($user)) {
-            $user->favoriteProperties()->detach($property);
-            return response()->json(['success' => true, 'message' => 'Property removed from favorites.']);
-        } else {
-            $user->favoriteProperties()->attach($property);
-            return response()->json(['success' => true, 'message' => 'Property added to favorites.']);
-        }
+    if ($property->isFavoritedBy($user)) {
+        $user->favoriteProperties()->detach($property);
+        $message = 'vous avez retirer cette proprieté de votre liste';
+    } else {
+        $user->favoriteProperties()->attach($property);
+        $message = 'vous avez ajouter cette proprieté à votre liste';
     }
+
+    return redirect()->back()->withSuccess("$message");
+}
+
+    
+    
 
     public function showFavoriteProperties()
     {
         $user = Auth::user();
         $favoriteProperties = $user->favoriteProperties;
 
-        return view('favorite_properties.index', compact('favoriteProperties'));
+        return view('properties.favoriteProperties', compact('favoriteProperties'));
     }
 }

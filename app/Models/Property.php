@@ -36,6 +36,11 @@ class Property extends Model
         return $this->belongsToMany(User::class, 'favorite_properties', 'property_id', 'user_id');
     }
 
+    public function isFavoritedBy(User $user)
+{
+    return $this->favoritedBy()->where('user_id', $user->id)->exists();
+}
+
     public function images()
     {
         return $this->hasMany(Image::class);

@@ -41,7 +41,7 @@
                         <a class="nav-link {{ request()->routeIs('estimer') ? 'active' : '' }}" href="{{ route("estimer") }}">Estimation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('agences') ? 'active' : '' }}" href="#">agences</a>
+                        <a class="nav-link {{ request()->routeIs('favorite-properties') ? 'active' : '' }}" href="{{route("favorite-properties")}}">Favorites</a>
                     </li>
                     
                 </ul>
@@ -95,7 +95,13 @@
     </nav>
 </div>
 
+
     <div class="container element" style="margin-top: 78px;   overflow: hidden;  "> 
+       
+        
+       
+        
+        
         @yield('content')
     </div>
 
@@ -171,8 +177,12 @@
     </footer>
     
     
+   
+  
     
     
+</body>
+</html>
     
     
 
@@ -180,7 +190,6 @@
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src=""></script>
 
     <script>
         AOS.init();
@@ -196,6 +205,11 @@
       </script>
 
 
+
+
+
+
+</script>
 
 <script>
      $(document).ready(function(){
@@ -221,6 +235,8 @@
  </script>
 
 
+
+
 <script>
 
 $('#apply-filters').click(function() {
@@ -239,6 +255,9 @@ $('#apply-filters').click(function() {
     });
 });
 
+
+
+
 </script>
 
 
@@ -248,5 +267,3 @@ $('#apply-filters').click(function() {
 
 
 
-</body>
-</html>

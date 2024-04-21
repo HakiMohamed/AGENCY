@@ -4,6 +4,9 @@
 @section('content')
 <div class="container-fluid">
     <div class="row flex flex-wrap-reverse align-items-center">
+
+       
+
         <div class="col-md-6 mt-md-5 mt-3">
             <h1 class="display-4 mb-4 fw-bold">Trouvez <span style="color: #00B98E;">le bien parfait</span> pour vous</h1>
             <p class="lead mb-4 pb-2">Utilisez notre plateforme de recherche avancée pour trouver la maison, la villa, l'appartement ou le commerce parfaitement adapté à vos besoins.</p>

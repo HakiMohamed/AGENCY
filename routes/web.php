@@ -92,6 +92,6 @@ Route::put('/terrains-immobiliers/{id}', [TerrainimmobilierController::class, 'u
 Route::delete('/terrains-immobiliers/{id}', [TerrainimmobilierController::class, 'destroy'])->name('terrains-immobiliers.destroy');
 
 
+Route::post('favorite-properties/toggle/{propertyId}', [FavoritePropertyController::class, 'toggleFavoriteProperty'])->name('favorite-properties.toggle');
 
-Route::post('/favorite-properties/{property}', [FavoritePropertyController::class, 'toggleFavoriteProperty'])->name('favorite-properties.toggle');
-Route::get('/favorite-properties', [FavoritePropertyController::class, 'showFavoriteProperties'])->name('favorite-properties.index');
+Route::get('/favorite-properties', [FavoritePropertyController::class, 'showFavoriteProperties'])->name('favorite-properties');
