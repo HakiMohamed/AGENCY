@@ -627,19 +627,6 @@
 
 
 
-
-.voirplusbutton a {
-  transition: margin-bottom 1.0s; 
-  transition: 4.0s; 
-}
-
-.voirplusbutton a:hover {
-  margin-bottom: 100px; 
-}
-
-
-
-
 .btn-group input[type="radio"].btn-check:checked + label.btn-outline-primary {
   background-color: #00B98E;
   color: #fff;
@@ -774,6 +761,17 @@
 .voirplusbutton{
   background-color: #00b98ed7;
 
+}
+
+.btnwhatspp{
+ 
+  background-color: rgba(12, 193, 66, 0.717);
+  color:#ffffff;
+  width:170px;
+}
+.btnwhatspp:hover{
+  color:#ffffff;
+  background-color: rgb(12,193,67);
 }
 
 .voirplusbutton:hover{

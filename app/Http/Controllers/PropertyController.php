@@ -41,6 +41,7 @@ public function filterProperties(Request $request)
     if ($request->filled('categorie_id')) {
         $properties->where('categorie_id', $request->categorie_id);
     }
+    
     if ($request->filled('title')) {
         $properties->where('title', 'like', '%' . $request->title . '%');
     }
@@ -87,5 +88,17 @@ public function show($id)
     return view('properties.show_details', compact('property'));
 }
 
+
+public function destroy($id)
+{
+    $property = Property::findOrFail($id);
+    if ($property->user_id !== auth()->user()->id) {
+        return redirect()->back()->withError("Vous n'êtes pas autorisé à supprimer cette propriété.");
+    }
+    $type = $property->type->name;
+    $property->delete();
+
+    return redirect()->back()->withSuccess("Votre $type a été supprimé.");
+}
 
 }

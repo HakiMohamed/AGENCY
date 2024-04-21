@@ -52,7 +52,7 @@
                             <form id="advanced-filter-form">
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <label for="categorie_id" class="form-label">Catégorie</label>
+                                        <label for="categorie_id" class="form-label fw-bold">Catégorie</label>
                                         <select class="form-select" id="categorie_id" name="categorie_id" aria-label="Filtrer les affichages">
                                             <option value="">Toutes categories</option>
                                             <option value="1">Hypothécaire</option>
@@ -61,7 +61,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="city_id" class="form-label">Ville</label>
+                                        <label for="city_id" class="form-label fw-bold">Ville</label>
                                         <select class="form-select" id="city_id" name="city_id" aria-label="Filtrer par ville">
                                             <option value="">Toutes les villes</option>
                                             @foreach($cities as $city)
@@ -70,7 +70,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="type_id" class="form-label">Type</label>
+                                        <label for="type_id" class="form-label fw-bold">Type</label>
                                         <select class="form-select" id="type_id" name="type_id" aria-label="Filtrer par type">
                                             <option value="">Toutes Les Types</option>
                                             @foreach($types as $type)
@@ -79,11 +79,11 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="min_price" class="form-label">Prix minimum</label>
+                                        <label for="min_price" class="form-label fw-bold">Prix minimum</label>
                                         <input type="text" id="min_price" name="min_price" class="form-control">
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="max_price" class="form-label">Prix maximum</label>
+                                        <label for="max_price" class="form-label fw-bold">Prix maximum</label>
                                         <input type="text" id="max_price" name="max_price" class="form-control">
                                     </div>
                                 </div>
@@ -91,20 +91,20 @@
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="RezDeChaussé" name="RezDeChaussé" value="1">
-                                            <label class="form-check-label" for="RezDeChaussé">Rez-de-chaussée</label>
+                                            <input class="form-check-input " type="checkbox" id="RezDeChaussé" name="RezDeChaussé" value="1">
+                                            <label class="form-check-label fw-bold" for="RezDeChaussé">Rez-de-chaussée</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="balcon" name="balcon" value="1">
-                                            <label class="form-check-label" for="balcon">Balcon</label>
+                                            <input class="form-check-input " type="checkbox" id="balcon" name="balcon" value="1">
+                                            <label class="form-check-label fw-bold" for="balcon">Balcon</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="terrasse" name="terrasse" value="1">
-                                            <label class="form-check-label" for="terrasse">Terrasse</label>
+                                            <input class="form-check-input " type="checkbox" id="terrasse" name="terrasse" value="1">
+                                            <label class="form-check-label fw-bold" for="terrasse">Terrasse</label>
                                         </div>
                                     </div>
                                 </div>
@@ -112,41 +112,41 @@
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="piscine" name="piscine" value="1">
-                                            <label class="form-check-label" for="piscine">Piscine</label>
+                                            <input class="form-check-input " type="checkbox" id="piscine" name="piscine" value="1">
+                                            <label class="form-check-label fw-bold" for="piscine">Piscine</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check">
-                                            <label for="ascenseur" class="form-label">Ascenseur</label>
-                                            <input class="form-check-input" type="checkbox" id="ascenseur" name="ascenseur" value="1">
+                                            <label for="ascenseur" class="form-label fw-bold">Ascenseur</label>
+                                            <input class="form-check-input " type="checkbox" id="ascenseur" name="ascenseur" value="1">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="jardin" name="jardin" value="1">
-                                            <label class="form-check-label" for="jardin">Jardin</label>
+                                            <input class="form-check-input " type="checkbox" id="jardin" name="jardin" value="1">
+                                            <label class="form-check-label fw-bold" for="jardin">Jardin</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="parking" name="parking" value="1">
-                                            <label class="form-check-label" for="parking">Parking</label>
+                                            <input class="form-check-input " type="checkbox" id="parking" name="parking" value="1">
+                                            <label class="form-check-label fw-bold" for="parking">Parking</label>
                                         </div>
                                     </div>
                                 </div>
             
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <label for="number_rooms" class="form-label">Nombre de chambres</label>
+                                        <label for="number_rooms" class="form-label fw-bold">Nombre de chambres</label>
                                         <input type="text" id="number_rooms" name="number_rooms" class="form-control">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="number_sallon" class="form-label">Nombre de salons</label>
+                                        <label for="number_sallon" class="form-label fw-bold">Nombre de salons</label>
                                         <input type="text" id="number_sallon" name="number_sallon" class="form-control">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="number_salleBain" class="form-label">Nombre de salles de bain</label>
+                                        <label for="number_salleBain" class="form-label fw-bold">Nombre de salles de bain</label>
                                         <input type="text" id="number_salleBain" name="number_salleBain" class="form-control">
                                     </div>
                                    
@@ -157,11 +157,11 @@
                                 <div class="row">
                                    
                                     <div class="col-md-4 mb-3">
-                                        <label for="etage" class="form-label">Étage</label>
+                                        <label for="etage" class="form-label fw-bold">Étage</label>
                                         <input type="text" id="etage" name="etage" class="form-control">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="surface" class="form-label">Surface</label>
+                                        <label for="surface" class="form-label fw-bold">Surface</label>
                                         <input type="text" id="surface" name="surface" class="form-control">
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
         </div>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
-                <div class="row g-4 shadow-0 align-items-stretch"  id="property-list">
+                <div class="row g-4 shadow-0 align-items-stretch "  id="property-list">
                     @include('properties.property_list')
                 </div>
                 <div class="row g-4 mt-2" id="new-properties"> 

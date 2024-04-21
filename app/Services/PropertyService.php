@@ -51,6 +51,9 @@ class PropertyService implements PropertyServiceInterface
         try {
             $validatedData = $request->validated();
             $property = Property::findOrFail($id);
+            if ($property->user_id !== auth()->user()->id) {
+                return redirect()->back()->withError("Vous n'êtes pas autorisé à modifier cette propriété.");
+            }
             $type = $property->type->name;
             $property->update($validatedData);
 

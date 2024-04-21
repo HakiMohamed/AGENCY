@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
 </head>
@@ -77,7 +78,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.show') }}">Edit Profile</a></li>
                             <li>
                                 <form action="{{ route('logout') }}" method="post" class="dropdown-item">
                                     @csrf
@@ -207,9 +208,34 @@
 
 
 
+<script>
+    $(document).ready(function() {
+    $('.heart-btn').click(function() {
+        var propertyId = $(this).closest('form').attr('id').replace('toggleFavoriteForm', '');
+        var form = $('#toggleFavoriteForm'+propertyId);
 
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: form.serialize(),
+            success: function(response) {
+                if (response.message.includes('ajouté')) {
+                    $('#toggleFavoriteForm'+propertyId+' i').css('color', 'red');
+                } else {
+                    $('#toggleFavoriteForm'+propertyId+' i').css('color', '#c1bebe');
+                }
+                $('#favoriteCount').text(response.favoriteCount);
+            },
+            error: function(xhr, status, error) {
+                console.error('Une erreur s\'est produite lors de la requête.');
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
 
 </script>
+
 
 <script>
      $(document).ready(function(){

@@ -30,9 +30,20 @@
 
     <div class="container mx-auto mt-5">
         <div class="max-w-lg mx-auto my-10 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md mt-24">
+            <a href="/Acceuil" class="navbar-brand flex items-center justify-center">
+                <div class="icon p-2 me-2">
+                    <img class="img-fluid" src="{{ asset('images/logo/icon-deal.png') }}" alt="Icon" style="width: 30px; height: 30px;">
+                </div>
+                <h5 class="m-0 text-primary">Agency</h5>
+            </a>
+            <div class="flex justify-center items-center  rounded-lg  p-5 space-x-5">
+                <hr class="border-black h-8">
+                <a href="{{ route('register') }}" class="text-2xl font-semibold text-blue-700">Register</a>
+                <h1 class="text-2xl font-semibold bg-green-100 rounded-lg text-blue-900">Login</h1>
 
-            <h1 class="text-2xl font-semibold mb-5 text-center dark:text-white-700 text-blue-700">Login</h1>
-            <form class="p-5" action="{{ route('login') }}" method="POST">
+            </div>
+                
+                <form class="p-5" action="{{ route('login') }}" method="POST">
                 @csrf
                 @method('POST')
                 <div class="mb-4 ">

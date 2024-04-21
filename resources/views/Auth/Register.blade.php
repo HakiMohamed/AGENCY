@@ -15,8 +15,18 @@
 <body class="bg-gray-100 dark:bg-gray-900">
 
     <div class="container mx-auto mt-14">
-        <div class="max-w-lg mx-auto my-10 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md mt-25">
-            <h1 class="text-2xl font-semibold mb-5 dark:text-gray-300 text-blue-700 text-center">Register</h1>
+        <div class="max-w-lg mx-auto  my-10 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md mt-25">
+            <a href="/Acceuil" class="navbar-brand flex items-center justify-center">
+                <div class="icon p-2 me-2">
+                    <img class="img-fluid" src="{{ asset('images/logo/icon-deal.png') }}" alt="Icon" style="width: 30px; height: 30px;">
+                </div>
+                <h5 class="m-0 text-primary">Agency</h5>
+            </a>
+            <div class="flex justify-center items-center  rounded-lg p-5 space-x-5">
+                <h1 class="text-2xl font-semibold text-blue-900 bg-green-100 rounded-lg">Register</h1>
+                <hr class="border-t-2 border-gray-400 h-full">
+                <a href="{{ route('login') }}" class="text-2xl font-semibold text-blue-700">Login</a>
+            </div>
             <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')

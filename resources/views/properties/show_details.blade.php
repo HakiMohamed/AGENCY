@@ -90,7 +90,7 @@
                     <li><i class="fas fa-envelope me-2"></i>Mohamedhaki70@Gmail.com</li>
                     <li><i class="fas fa-map-marker-alt me-2"></i> Adresse: 28000 Rue 7 Octobre Nahdda, TATA, MAROC</li>
                 </ul>
-                <a class="btn  " style="color:#ffffff; background-color:#00B98E;" data-tracking="click" data-value="listing-whatsapp"  data-slug="495978" aria-label="Whatsapp" target="_blank" rel="noreferrer nofollow noopener" href="https://api.whatsapp.com/send?phone=+212619969568&amp;text=Bonjour, j'ai vu le bien mis en vente sur agency ( {{$property->title}} ), Ref: 12_75MA{{$property->id}}, et je souhaite prendre rendez-vous pour une visite. Merci. %0ahttp://127.0.0.1:8000/Acceuil">Contactez-nous sur Whatsapp <i class="fa-brands fa-whatsapp fa-xl" style="color: #53fa0b;"></i></a>
+                <a class="btn  " style="color:#ffffff; background-color:#00B98E;" data-tracking="click" data-value="listing-whatsapp"  data-slug="495978" aria-label="Whatsapp" target="_blank" rel="noreferrer nofollow noopener" href="https://api.whatsapp.com/send?phone=+212641725930&amp;text=Bonjour, j'ai vu le bien mis {{$property->categorie->name}} sur agency ( {{$property->categorie->name}} sur agency ({{ $property->type->name }} {{$property->categorie->name}} à {{ $property->city->name }} ), Ref: 12_75MA{{$property->id}}, et je souhaite prendre rendez-vous pour une visite. Merci. %0a{{ route('property.showDetail', $property->id) }}">Contactez-nous sur Whatsapp <i class="fa-brands fa-whatsapp fa-xl" style="color: #53fa0b;"></i></a>
             </div>
         </div>
             </div>

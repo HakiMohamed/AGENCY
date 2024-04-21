@@ -13,6 +13,7 @@ class CitiesTableSeeder extends Seeder
         $cities = [
        
     'Aïn Harrouda',
+    'Agadir',
     'Ben Yakhlef',
     'Bouskoura',
     'Casablanca',
