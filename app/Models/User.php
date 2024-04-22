@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Property::class, 'favorite_properties', 'user_id', 'property_id');
     }
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

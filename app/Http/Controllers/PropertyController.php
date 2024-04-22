@@ -28,7 +28,7 @@ class PropertyController extends Controller
 
 public function showProperties()
 {
-    $properties = Property::with('caracteristiques')->orderBy('created_at', 'desc')->paginate(10);
+    $properties = Property::with('caracteristiques')->orderBy('created_at', 'desc')->paginate(9);
     $cities = City::orderBy('name', 'asc')->get();
     $types = PropertyType::all();
     return view('properties.show_properties', compact('properties','cities','types'));

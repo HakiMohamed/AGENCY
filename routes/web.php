@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppartementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChambreController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FavoritePropertyController;
 use App\Http\Controllers\LocalcommerceController;
 use App\Http\Controllers\MaisonvillaController;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/Acceuil', function () {return view('welcome'); })->name('welcome');
 Route::get('/', function () {return view('welcome'); })->name('welcome');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
 Route::get('/profile', [ProfileController::class,'show'])->name('profile.show');

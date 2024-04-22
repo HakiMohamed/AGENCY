@@ -60,7 +60,6 @@
                             </a>
                         @else
                         <span class="d-flex">
-                        <span id="favoriteCount">{{ $property->favoritedBy()->count() }}</span> 
                             <form id="toggleFavoriteForm{{$property->id}}" action="{{ route('favorite-properties.toggle', ['propertyId' => $property->id]) }}" method="POST">
                                 @csrf
                                 <button type="button" class="heart-btn btn">

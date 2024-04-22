@@ -20,12 +20,11 @@ class FavoritePropertyController extends Controller
                 ? 'ajouté'
                 : 'retiré';
             
-            $favoriteCount = $property->favoritedBy()->count(); // Compter le nombre d'utilisateurs qui ont ajouté cette propriété à leurs favoris
         } else {
             $message = 'Vous devez être connecté pour ajouter des propriétés à vos favoris.';
         }
     
-        return response()->json(['message' => $message, 'favoriteCount' => $favoriteCount]);
+        return response()->json(['message' => $message]);
     }
     
     public function showFavoriteProperties()
