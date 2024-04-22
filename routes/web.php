@@ -12,6 +12,7 @@ use App\Http\Controllers\TerrainimmobilierController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/Acceuil', function () {return view('welcome'); })->name('welcome');
+Route::get('/', function () {return view('welcome'); })->name('welcome');
 
 
 Route::get('/profile', [ProfileController::class,'show'])->name('profile.show');

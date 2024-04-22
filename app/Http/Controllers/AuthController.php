@@ -16,7 +16,7 @@ class AuthController extends Controller
     {
         $this->authService = $authService;
     }
-    
+
 
     public function showRegister()
     {
@@ -26,8 +26,13 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $user = $this->authService->register($request->all());
+        if(!$user){
+            return back()->withErrors('The provided credentials do not match our records.');
+
+        }
         Auth::login($user);
         return redirect()->route('properties')->withSuccess('Registration successful!');
+        
     }
 
     public function showLogin()

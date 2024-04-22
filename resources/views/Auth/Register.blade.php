@@ -13,6 +13,16 @@
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900">
+    @if ($errors->any())
+    <div class="bg-red-100 border text-center border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
     <div class="container mx-auto mt-14">
         <div class="max-w-lg mx-auto  my-10 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md mt-25">
@@ -23,7 +33,7 @@
                 <h5 class="m-0 text-primary">Agency</h5>
             </a>
             <div class="flex justify-center items-center  rounded-lg p-5 space-x-5">
-                <h1 class="text-2xl font-semibold text-blue-900 bg-green-100 rounded-lg">Register</h1>
+                <h1 class="text-2xl font-semibold text-blue-700 bg-green-100 rounded-lg">Register</h1>
                 <hr class="border-t-2 border-gray-400 h-full">
                 <a href="{{ route('login') }}" class="text-2xl font-semibold text-blue-700">Login</a>
             </div>

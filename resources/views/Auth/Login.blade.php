@@ -16,17 +16,15 @@
 
 <body class="bg-gray-100 dark:bg-gray-900">
 
-    @if (session('error'))
-       <script>
-           Swal.fire({
-               position: "top-end",
-               icon: "error",
-               title: "{{ session('error') }}",
-               showConfirmButton: false,
-               timer: 1500
-           });
-       </script>
-    @endif
+    @if ($errors->any())
+    <div class="bg-red-100 border text-center border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <div class="container mx-auto mt-5">
         <div class="max-w-lg mx-auto my-10 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md mt-24">
@@ -39,7 +37,7 @@
             <div class="flex justify-center items-center  rounded-lg  p-5 space-x-5">
                 <hr class="border-black h-8">
                 <a href="{{ route('register') }}" class="text-2xl font-semibold text-blue-700">Register</a>
-                <h1 class="text-2xl font-semibold bg-green-100 rounded-lg text-blue-900">Login</h1>
+                <h1 class="text-2xl font-semibold bg-green-100 rounded-lg text-blue-700">Login</h1>
 
             </div>
                 
