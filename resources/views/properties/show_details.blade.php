@@ -80,6 +80,22 @@
                         <li><i style="color:#00B98E; " class="fas fa-calendar-alt me-2"></i> Date de construction: {{ $property->date_construction }}</li>
                     </ul>
                 </div>
+                <div class="favorite-icon position-absolute top-0 end-0 m-3">
+                    @guest
+                        <a href="{{ route('login') }}" class="btn">
+                            <i class="fas fa-heart fa-2xl" style="color: #c1bebe;"></i>
+                        </a>
+                    @else
+                    <span class="d-flex">
+                        <form id="toggleFavoriteForm{{$property->id}}" action="{{ route('favorite-properties.toggle', ['propertyId' => $property->id]) }}" method="POST">
+                            @csrf
+                            <button type="button" class="heart-btn btn">
+                                <i class="fas fa-heart fa-2xl" style="color: {{ Auth::user()->favoriteProperties->contains($property) ? 'red' : '#c1bebe' }};"></i>
+                            </button>
+                        </form>
+                    </span>
+                    @endguest
+                </div>
             </div>
             <div class="col-lg-12 mt-4">
                 <div class="card">
@@ -92,6 +108,8 @@
                 </ul>
                 <a class="btn  " style="color:#ffffff; background-color:#00B98E;" data-tracking="click" data-value="listing-whatsapp"  data-slug="495978" aria-label="Whatsapp" target="_blank" rel="noreferrer nofollow noopener" href="https://api.whatsapp.com/send?phone=+212641725930&amp;text=Bonjour, j'ai vu le bien mis {{$property->categorie->name}} sur agency ( {{$property->categorie->name}} sur agency ({{ $property->type->name }} {{$property->categorie->name}} à {{ $property->city->name }} ), Ref: 12_75MA{{$property->id}}, et je souhaite prendre rendez-vous pour une visite. Merci. %0a{{ route('property.showDetail', $property->id) }}">Contactez-nous sur Whatsapp <i class="fa-brands fa-whatsapp fa-xl" style="color: #53fa0b;"></i></a>
             </div>
+
+            
         </div>
             </div>
         </div>

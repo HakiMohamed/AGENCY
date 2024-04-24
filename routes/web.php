@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/Acceuil', function () {return view('welcome'); })->name('welcome');
 Route::get('/', function () {return view('welcome'); })->name('welcome');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/users', [DashboardController::class, 'showUsers'])->name('showUsers')->middleware('auth');
+Route::put('/dashboard/users/update/{id}', [DashboardController::class,'updateUsers'])->name('updateUsers');
+Route::delete('/dashboard/users/delete/{id}', [DashboardController::class,'DeleteUsers'])->name('DeleteUsers');
+Route::get('/dashboard/statistique', [DashboardController::class, 'Statistiques'])->name('statistics');
 
 
 Route::get('/profile', [ProfileController::class,'show'])->name('profile.show');

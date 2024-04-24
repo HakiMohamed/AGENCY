@@ -73,13 +73,16 @@
               @enderror
             </div>
 
-            <div class="">
+            <div class="mb-1">
                 <label for="lastname" class="block text-sm font-medium fw-bold">Lastname</label>
                 <input id="lastname" type="text" class="form-control block w-full px-3 py-2 rounded-lg border   @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname', $user->lastname) }}" required>
                 @error('lastname')
                 <span class="text-xs text-danger mt-2">{{ $message }}</span>
                 @enderror
               </div>
+              
+           
+
             </div>
             <div class="d-flex justify-content-between mb-1">
 
