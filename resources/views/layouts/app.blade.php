@@ -47,8 +47,11 @@
                     
                 </ul>
                 <div class="navbar-nav  ">
+                    @if(Auth::user())
+                    @if(Auth::user() && Auth::user()->role && Auth::user()->role->id != 1 && Auth::user()->role->id !=2 )
+
                     <li class="nav-item me-3  mb-3 mb-md-0">
-                        <div class="btn-group " style="display: block;">
+                             <div class="btn-group " style="display: block;">
                             <button type="button" class="btn   dropdown-toggle dropdown-toggle text-white"  style="background-color: #00B98E;"  data-bs-toggle="dropdown" aria-expanded="false">
                                 Publier une annonce
                             </button>
@@ -59,10 +62,19 @@
                                 <li><a class="dropdown-item btncard  {{ request()->routeIs('chambres.create') ? 'primaryRoute' : '' }}  " href="{{ route('chambres.create') }}">Chambres <i class="fa-solid fa-arrow-right"></i></a></li>
                                 <li><a class="dropdown-item btncard {{ request()->routeIs('terrains-immobiliers.create') ? 'primaryRoute' : '' }}  " href="{{ route('terrains-immobiliers.create') }}">Terain <i class="fa-solid fa-arrow-right"></i></a></li>
                             </ul>
-                          </div>
-                                              
+                          </div>                   
                     </li>
+                    @elseif(Auth::user()->role->id !=2)
+                    <a class="btn    text-white pt-2  mx-1" style="font-size:13px; background-color: #00B98E;" href="{{ route('demandeAgentPage') }}">Devenir Agent immobilier<i class="fa-solid fa-arrow-right"></i></a>
+                    @else
+                    <a class="btn    text-white pt-2  mx-1" style="font-size:13px; background-color: #00B98E;" href="{{ route('statistics') }}">Dashboard<i class="fa-solid fa-arrow-right"></i></a>
+
+                    @endif
+                    @endif
                     @guest
+
+                    <a class="btn    text-white pt-2  mx-1" style="font-size:13px; background-color: #00B98E;" href="{{ route('demandeAgentPage') }}">Devenir Agent immobilier<i class="fa-solid fa-arrow-right"></i></a>
+
                     <li class="nav-item">
                         <a href="{{route('register')}}" class="btn btn-outline-dark btncard"  style=" color: rgb(9, 135, 238); border-color: rgb(9, 177, 244);">Connexion <i class="fa-regular fa-user"></i></a>
                     </li>
@@ -78,11 +90,11 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="{{ route('profile.show') }}">Edit Profile</a></li>
-                            <li>
+                            <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a></li>
+                            <li >
                                 <form action="{{ route('logout') }}" method="post" class="dropdown-item">
                                     @csrf
-                                    <button type="submit" class="btn ">Logout</button>
+                                    <button type="submit" class="dropdown-item " >Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -162,8 +174,10 @@
                 </div>
                   <div class="col-md-3 mb-4">
                     <div class="d-flex justify-content-center">
-                        <p class="small my-3" style="color: rgba(0, 0, 0, 0.7);">© 2024 Agency</p>
+                        <a href="https://www.linkedin.com/in/mohamed-haki-64534a204/" class="text-decoration-none">
 
+                        <p class="small my-3" style="color: rgba(0, 0, 0, 0.7);">© 2024 Agency| created By Mohamed Haki</p>
+                        </a>
                     </div>
 
                 </div>

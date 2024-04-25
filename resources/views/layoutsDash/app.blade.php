@@ -111,7 +111,7 @@
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
                 @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert bg-red-700">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

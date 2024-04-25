@@ -177,7 +177,7 @@
             <div class="text-center">
                 <h2 class="fw-bold">Vous êtes agent immobilier ?</h2>
                 <p class="mx-4">Découvrez nos solutions pro d’estimations, d’étude de marché et de conseil qui couvrent l’ensemble de la chaîne de valeurs de l’immobilier. Accélerez votre activité et offrez une expérience digitale unique pour vos clients avec Agency</p>
-                <a href="{{route('properties')}}"  data-aos="flip-left" data-aos-duration="1000" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center my-5   btncard text-success   py-3">Découvrir <i class="fas fa-arrow-right"></i></a>
+                <a href="{{route('demandeAgentPage')}}"  data-aos="flip-left" data-aos-duration="1000" style="text-decoration-color: #00B98E;" class="btn border-success  d-flex justify-content-center my-5   btncard text-success   py-3">Découvrir <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
         

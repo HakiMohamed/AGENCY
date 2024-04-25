@@ -2,136 +2,206 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger mt-5">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+@if($user->role->id != 2 && $user->role->id != 3 && $user->phone == null)
+<div class="card-header shadow-lg justify-content-center fw-bold align-items-center px-5 mt-5 py-4" style="background-color: #ff9900c8;">
+  <h6 class="card-title text-lg text-white  font-bold fw-bold mb-2">Veuillez compléter votre profile pour bénéficier des options du rôle d'agent immobilier "CIN, Numero de telephone, Adresse, Piece d'edentité". Ajoutez votre numéro de téléphone pour que nous puissions vous contacter.</h6>
+  <h6 class="card-title text-lg text-white  font-bold fw-bold mb-0">Aprés que vous ajouter Votre numero de telephone nous pourrions vous appeler directement pour Valider votre Demande et discuter de questions ou pour vous fournir un soutien personnalisé pour acceleré votre services immobiliers</h6>
+</div>
+@endif
+@if($user->role->id == 3)
+
+<div class="card-header d-flex justify-content-center fw-bold align-items-center px-5 mt-5 py-4" style="background-color: #03544bc8;">
+ <a class="text-center" href="#PropertiesSection1"> <h5 class="card-title text-lg text-white font-bold fw-bold mb-0">Voir la liste de vos propriétés </h5> Click ici </a>
+</div>
+@endif
 <div class="container mt-5 mb-5">
   <div class="row ">
-    <div class="col-md-6  ">
+    <div class="col-md-12">
       <div class="card rounded-lg shadow border-0 bg-white mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center px-6 py-4" style="background-color: #00b98ec8;">
-          <h5 class="card-title text-white fw-bold text-lg font-bold mb-0">votre Profile</h5>
-          @if(session('success'))
-          <div class="alert alert-success" role="alert">
-            {{ session('success') }}
+          <div class="card-header d-flex justify-content-between align-items-center px-6 py-4" style="background-color: #00b98ec8;">
+              <h5 class="card-title text-white fw-bold text-lg font-bold mb-0">Votre Profil</h5>
+              @if(session('success'))
+                  <div class="alert alert-success" role="alert">
+                      {{ session('success') }}
+                  </div>
+              @endif
           </div>
-          @endif
-        </div>
-        <div class="card-body px-6 py-4">
-            <div class="row align-items-center">
-                <div class="col-md-3 text-center">
-                    @if($user->avatar)
-                        <img src="{{ asset($user->avatar) }}" alt="Current Avatar" class="rounded-full object-cover " style="height: 100px; width:100px; margin-bottom:52px; border-radius:50%;">
+          <div class="card-body px-6 py-4">
+              <div class="row align-items-center">
+                  <div class="col-md-3 text-center">
+                          <img src="{{ $user->avatar ? asset($user->avatar) : asset('images/downloadprofile.png')}}" alt="Current Avatar" class="rounded-full object-cover" style="height: 200px; width: 200px; margin-bottom: 1rem; border-radius: 50%;">
+                  </div>
+                  <div class="col-md-9">
+
                     
-                        @endif
-                </div>
-                <div class="col-md-9 mb-5">
-                    <div class="d-flex justify-content-between mb-3">
-                        <div>
-                            <label class="text-sm font-medium fw-bold">Firstname</label>
-                            <p>{{ $user->firstname }}</p>
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium fw-bold">Lastname</label>
-                            <p>{{ $user->lastname }}</p>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
 
-                    <div class="mb-3">
-                        <label class="text-sm font-medium fw-bold">Phone</label>
-                        <p>{{ $user->phone }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <label class="text-sm font-medium fw-bold">Email</label>
-                        <p>{{ $user->email }}</p>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="mb-3">
+                                  <label class="text-sm font-medium fw-bold">Prénom</label>
+                                  <p>{{ $user->firstname }}</p>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="mb-3">
+                                  <label class="text-sm font-medium fw-bold">Nom</label>
+                                  <p>{{ $user->lastname }}</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="mb-3">
+                                  <label class="text-sm font-medium fw-bold">Téléphone</label>
+                                  <p>{{ $user->phone }}</p>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="mb-3">
+                                  <label class="text-sm font-medium fw-bold">CIN</label>
+                                  <p>{{ $user->CIN }}</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="mb-3">
+                          <label class="text-sm font-medium fw-bold">Adresse</label>
+                          <p>{{ $user->Adresse }}</p>
+                      </div>
+                      <div class="mb-3">
+                          <label class="text-sm font-medium fw-bold">Email</label>
+                          <p>{{ $user->email }}</p>
+                      </div>
+                      <div class="mb-3 d-flex justify-content-between">
+                    
+                        
+                        <div class="">
+                            <p class=" fw-bold" >Recto de la carte d'identité</p>
+
+                            <img src="{{ $user->RectoIdentite ? asset($user->RectoIdentite) : asset('images/RectoCatre.jpg') }}" alt="Recto de la carte d'identité" class="img-thumbnail mx-2 mb-3" style="height: 130px; width: 200px;">
+                            
+                      </div>
+                        <div class="">
+                            <p class=" fw-bold" >Verso de la carte d'identité</p>
+
+                            <img src="{{  $user->RectoIdentite ?  asset($user->VersoIdentite) : asset('images/VersoCatre.jpg') }}" alt="Verso de la carte d'identité" class="img-thumbnail mx-2 mb-3" style="height: 130px; width: 200px;">
+                            
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
+  </div>
+  
   
 
   
-    <div class="col-md-6 ">
+    <div class="col-md-12">
       <div class="card rounded-lg shadow border-0 bg-white">
-        <div class="card-header d-flex justify-content-between align-items-center px-6 py-4" style="background-color: #00b98ec8;">
-          <h5 class="card-title text-lg text-white fw-bold font-bold mb-0">Edit Votre Profile</h5>
-        </div>
-        <div class="card-body px-6 ">
-          <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+          <div class="card-header d-flex justify-content-between align-items-center px-6 py-4" style="background-color: #00b98ec8;">
+              <h5 class="card-title text-lg text-white fw-bold font-bold mb-0">Edit Votre Profile</h5>
+          </div>
+          <div class="card-body px-6">
+              <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+  
+                  <div class="mb-3">
+                      <label for="firstname" class="form-label text-sm font-medium fw-bold">Firstname</label>
+                      <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname', $user->firstname) }}" required >
+                      @error('firstname')
+                      <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                      @enderror
+                  </div>
+  
+                  <div class="mb-3">
+                      <label for="lastname" class="form-label text-sm font-medium fw-bold">Lastname</label>
+                      <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname', $user->lastname) }}" required>
+                      @error('lastname')
+                      <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                      @enderror
+                  </div>
+  
+                  <div class="mb-3">
+                      <label for="phone" class="form-label text-sm font-medium fw-bold">Phone</label>
+                      <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $user->phone) }}">
+                      @error('phone')
+                      <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                      @enderror
+                  </div>
+  
+                  <div class="mb-3">
+                      <label for="CIN" class="form-label text-sm font-medium fw-bold">CIN  <span class="text-muted text-small">Carte National d'edentité</span></label>
+                      <input id="CIN" type="text" class="form-control @error('CIN') is-invalid @enderror" name="CIN" value="{{ old('CIN', $user->CIN) }}">
+                      @error('CIN')
+                      <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                      @enderror
+                  </div>
+  
+                  <div class="mb-3">
+                      <label for="Adresse" class="form-label text-sm font-medium fw-bold">Adresse</label>
+                      <input id="Adresse" type="text" class="form-control @error('Adresse') is-invalid @enderror" name="Adresse" value="{{ old('Adresse', $user->Adresse) }}">
+                      @error('Adresse')
+                      <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                      @enderror
+                  </div>
+  
+                  <div class="mb-3 ">
+                      <label for="email" class="form-label d-block text-sm font-medium fw-bold">Email</label>
+                      <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}">
+                      @error('email')
+                      <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                      @enderror
+                  </div>
+                  <label for="avatar" class="form-label text-sm font-medium fw-bold">Photo de profile</label>
 
-            <div class="d-flex justify-content-between mb-3">
-
-            <div class="mb-1">
-              <label for="firstname" class="text-sm font-medium fw-bold">Firstname</label>
-              <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname', $user->firstname) }}" required autofocus>
-              @error('firstname')
-              <span class="text-xs text-danger mt-2">{{ $message }}</span>
-              @enderror
-            </div>
-
-            <div class="mb-1">
-                <label for="lastname" class="block text-sm font-medium fw-bold">Lastname</label>
-                <input id="lastname" type="text" class="form-control block w-full px-3 py-2 rounded-lg border   @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname', $user->lastname) }}" required>
-                @error('lastname')
-                <span class="text-xs text-danger mt-2">{{ $message }}</span>
-                @enderror
-              </div>
-              
-           
-
-            </div>
-            <div class="d-flex justify-content-between mb-1">
-
-              <div class="">
-                <label for="phone" class="block text-sm font-medium fw-bold">Phone</label>
-                <input id="phone" type="text" class="form-control block w-full px-3 py-2 rounded-lg border   @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $user->phone) }}">
-                @error('phone')
-                <span class="text-xs text-danger mt-2">{{ $message }}</span>
-                @enderror
-              </div>
-
-              <div class="">
-                <label for="email" class="block text-sm font-medium fw-bold">Email</label>
-                <input id="email" type="text" class="form-control block w-full px-3 py-2 rounded-lg border   @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}">
-                @error('email')
-                <span class="text-xs text-danger mt-2">{{ $message }}</span>
-                @enderror
-              </div>
-            </div>
-            <label for="avatar" class="block text-sm font-medium fw-bold">Avatar</label>
-
-            <div class="d-flex  mb-1">
-
-
-              <div class="mb-6 ">
-                <div class="d-flex items-center space-x-4">
-                  <input id="avatar" type="file" class="form-control-file custom-file-input @error('avatar') is-invalid @enderror" name="avatar">
-                 
+                  <div class="mb-3">
+                    <input id="avatar" type="file" class="custom-file-input form-control-file @error('avatar') is-invalid @enderror" name="avatar">
+                    @error('avatar')
+                    <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('avatar')
-                <span class="text-xs text-danger mt-2">{{ $message }}</span>
-                @enderror
+  
+                <label for="VersoIdentite" class="form-label  font-medium fw-bold">Verso de votre carte d'identité</label>
 
-              </div>
-            </div>
-            <button type="submit" class="btn btn-success  mt-3  rounded-lg d-block mx-auto text-white font-bold">Enregistrer</button>
+                  <div class="mb-3">
+                      <input id="VersoIdentite" type="file" class="custom-file-input form-control-file @error('VersoIdentite') is-invalid @enderror" name="VersoIdentite">
+                      @error('VersoIdentite')
+                      <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                      @enderror
+                  </div>
+                  <label for="RectoIdentite" class="form-label  font-medium fw-bold">Recto de votre carte d'identité</label>
 
-          </form>
-        </div>
+                  <div class="mb-3">
+                      <input id="RectoIdentite" type="file" class=" custom-file-input form-control-file @error('RectoIdentite') is-invalid @enderror" name="RectoIdentite">
+                      @error('RectoIdentite')
+                      <span class="text-xs text-danger mt-2">{{ $message }}</span>
+                      @enderror
+                  </div>
+  
+                  <button id="PropertiesSection1" type="submit" class="btn btn-success mt-3 rounded-lg d-block mx-auto text-white font-bold">Enregistrer</button>
+              </form>
+          </div>
       </div>
-    </div>
+  </div>
+  
 </div>
   </div>
 
 
-  <div class="card-header d-flex justify-content-center fw-bold align-items-center px-6 py-4" style="background-color: #00b98ec8;">
+  <div  class="card-header d-flex justify-content-center fw-bold align-items-center px-6 py-4" style="background-color: #00b98ec8;">
     <h5 class="card-title text-lg text-white font-bold fw-bold mb-0">Vos Properties</h5>
   </div>
-<div class="container-xxl py-4 " style="overflow-x: hidden;">
+<div  class="container-xxl py-4  border-2 shadow-lg" style="overflow-x: hidden;">
     <div class="container">
         @if (!isset($properties) || !count($properties))
         <tr>

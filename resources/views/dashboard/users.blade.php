@@ -3,31 +3,43 @@
 
 @section('content')
 <div class="container mx-auto py-8">
+
+    @if ($errors->any())
+    <div class="bg-red-700 text-white p-4 rounded-lg mb-4">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
     <h1 class="text-2xl font-bold mb-4">Liste des Utilisateurs</h1>
     <div class="overflow-x-auto">
-        <table class="table-auto w-full border-collapse">
+        <table class="table-auto w-full border-2 border-green-400  ">
             <thead>
-                <tr>
-                    <th class="border px-4 py-2">Actions</th>
-                    <th class="border px-4 py-2">Prénom</th>
-                    <th class="border px-4 py-2">Nom</th>
-                    <th class="border px-4 py-2">Téléphone</th>
-                    <th class="border px-4 py-2">Email</th>
-                    <th class="border px-4 py-2">Rôle</th>
-                    <th class="border px-4 py-2">Avatar</th>
+                <tr class="border-green-400">
+                    <th class="border border-green-400 px-4 py-2">Actions</th>
+                    <th class="border border-green-400 px-4 py-2">Prénom</th>
+                    <th class="border border-green-400 px-4 py-2">Nom</th>
+                    <th class="border border-green-400 px-4 py-2">Téléphone</th>
+                    <th class="border border-green-400 px-4 py-2">Email</th>
+                    <th class="border border-green-400 px-4 py-2">Rôle</th>
+                    <th class="border border-green-400 px-4 py-2">Avatar</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($listeUsers as $user)
-                <tr>
-                    <td class="border px-4 py-2"><img src=" {{ $user->avatar ? asset($user->avatar) : "https://via.placeholder.com/50"}}" alt="Avatar" class="w-10 h-10 rounded-full"></td>
-                    <td class="border px-4 py-2">{{ $user->firstname }}</td>
-                    <td class="border px-4 py-2">{{ $user->lastname }}</td>
-                    <td class="border px-4 py-2">{{ $user->phone }}</td>
-                    <td class="border px-4 py-2">{{ $user->email }}</td>
-                    <td class="border px-4 py-2">{{ $user->role->name }}</td>
+                <tr class="border border-green-400-green-400">
+                    <td class="border border-green-400 px-4 py-2"><img src=" {{ $user->avatar ? asset($user->avatar) : "https://via.placeholder.com/50"}}" alt="Avatar" class="w-10 h-10 rounded-full"></td>
+                    <td class="border border-green-400 px-4 py-2">{{ $user->firstname }}</td>
+                    <td class="border border-green-400 px-4 py-2">{{ $user->lastname }}</td>
+                    <td class="border border-green-400 px-4 py-2">{{ $user->phone }}</td>
+                    <td class="border border-green-400 px-4 py-2">{{ $user->email }}</td>
+                    <td class="border border-green-400 px-4 py-2">{{ $user->role->name }}</td>
 
-                    <td class="border px-4 py-2">
+                    <td class="border border-green-400 px-4 py-2">
                         <form action="{{ route('DeleteUsers',$user->id) }} " method="POST" class="inline">
                             @csrf
                             @method('DELETE')
@@ -73,7 +85,7 @@
                                     <label for="role_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                                     <select id="role_id" name="role_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                      @foreach($roles as $role)
-                                        <option value="{{$role->id}}" selected>{{$role->name}}</option>
+                                        <option value="{{$role->id}}" >{{$role->name}}  </option>
                                         @endforeach
                                     </select>
 
@@ -118,12 +130,7 @@
                                         @enderror
                                     </div>
 
-                                    <label for="role_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                                    <select id="role_id" name="role_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                     @foreach($roles as $role)
-                                        <option value="{{$role->id}}" selected>{{$role->name}}</option>
-                                        @endforeach
-                                    </select>
+                                   
                                    
                                     <button type="submit" class="w-full text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Update user</button>
                                    
