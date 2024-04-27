@@ -10,7 +10,7 @@
         <div class="col-md-6 mt-md-5 mt-3">
             <h1 class="display-4 mb-4 fw-bold">Trouvez <span style="color: #00B98E;">le bien parfait</span> pour vous</h1>
             <p class="lead mb-4 pb-2">Utilisez notre plateforme de recherche avancée pour trouver la maison, la villa, l'appartement ou le commerce parfaitement adapté à vos besoins.</p>
-            <a href="{{route('properties')}}" style="Background-color: #00B98E;" data-aos="flip-left" data-aos-duration="1000" class="btn d-flex justify-content-center   btncard text-white btn-lg  py-3">Voir les propriétés <i class="fas fa-arrow-right"></i></a>
+            <a href="{{route('properties')}}" style="Background-color: #00B98E;" data-aos="flip-left" data-aos-duration="1000" class="btn d-flex justify-content-center   btncard text-white btn-lg  py-3">Consulté les propriétés <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div class="col-md-6">
@@ -61,7 +61,7 @@
                             <img class="img-fluid" src="{{ asset('images/icon-apartment.png') }}" alt="Icon">
                         </div>
                         <h6 class="fw-bold">Appartement</h6>
-                        <span>123 Properties</span>
+                        <span>Decouvrir</span>
                     </div>
                 </a>
             </div>
@@ -72,7 +72,7 @@
                             <img class="img-fluid" src="{{ asset('images/icon-villa.png') }}" alt="Icon">
                         </div>
                         <h6 class="fw-bold">Studio</h6>
-                        <span>123 Properties</span>
+                        <span>Decouvrir</span>
                     </div>
                 </a>
             </div>
@@ -83,7 +83,7 @@
                             <img class="img-fluid" src="{{ asset('images/icon-house.png') }}" alt="Icon">
                         </div>
                         <h6 class="fw-bold">Bureau</h6>
-                        <span>123 Properties</span>
+                        <span>Decouvrir</span>
                     </div>
                 </a>
             </div>
@@ -94,7 +94,7 @@
                             <img class="img-fluid" src="{{ asset('images/icon-housing.png') }}" alt="Icon">
                         </div>
                         <h6 class="fw-bold">Chambre</h6>
-                        <span>123 Properties</span>
+                        <span>Decouvrir</span>
                     </div>
                 </a>
             </div>
@@ -105,7 +105,7 @@
                             <img class="img-fluid" src="{{ asset('images/icon-building.png ') }}" alt="Icon">
                         </div>
                         <h6 class="fw-bold">Local Ecommerce</h6>
-                        <span>123 Properties</span>
+                        <span>Decouvrir</span>
                     </div>
                 </a>
             </div>
@@ -116,7 +116,7 @@
                             <img class="img-fluid" src="{{ asset('images/icon-neighborhood.png') }}" alt="Icon">
                         </div>
                         <h6 class="fw-bold">Maison</h6>
-                        <span>123 Properties</span>
+                        <span>Decouvrir</span>
                     </div>
                 </a>
             </div>
@@ -127,7 +127,7 @@
                             <img class="img-fluid" src="{{ asset('images/icon-condominium.png') }}" alt="Icon">
                         </div>
                         <h6 class="fw-bold">Riad</h6>
-                        <span>123 Properties</span>
+                        <span>Decouvrir</span>
                     </div>
                 </a>
             </div>
@@ -138,7 +138,7 @@
                             <img class="img-fluid" src="{{ asset('images/icon-luxury.png') }}" alt="Icon">
                         </div>
                         <h6 class="fw-bold">Villa</h6>
-                        <span>123 Properties</span>
+                        <span>Decouvrir</span>
                     </div>
                 </a>
             </div>

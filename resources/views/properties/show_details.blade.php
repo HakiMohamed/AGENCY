@@ -102,7 +102,6 @@
                     <div class="card-body">
                 <h3 class="">Informations de contact</h3>
                 <ul class="list-unstyled">
-                    <a href="mailto:Mohamedhaki70@Gmail.com?subject=Votre%20sujet&body=Votre%20message%20ici">Nous écrire</a>
 
                     <li><i class="fas fa-phone me-2"></i>+212641725930</li>
                     <li><i class="fas fa-envelope me-2"></i>Mohamedhaki70@Gmail.com</li>
@@ -112,10 +111,18 @@
             </div>
 
             
+            
+            
+
+ 
+
+            
         </div>
             </div>
         </div>
         
     </div>
 </div>
+
+
 @endsection

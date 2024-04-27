@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\City;
 use App\Models\Property;
 use App\Models\PropertyType;
@@ -17,33 +18,30 @@ class ProfileController extends Controller
        
         $properties = Property::with('caracteristiques')->orderBy('created_at', 'desc')->where('user_id',$user->id)->paginate(10);
        
-       
-        return view('profile.show', compact('user','properties'));
+       $alertCompleterProfile = false ;
+        return view('profile.show', compact('user','properties','alertCompleterProfile'));
     }
 
-    public function update(Request $request)
+    public function update(UpdateProfileRequest $request)
     {
         $user = Auth::user();
 
-        $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:255',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-
-            $path = $avatar->store("avatars");
-           
-            $user->avatar = $path;
+            
+            $user->avatar = $request->file('avatar')->store("avatars");
+        
         }
 
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
-        $user->phone = $request->phone;
-        $user->save();
+        if ($request->hasFile('VersoIdentite')) {
+        $user->VersoIdentite = $request->file('VersoIdentite')->store("CINs");
+        }
+
+        if ($request->hasFile('RectoIdentite')) {
+        $user->RectoIdentite = $request->file('RectoIdentite')->store("CINs");
+
+        }
+
+        $user->update($request->only(['firstname', 'lastname', 'phone', 'email', 'CIN', 'Adresse']));
 
         return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
     }

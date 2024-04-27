@@ -8,13 +8,14 @@ use App\Models\City;
 use App\Models\Property;
 use App\Models\PropertyType;
 use App\Services\PropertyService;
+use App\Services\PropertyServiceInterface;
 
 class MaisonvillaController extends Controller
 { 
 
     protected $propertyService;
 
-    public function __construct(PropertyService $propertyService)
+    public function __construct(PropertyServiceInterface $propertyService)
     {
         $this->propertyService = $propertyService;
     }

@@ -50,11 +50,12 @@
                     @if(Auth::user())
                     @if(Auth::user() && Auth::user()->role && Auth::user()->role->id != 1 && Auth::user()->role->id !=2 )
 
-                    <li class="nav-item me-3  mb-3 mb-md-0">
-                             <div class="btn-group " style="display: block;">
-                            <button type="button" class="btn   dropdown-toggle dropdown-toggle text-white"  style="background-color: #00B98E;"  data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item me-3 position-relative  mb-3 mb-md-0 ">
+                            <button type="button" class="btn position-relative  dropdown-toggle dropdown-toggle text-white"  style="background-color: #00B98E;"  data-bs-toggle="dropdown" aria-expanded="false">
                                 Publier une annonce
+                                @if(Auth::user()->agentRequest->isRecentlyAccepted()) <p class=" rounded position-absolute top-40  me-5 translate-middle  rounded-pill bg-warning text-dark   fw-bold badge badge-warning" style=" z-index:9999; color:#f8d305; background-color:#9c6300;"> New </p> @endif
                             </button>
+                            
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item btncard {{ request()->routeIs('maisons.create') ? 'primaryRoute' : '' }} "  href="{{ route('maisons.create') }}">Maison, Riad ou Villa <i class="fa-solid fa-arrow-right"></i></a></li>
                                 <li><a class="dropdown-item btncard  {{ request()->routeIs('appartements.create') ? 'primaryRoute' : '' }} " href="{{ route('appartements.create') }}">Appartement, Studio, ou bureau<i class="fa-solid fa-arrow-right"></i></a></li>
@@ -62,10 +63,9 @@
                                 <li><a class="dropdown-item btncard  {{ request()->routeIs('chambres.create') ? 'primaryRoute' : '' }}  " href="{{ route('chambres.create') }}">Chambres <i class="fa-solid fa-arrow-right"></i></a></li>
                                 <li><a class="dropdown-item btncard {{ request()->routeIs('terrains-immobiliers.create') ? 'primaryRoute' : '' }}  " href="{{ route('terrains-immobiliers.create') }}">Terain <i class="fa-solid fa-arrow-right"></i></a></li>
                             </ul>
-                          </div>                   
                     </li>
                     @elseif(Auth::user()->role->id !=2)
-                    <a class="btn    text-white pt-2  mx-1" style="font-size:13px; background-color: #00B98E;" href="{{ route('demandeAgentPage') }}">Devenir Agent immobilier<i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="btn    text-white shadow-sm text-shadow-lg pt-2  mx-1" style="font-size:13px; background-color: #07a123b2; " href="{{ route('demandeAgentPage') }}">  Publier votre bien  <i class="fa-regular fa-circle-dot fa-fade fa-xs mx-1" style="color: #FFD43B;"></i><i class="fa-solid fa-arrow-right"></i></a>
                     @else
                     <a class="btn    text-white pt-2  mx-1" style="font-size:13px; background-color: #00B98E;" href="{{ route('statistics') }}">Dashboard<i class="fa-solid fa-arrow-right"></i></a>
 
@@ -73,7 +73,7 @@
                     @endif
                     @guest
 
-                    <a class="btn    text-white pt-2  mx-1" style="font-size:13px; background-color: #00B98E;" href="{{ route('demandeAgentPage') }}">Devenir Agent immobilier<i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="btn    text-white pt-2  mx-1" style="font-size:13px; background-color: #00B98E;" href="{{ route('demandeAgentPage') }}">  Publier votre bien   <i class="fa-regular fa-circle-dot fa-fade fa-xs mx-1" style="color: #FFD43B;"></i><i class="fa-solid fa-arrow-right"></i></a>
 
                     <li class="nav-item">
                         <a href="{{route('register')}}" class="btn btn-outline-dark btncard"  style=" color: rgb(9, 135, 238); border-color: rgb(9, 177, 244);">Connexion <i class="fa-regular fa-user"></i></a>
@@ -89,7 +89,6 @@
                             <i class="fa-regular fa-user"></i> {{ auth()->user()->firstname . " " . auth()->user()->lastname }}
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
                             <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a></li>
                             <li >
                                 <form action="{{ route('logout') }}" method="post" class="dropdown-item">
@@ -205,6 +204,28 @@
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.getElementById('emailForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var subject = document.getElementById('subject').value;
+        var body = document.getElementById('body').value;
+
+        axios.post('/send-email', {
+            subject: subject,
+            body: body
+        })
+        .then(function (response) {
+            document.getElementById('response').innerHTML = response.data.message;
+        })
+        .catch(function (error) {
+            document.getElementById('response').innerHTML = 'Erreur lors de l\'envoi de l\'e-mail.';
+        });
+    });
+</script>
 
     <script>
         AOS.init();

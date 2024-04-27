@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AgentRequestController;
 use App\Http\Controllers\AppartementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FavoritePropertyController;
 use App\Http\Controllers\LocalcommerceController;
 use App\Http\Controllers\MaisonvillaController;
@@ -14,10 +16,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/Acceuil', function () {return view('welcome'); })->name('welcome');
 Route::get('/', function () {return view('welcome'); })->name('welcome');
+
+
+
 Route::get('/dashboard/users', [DashboardController::class, 'showUsers'])->name('showUsers')->middleware('auth');
 Route::put('/dashboard/users/update/{id}', [DashboardController::class,'updateUsers'])->name('updateUsers');
 Route::delete('/dashboard/users/delete/{id}', [DashboardController::class,'DeleteUsers'])->name('DeleteUsers');
 Route::get('/dashboard/statistique', [DashboardController::class, 'Statistiques'])->name('statistics');
+Route::get('/dashboard/properties', [DashboardController::class, 'showProperties'])->name('DashboardProperties');
+Route::put('/dashboard/properties/{id}/update-status', [DashboardController::class, 'updatePropertyStatus'])->name('updatePropertyStatus');
+Route::put('/dashboard/properties/{id}/update-publication', [DashboardController::class, 'updatePropertyPublication'])->name('updatePropertyPublication');
+
+
+
+Route::get('devenir-agent-immobilier', [AgentRequestController::class, 'devenirAgent'])->name('demandeAgentPage')->middleware('auth');
+Route::post('devenir-agent-immobilier', [AgentRequestController::class, 'demandeetreAgent'])->name('demandeetreAgent');
+Route::get('/dashboard/user/demandes/étre-Agent', [AgentRequestController::class,'showAgentRequests'])->name('showAgentRequests');
+Route::post('/dashboard/users-demande/{id}/accepté', [AgentRequestController::class,'acceptAgentRequest'])->name('acceptDemande');
+Route::post('/dashboard/agent-requests/{id}/Refusé', [AgentRequestController::class,'rejectAgentRequest'])->name('refuseDemande');
 
 
 Route::get('/profile', [ProfileController::class,'show'])->name('profile.show');

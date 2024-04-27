@@ -2,10 +2,10 @@
 @extends('layoutsDash.app')
 
 @section('content')
-<div class="container mx-auto py-8">
+<div class=" mx-auto ">
 
     @if ($errors->any())
-    <div class="bg-red-700 text-white p-4 rounded-lg mb-4">
+    <div class="bg-red-700 text-white p-2 rounded-lg mb-2">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -15,31 +15,31 @@
 @endif
 
 
-    <h1 class="text-2xl font-bold mb-4">Liste des Utilisateurs</h1>
-    <div class="overflow-x-auto">
-        <table class="table-auto w-full border-2 border-green-400  ">
+<h1 class="text-2xl text-green-400 font-bold mb-5 bg-gray-100 text-start p-2 shadow-sm rounded-lg">liste des utilisateurs </h1>
+<div class="overflow-x-auto">
+        <table class="table-auto w-full border-2   ">
             <thead>
-                <tr class="border-green-400">
-                    <th class="border border-green-400 px-4 py-2">Actions</th>
-                    <th class="border border-green-400 px-4 py-2">Prénom</th>
-                    <th class="border border-green-400 px-4 py-2">Nom</th>
-                    <th class="border border-green-400 px-4 py-2">Téléphone</th>
-                    <th class="border border-green-400 px-4 py-2">Email</th>
-                    <th class="border border-green-400 px-4 py-2">Rôle</th>
-                    <th class="border border-green-400 px-4 py-2">Avatar</th>
+                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                    <th class="py-3 px-4 text-left">Actions</th>
+                    <th class="py-3 px-4 text-left">Prénom</th>
+                    <th class="py-3 px-4 text-left">Nom</th>
+                    <th class="py-3 px-4 text-left">Téléphone</th>
+                    <th class="py-3 px-4 text-left">Email</th>
+                    <th class="py-3 px-4 text-left">Rôle</th>
+                    <th class="py-3 px-4 text-left">Avatar</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($listeUsers as $user)
-                <tr class="border border-green-400-green-400">
-                    <td class="border border-green-400 px-4 py-2"><img src=" {{ $user->avatar ? asset($user->avatar) : "https://via.placeholder.com/50"}}" alt="Avatar" class="w-10 h-10 rounded-full"></td>
-                    <td class="border border-green-400 px-4 py-2">{{ $user->firstname }}</td>
-                    <td class="border border-green-400 px-4 py-2">{{ $user->lastname }}</td>
-                    <td class="border border-green-400 px-4 py-2">{{ $user->phone }}</td>
-                    <td class="border border-green-400 px-4 py-2">{{ $user->email }}</td>
-                    <td class="border border-green-400 px-4 py-2">{{ $user->role->name }}</td>
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-3 px-4 text-left"><img src=" {{ $user->avatar ? asset($user->avatar) : "https://via.placeholder.com/50"}}" alt="Avatar" class="w-10 h-10 rounded-full"></td>
+                    <td class="py-3 px-4 text-left">{{ $user->firstname }}</td>
+                    <td class="py-3 px-4 text-left">{{ $user->lastname }}</td>
+                    <td class="py-3 px-4 text-left">{{ $user->phone }}</td>
+                    <td class="py-3 px-4 text-left">{{ $user->email }}</td>
+                    <td class="py-3 px-4 text-left">{{ $user->role->name }}</td>
 
-                    <td class="border border-green-400 px-4 py-2">
+                    <td class="py-3 px-4 text-left">
                         <form action="{{ route('DeleteUsers',$user->id) }} " method="POST" class="inline">
                             @csrf
                             @method('DELETE')
@@ -50,21 +50,17 @@
                         
                         
 
-<!-- Modal toggle -->
 <button data-modal-target="authentication-modal{{$user->id}}" data-modal-toggle="authentication-modal{{$user->id}}" class="text-green-700" type="button">
     <i class="fas fa-edit"></i>
 </button>
   
-             <!-- Main modal -->
  
   
                     </td>
                 </tr>
                 <div id="authentication-modal{{$user->id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
-                        <!-- Modal content -->
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
                             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                 <h1>update user infos</h1>
                                 <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal{{$user->id}}">
@@ -74,7 +70,6 @@
                                     <span class="sr-only">Close</span>
                                 </button>
                             </div>
-                            <!-- Modal body -->
                             <div class="p-4 md:p-5">
                                 <form class="space-y-4" action="{{ route('updateUsers',$user->id) }} " method="POST" enctype="multipart/form-data">
                                     @csrf

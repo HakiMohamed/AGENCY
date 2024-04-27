@@ -20,7 +20,7 @@ class AuthService implements AuthInterface
     {
         $validatedData = $this->validateRegistrationData($userData);
         $validatedData['password'] = Hash::make($validatedData['password']);
-        $validatedData['role_id'] = 2;
+        $validatedData['role_id'] = 1;
         $user = $this->userRepository->create($validatedData);
         return $user;
     }

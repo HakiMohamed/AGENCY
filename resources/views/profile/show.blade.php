@@ -11,14 +11,16 @@
     </ul>
 </div>
 @endif
-
-@if($user->role->id != 2 && $user->role->id != 3 && $user->phone == null)
+@if(request()->query('alertCompleterProfile') !== null)
+@if( $user->role->id != 2 || $user->role->id != 3)
 <div class="card-header shadow-lg justify-content-center fw-bold align-items-center px-5 mt-5 py-4" style="background-color: #ff9900c8;">
-  <h6 class="card-title text-lg text-white  font-bold fw-bold mb-2">Veuillez compléter votre profile pour bénéficier des options du rôle d'agent immobilier "CIN, Numero de telephone, Adresse, Piece d'edentité". Ajoutez votre numéro de téléphone pour que nous puissions vous contacter.</h6>
-  <h6 class="card-title text-lg text-white  font-bold fw-bold mb-0">Aprés que vous ajouter Votre numero de telephone nous pourrions vous appeler directement pour Valider votre Demande et discuter de questions ou pour vous fournir un soutien personnalisé pour acceleré votre services immobiliers</h6>
+  <h6 class="card-title text-lg text-white font-bold fw-bold mb-2">Veuillez compléter votre profil pour bénéficier des options du rôle d'agent immobilier Pour partager vos biens immobilier. "CIN, Numéro de téléphone, Adresse, Pièce d'identité". Ajoutez votre numéro de téléphone pour que nous puissions vous contacter.</h6>
+  <h6 class="card-title text-lg text-white font-bold fw-bold mb-0">Après que vous ayez ajouté votre numéro de téléphone, nous pourrons vous appeler directement pour valider votre demande et discuter de questions ou pour vous fournir un soutien personnalisé pour accélérer vos services immobiliers Où vendre votre bien.</h6>
 </div>
 @endif
-@if($user->role->id == 3)
+@endif
+
+@if($user->role->id == 3 && $user->phone != null)
 
 <div class="card-header d-flex justify-content-center fw-bold align-items-center px-5 mt-5 py-4" style="background-color: #03544bc8;">
  <a class="text-center" href="#PropertiesSection1"> <h5 class="card-title text-lg text-white font-bold fw-bold mb-0">Voir la liste de vos propriétés </h5> Click ici </a>
@@ -87,13 +89,15 @@
                         <div class="">
                             <p class=" fw-bold" >Recto de la carte d'identité</p>
 
-                            <img src="{{ $user->RectoIdentite ? asset($user->RectoIdentite) : asset('images/RectoCatre.jpg') }}" alt="Recto de la carte d'identité" class="img-thumbnail mx-2 mb-3" style="height: 130px; width: 200px;">
+                            <span class="text-small text-muted fw-small">{{ $user->RectoIdentite ? "" : "exemple :"}}</span>
+
+                            <img src="{{ $user->RectoIdentite ? asset($user->RectoIdentite) : asset('images/RectoCatre.jpg') }}" alt="Recto de la carte d'identité" class="img-thumbnail  mb-3" style="height: 130px; width: 200px;">
                             
                       </div>
                         <div class="">
                             <p class=" fw-bold" >Verso de la carte d'identité</p>
-
-                            <img src="{{  $user->RectoIdentite ?  asset($user->VersoIdentite) : asset('images/VersoCatre.jpg') }}" alt="Verso de la carte d'identité" class="img-thumbnail mx-2 mb-3" style="height: 130px; width: 200px;">
+                            <span class="text-small text-muted fw-small">{{ $user->VersoIdentite ? "" : "exemple :"}}</span>
+                            <img src="{{  $user->RectoIdentite ?  asset($user->VersoIdentite) : asset('images/VersoCatre.jpg') }}" alt="Verso de la carte d'identité" class="img-thumbnail  mb-3" style="height: 130px; width: 200px;">
                             
                       </div>
                   </div>
@@ -116,7 +120,7 @@
                   @method('PUT')
   
                   <div class="mb-3">
-                      <label for="firstname" class="form-label text-sm font-medium fw-bold">Firstname</label>
+                      <label for="firstname" class="form-label text-sm font-medium fw-bold">Firstname<span class="text-danger">*</span></label>
                       <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname', $user->firstname) }}" required >
                       @error('firstname')
                       <span class="text-xs text-danger mt-2">{{ $message }}</span>
@@ -124,7 +128,7 @@
                   </div>
   
                   <div class="mb-3">
-                      <label for="lastname" class="form-label text-sm font-medium fw-bold">Lastname</label>
+                      <label for="lastname" class="form-label text-sm font-medium fw-bold">Lastname<span class="text-danger">*</span></label>
                       <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname', $user->lastname) }}" required>
                       @error('lastname')
                       <span class="text-xs text-danger mt-2">{{ $message }}</span>
@@ -132,7 +136,7 @@
                   </div>
   
                   <div class="mb-3">
-                      <label for="phone" class="form-label text-sm font-medium fw-bold">Phone</label>
+                      <label for="phone" class="form-label text-sm font-medium fw-bold">Phone<span class="text-danger">*</span></label>
                       <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $user->phone) }}">
                       @error('phone')
                       <span class="text-xs text-danger mt-2">{{ $message }}</span>
@@ -140,7 +144,7 @@
                   </div>
   
                   <div class="mb-3">
-                      <label for="CIN" class="form-label text-sm font-medium fw-bold">CIN  <span class="text-muted text-small">Carte National d'edentité</span></label>
+                      <label for="CIN" class="form-label text-sm font-medium fw-bold">CIN  <span class="text-muted text-small">Carte National d'edentité</span><span class="text-danger">*</span></label>
                       <input id="CIN" type="text" class="form-control @error('CIN') is-invalid @enderror" name="CIN" value="{{ old('CIN', $user->CIN) }}">
                       @error('CIN')
                       <span class="text-xs text-danger mt-2">{{ $message }}</span>
@@ -148,7 +152,7 @@
                   </div>
   
                   <div class="mb-3">
-                      <label for="Adresse" class="form-label text-sm font-medium fw-bold">Adresse</label>
+                      <label for="Adresse" class="form-label text-sm font-medium fw-bold">Adresse<span class="text-danger">*</span></label>
                       <input id="Adresse" type="text" class="form-control @error('Adresse') is-invalid @enderror" name="Adresse" value="{{ old('Adresse', $user->Adresse) }}">
                       @error('Adresse')
                       <span class="text-xs text-danger mt-2">{{ $message }}</span>
@@ -156,13 +160,13 @@
                   </div>
   
                   <div class="mb-3 ">
-                      <label for="email" class="form-label d-block text-sm font-medium fw-bold">Email</label>
+                      <label for="email" class="form-label d-block text-sm font-medium fw-bold">Email<span class="text-danger">*</span></label>
                       <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}">
                       @error('email')
                       <span class="text-xs text-danger mt-2">{{ $message }}</span>
                       @enderror
                   </div>
-                  <label for="avatar" class="form-label text-sm font-medium fw-bold">Photo de profile</label>
+                  <label for="avatar" class="form-label text-sm font-medium fw-bold">Photo de profile <span class="text-success mb-5 " style="font-size: 10px; "> optionel</span></label>
 
                   <div class="mb-3">
                     <input id="avatar" type="file" class="custom-file-input form-control-file @error('avatar') is-invalid @enderror" name="avatar">
@@ -171,7 +175,7 @@
                     @enderror
                 </div>
   
-                <label for="VersoIdentite" class="form-label  font-medium fw-bold">Verso de votre carte d'identité</label>
+                <label for="VersoIdentite" class="form-label  font-medium fw-bold">Verso de votre carte d'identité<span class="text-danger">*</span></label>
 
                   <div class="mb-3">
                       <input id="VersoIdentite" type="file" class="custom-file-input form-control-file @error('VersoIdentite') is-invalid @enderror" name="VersoIdentite">
@@ -179,7 +183,7 @@
                       <span class="text-xs text-danger mt-2">{{ $message }}</span>
                       @enderror
                   </div>
-                  <label for="RectoIdentite" class="form-label  font-medium fw-bold">Recto de votre carte d'identité</label>
+                  <label for="RectoIdentite" class="form-label  font-medium fw-bold">Recto de votre carte d'identité<span class="text-danger">*</span></label>
 
                   <div class="mb-3">
                       <input id="RectoIdentite" type="file" class=" custom-file-input form-control-file @error('RectoIdentite') is-invalid @enderror" name="RectoIdentite">
@@ -209,12 +213,21 @@
         </tr>
         @else  
         <div class="tab-content">
-            <div id="tab-1" class="tab-pane fade show p-0 active">
-            <div class="row g-4 shadow-0 align-items-stretch"  id="property-list">
-                       
-@foreach ($properties as $property)
-    <div class="col-lg-4 col-md-6  property-item   wow fadeInUp" style="height: 600px;"   data-wow-delay="0.1s">
-            <div class="property-item rounded overflow-hidden">
+            <div  class="tab-pane fade show p-0 active">
+            <div class="row g-4 shadow-0 align-items-stretch"  id="property-list">                
+         @foreach ($properties as $property)
+           <div class="col-lg-4 col-md-6  property-item   wow fadeInUp" style="height: 600px;"   data-wow-delay="0.1s">
+            @if($property->Publication == "encoursTraitement")
+            <small class="flex-fill text-center text-dark border-end py-2">Encour</small>
+
+            @endif
+
+            @if($property->Publication == "encoursTraitement")
+            <small class="flex-fill text-center text-dark border-end py-2">Publier</small>
+
+            @endif
+
+              <div class="property-item rounded overflow-hidden">
                 <div class="position-relative overflow-hidden"> 
                     <div id="carouselProperty{{ $property->id }}" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">

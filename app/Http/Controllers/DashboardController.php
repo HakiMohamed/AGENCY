@@ -17,8 +17,9 @@ class DashboardController extends Controller
 
     public function showProperties()
 {
-    $properties = Property::all();
-    return view('properties.show_properties', compact('properties'));
+    $admin = Auth::user();
+    $properties = Property::paginate(10);
+    return view('dashboard.properties', compact('properties','admin'));
 }
 
 
@@ -31,30 +32,31 @@ class DashboardController extends Controller
     }
 
 
-    public function updateUsers(Request $request,$id)
+    public function updateUsers(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $ValidatedData= $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:255',
-            'role_id' => 'nullable|integer',
-            'email' => 'nullable|email|max:255',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $path = $avatar->store("userProfile");
-            $user->avatar = $path;
+        try {
+            $user = User::findOrFail($id);
+            $validatedData = $request->validate([
+                'firstname' => 'nullable|string|max:255',
+                'lastname' => 'nullable|string|max:255',
+                'phone' => 'nullable|string|max:255',
+                'role_id' => 'nullable|integer',
+                'email' => 'nullable|email|max:255',
+                'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $path = $avatar->store("userProfile");
+                $validatedData['avatar'] = $path; 
+            }
+            $user->fill($validatedData);
+            $user->save();
+            return redirect()->route('showUsers')->with('success', 'User updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while updating user.');
         }
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
-        $user->phone = $request->phone;
-        $user->email = $request->email;
-        $user->role_id = $request->role_id;
-        $user->save();
-        return redirect()->route('showUsers')->with('success', 'user updated successfully.');
     }
+    
 
     public function DeleteUsers($id)
     {
@@ -80,4 +82,32 @@ class DashboardController extends Controller
 
         return view('dashboard.dashboard', compact('nbProperties','countPropertiesPlusFavoris','admin','topProperties', 'nbCategories','nbUsers'));
     }
+
+
+    public function updatePropertyStatus(Request $request, $id)
+{
+    try {
+        $property = Property::findOrFail($id);
+        $property->status = $request->status;
+        $property->save();
+        return redirect()->route('showProperties')->with('success', 'Property status updated successfully.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'An error occurred while updating property status.');
+    }
+}
+
+public function updatePropertyPublication(Request $request, $id)
+{
+    try {
+        $property = Property::findOrFail($id);
+        $property->Publication = $request->Publication;
+        $property->save();
+        return redirect()->back()->with('success', 'Property publication updated successfully.');
+    } catch (\Exception $e) {
+        logger()->error("An error occurred while updating property publication: " . $e->getMessage());
+
+        return redirect()->back()->with('error', 'An error occurred while updating property publication.');
+    }
+}
+
 }

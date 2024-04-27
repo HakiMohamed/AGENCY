@@ -25,6 +25,10 @@ class User extends Authenticatable
         'password',
         'role_id',
         'avatar',
+        'CIN',
+        'Adresse',
+        'VersoIdentite',
+        'RectoIdentite',
     ];
 
 
@@ -36,6 +40,13 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+
+    public function agentRequest()
+{
+    return $this->hasOne(AgentRequest::class);
+}
+
 
 
     /**

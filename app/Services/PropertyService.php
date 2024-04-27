@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class PropertyService implements PropertyServiceInterface
 {
-    protected $propertyRepository;
-    protected $caracteristiqueRepository;
+    private $propertyRepository;
+    private $caracteristiqueRepository;
 
     public function __construct(PropertyRepositoryInterface $propertyRepository, CaracteristiqueRepositoryInterface $caracteristiqueRepository
     ) {$this->propertyRepository = $propertyRepository;
@@ -39,7 +39,7 @@ class PropertyService implements PropertyServiceInterface
             }
 
             $nameDisplayAlert = $property->type->name;
-            return redirect()->route('properties')->withSuccess("Votre $nameDisplayAlert a été ajouté avec succès !");
+            return redirect()->route('properties')->withSuccess("Votre $nameDisplayAlert a été ajouté avec succès ! Consulter Votre Profile");
         } catch (\Exception $e) {
             logger()->error("Une erreur s'est produite lors de la création de la propriété veuillez réessayer plus tard: " . $e->getMessage());
             return redirect()->back()->withError("Une erreur s'est produite lors de la création de la propriété, veuillez réessayer plus tard.");

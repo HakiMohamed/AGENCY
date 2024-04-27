@@ -43,6 +43,7 @@
                 <h2 class="text-lg font-semibold">{{ $property->type->name }} {{ $property->categorie->name }} à {{ $property->city->name }}</h2>
                 <p class="text-sm text-gray-500">Prix: {{ $property->prix }} MAD</p>
                 <p class="text-sm text-gray-900">Email: {{ $property->user->email }} </p>
+                <p class="text-sm text-gray-900">Télé: {{ $property->user->phone }} </p>
             </div>
         </div>
         @endforeach

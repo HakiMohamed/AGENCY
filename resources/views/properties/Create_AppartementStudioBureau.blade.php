@@ -223,8 +223,7 @@
             img.classList.add('img-thumbnail', 'w-75', 'mr-2');
             img.file = file;
             const removeBtn = document.createElement('button');
-            removeBtn.classList.add('btn', 'btn-danger', 'btn-sm');
-            removeBtn.innerHTML = 'X';
+            
             removeBtn.addEventListener('click', function () {
                 imgContainer.remove();
             });
