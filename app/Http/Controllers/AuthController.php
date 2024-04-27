@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\AuthInterface;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -65,4 +65,68 @@ class AuthController extends Controller
 
         return redirect(route('properties'))->withSuccess('logged out!');
     }
+
+
+
+
+    public function showResetEmailForm(Request $request)
+{
+
+    $token = $request->token;
+    $email = $request->email;
+
+    if (Auth::check()) {
+        Auth::logout();
+    }
+
+    if (isset($token) && isset($email)) {
+        return view('auth.reset-password', compact('token', 'email'));
+    } else {
+        return view('auth.reset-email');
+    
+    }
+
+    
+}
+
+
+
+public function sendResetLinkEmail(Request $request)
+{
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+        ? redirect()->route('password.reset')->withSuccess('Password reset link sent!')
+        : back()->withErrors(['email' => __($status)]);
+}
+
+public function resetPassword(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'token' => 'required',
+        'password' => 'required|confirmed|min:8',
+    ]);
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->save();
+        }
+    );
+
+    return $status == Password::PASSWORD_RESET
+        ? redirect()->route('login')->withSuccess('Password has been reset!')
+        : back()->withErrors(['email' => [__($status)]]);
+}
+
+
+
+
 }

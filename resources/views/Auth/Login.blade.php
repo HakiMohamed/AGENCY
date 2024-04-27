@@ -55,6 +55,7 @@
                 <div class="flex items-center justify-between">
                     <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">Login</button>
                     <a href="{{ route('register') }}" class="text-sm text-indigo-500 hover:text-indigo-700">Create an account</a>
+                    <a href="{{ route('password.reset') }}" class="mt-2 mx-1 px-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reset password</a>
                 </div>
             </form>
         </div>

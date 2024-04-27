@@ -51,11 +51,14 @@ Route::delete('properties/{id}', [PropertyController::class, 'destroy'])->name('
 
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/register',  'showRegister')->name('register');
-    Route::post('/register',  'register');
-    Route::get('/login',  'showLogin')->name('login');
-    Route::post('/login',  'login');
-    Route::post('/logout',  'logout')->middleware('auth')->name('logout');
+    Route::get('/register', 'showRegister')->name('register');
+    Route::post('/register', 'register');
+    Route::get('/login', 'showLogin')->name('login');
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout')->middleware('auth')->name('logout');
+    Route::get('/password/reset', 'showResetEmailForm')->name('password.reset');
+    Route::post('/password/email', 'sendResetLinkEmail')->name('password.email');
+    Route::post('/password/reset', 'resetPassword')->name('password.update');
 });
 
 
